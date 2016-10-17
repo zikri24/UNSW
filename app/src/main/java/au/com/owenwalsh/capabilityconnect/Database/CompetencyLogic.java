@@ -2,12 +2,16 @@ package au.com.owenwalsh.capabilityconnect.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import au.com.owenwalsh.capabilityconnect.Model.Assessment;
 import au.com.owenwalsh.capabilityconnect.Model.Competency;
+import au.com.owenwalsh.capabilityconnect.Model.Tutorial;
 
 /**
  * Created by Zikri on 13/10/2016.
@@ -16,6 +20,8 @@ import au.com.owenwalsh.capabilityconnect.Model.Competency;
 public class CompetencyLogic {
     public static final String TAG = "CompetencyLogic";
 
+    private ArrayList<Competency> competencies;
+    private Competency competency;
     private SQLiteDatabase db;
     private DatabaseHelper dbHelper;
     private Context context;
@@ -47,5 +53,32 @@ public class CompetencyLogic {
         Log.d("Competency added ID IS:", String.valueOf(row));
     }
 
+    public long deleteCompetency(int competencyId ) {
+        open();
+        long row = db.delete(dbHelper.COMPETENCIES, dbHelper.COMPETENCY_ID + "= " + competencyId , null);
+        close();
+        return row;
+    }
 
+    //FIND ALL TUTORIALS
+    public ArrayList<Competency> findAllCompetencies() {
+        competencies = new ArrayList<>();
+        open();
+        try {
+            Cursor cursor = db.rawQuery("SELECT * FROM " + dbHelper.COMPETENCIES, null);
+            while (cursor.moveToNext()) {
+                competency = new Competency();
+                competency.setId(cursor.getInt(0));
+                competency.setName(cursor.getString(1));
+                competency.setDescription(cursor.getString(2));
+                competencies.add(competency);
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+            competencies = null;
+        }
+        close();
+        return competencies;
+    }
 }

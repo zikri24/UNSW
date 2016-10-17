@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import au.com.owenwalsh.capabilityconnect.Adapters.AssessmentAdapter;
 import au.com.owenwalsh.capabilityconnect.Adapters.StudentAdapter;
 import au.com.owenwalsh.capabilityconnect.Database.AssessmentLogic;
 import au.com.owenwalsh.capabilityconnect.Database.StudentLogic;
@@ -25,8 +26,13 @@ import au.com.owenwalsh.capabilityconnect.Model.Assessment;
 import au.com.owenwalsh.capabilityconnect.Model.Student;
 import au.com.owenwalsh.capabilityconnect.R;
 
+
+
 public class AssessmentListActivity extends BaseActivity implements View.OnClickListener, AssessmentAdapter.ItemClickCallback {
 
+
+
+    public static final String ASSESS_ID = "assessmentId";
     private RecyclerView recyclerView;
     private ProgressDialog progress;
     private Boolean isFabOpen = false;
@@ -35,7 +41,8 @@ public class AssessmentListActivity extends BaseActivity implements View.OnClick
     private Animation actionbar_open, actionbar_close, rotate_forward, rotate_backward;
 
     private AssessmentLogic assessmentLogic;
-    private ArrayList<Assessment> assessment;
+    private ArrayList<Assessment> assessments;
+    private Assessment assessment;
     private AssessmentAdapter adapter;
 
     @Override
@@ -104,8 +111,8 @@ public class AssessmentListActivity extends BaseActivity implements View.OnClick
     private void loadAssessments() {
         //showProgressDialog();
         assessmentLogic = new AssessmentLogic(AssessmentListActivity.this);
-        assessment = AssessmentLogic.findAllAssessments();
-        adapter = new StudentAdapter(assessment, AssessmentListActivity.this);
+        assessments = assessmentLogic.findAllAssessments();
+        adapter = new AssessmentAdapter(assessments, AssessmentListActivity.this);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         adapter.setItemClickCallback(this);
@@ -115,20 +122,20 @@ public class AssessmentListActivity extends BaseActivity implements View.OnClick
     //passing the pokemon name to the detail activity on item clicked
     @Override
     public void onItemClick(int p) {
-        Assessment assessment = assessment.get(p);
+        assessment = assessments.get(p);
         Intent intent = new Intent(AssessmentListActivity.this, DummyActivity.class);
-        intent.putExtra(ASSESSMENT_NAME, assessment.getAssessName());
+        intent.putExtra(ASSESS_ID, String.valueOf(assessment.getId()));
         startActivity(intent);
 
     }
 
     @Override
     public void onDeleteClick(int p) {
-        Assessment assessment = assessment.get(p);
+        assessment = assessments.get(p);
         assessmentLogic.deleteAssessment(assessment.getId());
         new AlertDialog.Builder(AssessmentListActivity.this)
-                .setTitle("Deleting " + assessment.getAssessmentName())
-                .setMessage("Are you sure you want to delete " + assessment.getLastName())
+                .setTitle("Deleting " + assessment.getName())
+                .setMessage("Are you sure you want to delete " + assessment.getName())
                 .setIcon(R.drawable.warning)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
@@ -138,26 +145,20 @@ public class AssessmentListActivity extends BaseActivity implements View.OnClick
                 })
                 .setNegativeButton(android.R.string.no, null).show();
         adapter.notifyDataSetChanged();
-
     }
 
     @Override
     public void onUpdateClick(int p) {
-        Assessment assessment = assessment.get(p);
+        assessment = assessments.get(p);
         Intent intent = new Intent(this, DummyActivity.class);
-        intent.putExtra(ASSESSMENT_NAME, assessment.getAssessName());
+        intent.putExtra(ASSESS_ID, String.valueOf(assessment.getId()));
         startActivity(intent);
     }
-
-
-
-
-
 
     /**
      * This method is a reusable progress dialog to alert the users that we are waitinf for data
      */
-    /*private void showProgressDialog() {
+    private void showProgressDialog() {
         if (progress == null) {
             progress = ProgressDialog.show(getApplicationContext(), "loading...","wont be long!", true);
         }
@@ -165,13 +166,13 @@ public class AssessmentListActivity extends BaseActivity implements View.OnClick
     /**
      * This method hides the progress dialog and resets it to null
      */
-    /*private void hideProgressDialog() {
+    private void hideProgressDialog() {
         if (progress != null && progress.isShowing()) {
             progress.hide();
             progress = null;
         }
     }
-    */
+
     public void hideFloatingActionBar(){
         addAssessmentActionBar.startAnimation(actionbar_close);
         addAssessmentActionBar.setClickable(false);

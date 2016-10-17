@@ -14,11 +14,17 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import au.com.owenwalsh.capabilityconnect.Database.TutorialLogic;
+import au.com.owenwalsh.capabilityconnect.Model.Tutorial;
 import au.com.owenwalsh.capabilityconnect.R;
 
 public class AddTutorialActivity extends BaseActivity {
     private Spinner spinner_days;
     private TimePicker picker_time;
+
+    private TutorialLogic tutorialLogic;
+    private Tutorial tutorial;
+    //private String time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +37,14 @@ public class AddTutorialActivity extends BaseActivity {
 
         spinner_days = (Spinner) findViewById(R.id.spinner_days);
         picker_time = (TimePicker) findViewById(R.id.picker_time);
+
+        tutorialLogic = new TutorialLogic(this);
+
+        //tutorial = new Tutorial(day, time);
+        tutorialLogic.addTutorial(tutorial);
+
+
+
     }
 
     public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
@@ -51,6 +65,6 @@ public class AddTutorialActivity extends BaseActivity {
         Calendar calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int min = calendar.get(Calendar.MINUTE);
-        // String time =
+        //time = hour + ":" + min;
     }
 }

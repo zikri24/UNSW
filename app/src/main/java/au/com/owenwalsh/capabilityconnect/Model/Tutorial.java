@@ -12,6 +12,11 @@ public class Tutorial {
     public Tutorial() {
     }
 
+    public Tutorial(String day, String time) {
+        this.day = day;
+        this.time = time;
+    }
+
 
     public Tutorial(String day, String time, int numberOfStudents) {
         this.day = day;

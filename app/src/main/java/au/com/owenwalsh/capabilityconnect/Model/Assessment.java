@@ -14,8 +14,8 @@ public class Assessment {
     public Assessment() {
     }
 
-    public Assessment(int id, String name, int dueDay, int dueMonth, int dueYear, int mark) {
-        this.id = id;
+    public Assessment( String name, int dueDay, int dueMonth, int dueYear, int mark) {
+
         this.name = name;
         this.dueDay = dueDay;
         this.dueMonth = dueMonth;

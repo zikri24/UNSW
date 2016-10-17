@@ -2,11 +2,15 @@ package au.com.owenwalsh.capabilityconnect.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 import au.com.owenwalsh.capabilityconnect.Model.Assessment;
+import au.com.owenwalsh.capabilityconnect.Model.Competency;
 import au.com.owenwalsh.capabilityconnect.Model.Student;
 
 /**
@@ -17,6 +21,8 @@ public class AssessmentLogic {
 
     public static final String TAG = "AssessmentLogic";
 
+    private ArrayList<Assessment> assessments;
+    private Assessment assessment;
     private SQLiteDatabase db;
     private DatabaseHelper dbHelper;
     private Context context;
@@ -39,7 +45,7 @@ public class AssessmentLogic {
         db.close();
     }
 
-    public void insertAssessment(Assessment assessment) {
+    public long insertAssessment(Assessment assessment) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(dbHelper.ASSESSMENT_NAME, assessment.getName());
         contentValues.put(dbHelper.ASSESSMENT_MARK, assessment.getMark());
@@ -48,7 +54,39 @@ public class AssessmentLogic {
         contentValues.put(dbHelper.DUE_Year, assessment.getDueYear());
         long row = db.insert(dbHelper.STUDENTS_TABLE, null, contentValues);
         close();
-        Log.d("Assessment added :", String.valueOf(row));
+        return row;
+    }
+
+    public long deleteAssessment(int assessmentId ) {
+        open();
+        long row = db.delete(dbHelper.ASSESSMENTS, dbHelper.ASSESSMENT_ID + "= " + assessmentId , null);
+        close();
+        return row;
+    }
+
+    //FIND ALL Assessments
+    public ArrayList<Assessment> findAllAssessments() {
+        assessments = new ArrayList<>();
+        open();
+        try {
+            Cursor cursor = db.rawQuery("SELECT * FROM " + dbHelper.ASSESSMENTS, null);
+            while (cursor.moveToNext()) {
+                assessment = new Assessment();
+                assessment.setId(cursor.getInt(0));
+                assessment.setName(cursor.getString(1));
+                assessment.setDueMonth(cursor.getInt(2));
+                assessment.setDueYear(cursor.getInt(3));
+                assessment.setDueDay(cursor.getInt(4));
+                assessment.setMark(cursor.getInt(5));
+                assessments.add(assessment);
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+            assessments = null;
+        }
+        close();
+        return assessments;
     }
 
 

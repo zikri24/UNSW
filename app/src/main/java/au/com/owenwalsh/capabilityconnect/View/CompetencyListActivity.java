@@ -18,14 +18,15 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import au.com.owenwalsh.capabilityconnect.Adapters.CompetencyAdapter;
 import au.com.owenwalsh.capabilityconnect.Adapters.StudentAdapter;
 import au.com.owenwalsh.capabilityconnect.Database.CompetencyLogic;
 import au.com.owenwalsh.capabilityconnect.Model.Competency;
 import au.com.owenwalsh.capabilityconnect.Model.Student;
 import au.com.owenwalsh.capabilityconnect.R;
 
-public class CompetencyListActivity extends BaseActivity implements View.OnClickListener, StudentAdapter.ItemClickCallback {
-    public static final String FIRST_NAME = "fistName";
+public class CompetencyListActivity extends BaseActivity implements View.OnClickListener, CompetencyAdapter.ItemClickCallback {
+    public static final String COMP_ID = "competencyID";
     private RecyclerView recyclerView;
     private ProgressDialog progress;
     private Boolean isFabOpen = false;
@@ -100,7 +101,6 @@ public class CompetencyListActivity extends BaseActivity implements View.OnClick
             Log.d("Raj","open");
 
         }
-
     }
 
     private void loadCompetencies() {
@@ -119,18 +119,18 @@ public class CompetencyListActivity extends BaseActivity implements View.OnClick
     public void onItemClick(int p) {
         Competency competency = competencies.get(p);
         Intent intent = new Intent(CompetencyListActivity.this, DummyActivity.class);
-        intent.putExtra(FIRST_NAME, competency.getCompetencyName());
+        intent.putExtra(COMP_ID, competency.getId());
         startActivity(intent);
 
     }
 
     @Override
     public void onDeleteClick(int p) {
-        Competency student = competencies.get(p);
-        competencyLogicp.deleteCompetency(competencies.getId());
+        Competency competency = competencies.get(p);
+        competencyLogic.deleteCompetency(competency.getId());
         new AlertDialog.Builder(CompetencyListActivity.this)
-                .setTitle("Deleting " + student.getCompetencyName())
-                .setMessage("Are you sure you want to delete " +student.getCompetencyName())
+                .setTitle("Deleting " + competency.getName())
+                .setMessage("Are you sure you want to delete " +competency.getName())
                 .setIcon(R.drawable.warning)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
@@ -145,7 +145,7 @@ public class CompetencyListActivity extends BaseActivity implements View.OnClick
     public void onUpdateClick(int p) {
         Competency competency = competencies.get(p);
         Intent intent = new Intent(this, DummyActivity.class);
-        intent.putExtra(FIRST_NAME, competency.getCompetencyName());
+        intent.putExtra(COMP_ID, competency.getId());
         startActivity(intent);
     }
 
@@ -161,13 +161,13 @@ public class CompetencyListActivity extends BaseActivity implements View.OnClick
     /**
      * This method hides the progress dialog and resets it to null
      */
-    /*private void hideProgressDialog() {
+    private void hideProgressDialog() {
         if (progress != null && progress.isShowing()) {
             progress.hide();
             progress = null;
         }
     }
-    */
+
     public void hideFloatingActionBar(){
         addCompetencyActionBar.startAnimation(actionbar_close);
         addCompetencyActionBar.setClickable(false);

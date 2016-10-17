@@ -22,6 +22,8 @@ import au.com.owenwalsh.capabilityconnect.Model.Assessment;
 import au.com.owenwalsh.capabilityconnect.R;
 
 public class AddAssessmentActivity extends BaseActivity  {
+
+    private long feedback;
     private AssessmentLogic assessmentLogic;
     private Assessment assessment;
 
@@ -76,18 +78,20 @@ public class AddAssessmentActivity extends BaseActivity  {
     }
 
     public void addAssessment(){
-        if(!validateAssessment()){
+       if(!validateAssessment()){
             addAssessmentFailed();
             return;
         }
         btn_addAssessment.setEnabled(false);
-        //add logic here for adding student
+        //add logic here for adding assessment
         String assessmentName = input_assessment_name.getText().toString();
-        String assessmentDesc = input_assessment_desc.getText().toString();
-        String weighting = input_weighting.getText().toString();
-        String dueTime = time;
-        String dueDate = date;
-        assessment = new Assessment(id, name, dueDay, dueMonth, dueYear, mark);
+        //String assessmentDesc = input_assessment_desc.getText().toString();
+        int mark = Integer.parseInt(input_weighting.getText().toString());
+        //String dueTime = time;
+        int  dueDay = day;
+        int  dueMonth = month;
+        int  dueYear = year;
+        assessment = new Assessment(assessmentName, dueDay, dueMonth, dueYear, mark);
         assessmentLogic = new AssessmentLogic(AddAssessmentActivity.this);
         feedback = assessmentLogic.insertAssessment(assessment);
         if(feedback > 0){
@@ -106,7 +110,6 @@ public class AddAssessmentActivity extends BaseActivity  {
         Toast.makeText(AddAssessmentActivity.this, "Assessment added successfully!", Toast.LENGTH_SHORT).show();
         btn_addAssessment.setEnabled(true);
     }
-
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private boolean validateAssessment() {
