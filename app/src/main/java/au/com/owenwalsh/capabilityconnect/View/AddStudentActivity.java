@@ -88,6 +88,7 @@ public class AddStudentActivity extends BaseActivity {
         String firstName = input_firstName.getText().toString();
         String lastName = input_lastName.getText().toString();
         String email = input_email.getText().toString();
+        String stream = input_stream.getText().toString();
 
         if (firstName.isEmpty()) {
             input_firstName.setError("First name cannot be empty");
@@ -106,6 +107,11 @@ public class AddStudentActivity extends BaseActivity {
             validated = false;
         } else {
             input_email.setError(null);
+        }
+        if (stream.isEmpty()){
+            input_stream.setError("Stream cannot be emp");
+        } else {
+            input_stream.setError(null);
         }
         return validated;
     }

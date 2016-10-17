@@ -51,5 +51,6 @@ public class AddTutorialActivity extends BaseActivity {
         Calendar calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int min = calendar.get(Calendar.MINUTE);
+        // String time =
     }
 }
