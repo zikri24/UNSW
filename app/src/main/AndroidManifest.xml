@@ -30,6 +30,7 @@
         <activity android:name="au.com.owenwalsh.capabilityconnect.View.AddWeekDetailsActivity" />
         <activity android:name="au.com.owenwalsh.capabilityconnect.View.DummyActivity" />
         <activity android:name="au.com.owenwalsh.capabilityconnect.View.TutorialStudents" />
+        <activity android:name="au.com.owenwalsh.capabilityconnect.View.AddTutorialActivity" />
     </application>
 
 </manifest>
