@@ -1,0 +1,81 @@
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tutorial_cont_item_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp"
+    android:visibility="visible"
+    card_view:cardCornerRadius="5dp">
+
+    <RelativeLayout
+        android:id="@+id/tutorial_card"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="horizontal"
+        android:visibility="visible">
+        <TextView
+            android:id="@+id/class_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="INFS3634"
+            android:padding="20dp" />
+
+        <TextView
+            android:id="@+id/tutorial_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:padding="20dp" />
+
+
+        <TextView
+            android:id="@+id/tutorial_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/tutorial_day"
+            android:padding="20dp" />
+
+        <TextView
+            android:id="@+id/num_of_students"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tutorial_day"
+            android:padding="20dp" />
+        <TextView
+            android:id="@+id/num_of_students_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/num_of_students"
+            android:layout_toRightOf="@+id/num_of_students"
+            android:layout_below="@+id/tutorial_time"
+            android:text=" Students"
+            android:padding="20dp" />
+
+
+        <ImageButton
+            android:id="@+id/btn_edit_tutorial"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_toLeftOf="@+id/btn_remove_tutorial"
+            android:background="@android:color/transparent"
+            android:paddingRight="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/class_edit_icon"
+            android:visibility="visible" />
+
+        <ImageButton
+            android:id="@+id/btn_remove_tutorial"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentEnd="true"
+            android:background="@android:color/transparent"
+            android:paddingRight="10dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/class_remove_icon"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

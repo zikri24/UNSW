@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/tutorial"
+            android:checked="false"
+            android:icon="@drawable/class_icon"
+            android:title="Tutorials" />
+
+        <item
+            android:id="@+id/students"
+            android:checked="false"
+            android:icon="@drawable/person_icon"
+            android:title="Students" />
+
+        <item
+            android:id="@+id/weeks"
+            android:checked="false"
+            android:icon="@drawable/cal_icon"
+            android:title="Weeks" />
+
+    </group>
+</menu>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="au.com.owenwalsh.capabilityconnect">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/unsw_logo_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/MainTheme">
+        <activity android:name=".View.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".View.MainActivity" />
+        <activity
+            android:name=".View.DummyActivity"
+            android:label="@string/title_activity_dummy"
+            android:parentActivityName=".View.MainActivity"
+            android:theme="@style/MainTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="au.com.owenwalsh.capabilityconnect.View.MainActivity" />
+        </activity>
+        <activity android:name=".View.StudentListActivity" />
+        <activity android:name=".View.BaseActivity" />
+        <activity android:name=".View.AddStudentActivity" />
+        <activity android:name=".View.TutorialListActivity" />
+        <activity android:name=".View.AssessmentListActivity" />
+        <activity android:name=".View.AddAssessmentActivity" />
+        <activity android:name=".View.CompetencyListActivity" />
+        <activity android:name=".View.AddCompetencyActivity" />
+        <activity android:name=".View.WeeksListActivity" />
+        <activity android:name=".View.AddWeekDetailsActivity" />
+        <activity
+            android:name=".View.TutorialStudents"
+            android:label="@string/title_activity_tutorial_students"
+            android:parentActivityName=".View.TutorialListActivity"
+            android:theme="@style/MainTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="au.com.owenwalsh.capabilityconnect.View.TutorialListActivity" />
+        </activity>
+    </application>
+
+</manifest>
