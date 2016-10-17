@@ -66,14 +66,14 @@ public class AssessmentListActivity extends BaseActivity implements View.OnClick
                 Toast.makeText(AssessmentListActivity.this, "Add student selected", Toast.LENGTH_SHORT).show();
                 Log.d("FAB FOCUSED:", "Add student selected");
                 //move user to AddStudentActivity
-                Intent intent = new Intent(getApplicationContext(), AddStudentActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AddAssessmentActivity.class);
                 startActivity(intent);
             }
         });
     }
 
     private void initViews() {
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_student_list);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_assessment_list);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -148,4 +148,41 @@ public class AssessmentListActivity extends BaseActivity implements View.OnClick
         intent.putExtra(ASSESSMENT_NAME, assessment.getAssessName());
         startActivity(intent);
     }
+
+
+
+
+
+
+    /**
+     * This method is a reusable progress dialog to alert the users that we are waitinf for data
+     */
+    /*private void showProgressDialog() {
+        if (progress == null) {
+            progress = ProgressDialog.show(getApplicationContext(), "loading...","wont be long!", true);
+        }
+    }
+    /**
+     * This method hides the progress dialog and resets it to null
+     */
+    /*private void hideProgressDialog() {
+        if (progress != null && progress.isShowing()) {
+            progress.hide();
+            progress = null;
+        }
+    }
+    */
+    public void hideFloatingActionBar(){
+        addAssessmentActionBar.startAnimation(actionbar_close);
+        addAssessmentActionBar.setClickable(false);
+        addAssessmentActionBar.hide();
+        addActionBar.hide();
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
+
+
 }

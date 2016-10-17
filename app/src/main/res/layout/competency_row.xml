@@ -1,6 +1,6 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/assessment_cont_item_root"
+    android:id="@+id/cont_item_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="5dp"
@@ -10,7 +10,7 @@
     card_view:cardCornerRadius="5dp">
 
     <RelativeLayout
-        android:id="@+id/assessment_card"
+        android:id="@+id/competency_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
@@ -18,33 +18,33 @@
         android:visibility="visible">
 
         <TextView
-            android:id="@+id/assessment_name"
+            android:id="@+id/competency_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:padding="20dp" />
+            android:paddingLeft="@dimen/activity_horizontal_margin" />
 
 
         <ImageButton
-            android:id="@+id/btn_edit_assessment"
+            android:id="@+id/remove_button"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:layout_toLeftOf="@+id/btn_remove_assessment"
-            android:background="@android:color/transparent"
+            android:layout_toLeftOf="@+id/edit_button"
             android:paddingRight="10dp"
             android:scaleType="fitXY"
-            android:src="@drawable/assessment_edit_icon"
+            android:src="@drawable/competency_remove_icon"
+            android:background="@android:color/transparent"
             android:visibility="visible" />
 
         <ImageButton
-            android:id="@+id/btn_remove_assessment"
+            android:id="@+id/edit_button"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_alignParentEnd="true"
-            android:background="@android:color/transparent"
             android:paddingRight="10dp"
             android:scaleType="fitXY"
-            android:src="@drawable/assessment_remove_icon"
+            android:src="@drawable/competency_edit_icon"
+            android:background="@android:color/transparent"
             android:visibility="visible" />
     </RelativeLayout>
 

@@ -123,7 +123,7 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
        // hideProgressDialog();
     }
 
-    //passing the pokemon name to the detail activity on item clicked
+
   @Override
     public void onItemClick(int p) {
         Student student = students.get(p);
