@@ -20,6 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public final static String EMAIL = "Email";
     public final static String WEAKNESS = "Weakness";
     public final static String STRENGTH = "Strength";
+    public final static String STREAM = "Stream";
 
     //Tutorials table and columns names
     public final static String TUTORIALS = "Tutorials";
@@ -76,7 +77,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + LAST_NAME + " TEXT NOT NULL, "
             + EMAIL + " TEXT NOT NULL, "
             + WEAKNESS + " TEXT, "
-            + STRENGTH + " TEXT )";
+            + STRENGTH + " TEXT, "
+            + STREAM+ " TEXT )";
 
     //Creating the Tutorials table
     private static final String CREATE_TUTORIALS_TABLE = "CREATE TABLE "

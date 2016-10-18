@@ -51,6 +51,7 @@ public class StudentLogic {
         contentValues.put(dbHelper.EMAIL, student.getEmail());
         contentValues.put(dbHelper.WEAKNESS, student.getWeakness());
         contentValues.put(dbHelper.STRENGTH, student.getStrength());
+        contentValues.put(dbHelper.STREAM, student.getStream());
         open();
         long row = db.insert(dbHelper.STUDENTS_TABLE, null, contentValues);
         close();
