@@ -7,9 +7,12 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -21,9 +24,11 @@ import au.com.owenwalsh.capabilityconnect.R;
 public class AddTutorialActivity extends BaseActivity {
     private Spinner spinner_days;
     private TimePicker picker_time;
+    private Button btn_add_tutorial;
 
     private TutorialLogic tutorialLogic;
     private Tutorial tutorial;
+
     //private String time;
 
     @Override
@@ -38,13 +43,72 @@ public class AddTutorialActivity extends BaseActivity {
         spinner_days = (Spinner) findViewById(R.id.spinner_days);
         picker_time = (TimePicker) findViewById(R.id.picker_time);
 
-        tutorialLogic = new TutorialLogic(this);
+        btn_add_tutorial = (Button) findViewById(R.id.btn_add_tutorial);
 
-        //tutorial = new Tutorial(day, time);
-        tutorialLogic.addTutorial(tutorial);
+        btn_add_tutorial.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View v) {
+                addTutorial();
+            }
+        });
+
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void addTutorial() {
+        if(!validatetutorial()){
+            addTutorialFailed();
+            return;
+        }
+        btn_add_tutorial.setEnabled(false);
+        //add logic here for adding student
+        int tutorialHour = picker_time.getHour();
+        int tutorialMinute = picker_time.getMinute();
+        String time = String.valueOf(tutorialHour+ ":" + tutorialMinute);
+        String day = spinner_days.getSelectedItem().toString();
+        tutorial = new Tutorial(id, day,lastName,time);
+        tutorialLogic = new TutorialLogic(AddTutorialActivity.this);
+        feedback = tutorialLogic.addTutorial(tutorial);
+        if(feedback > 0){
+            addTutorialSuccessfull();
+        }else{
+            addTutorialFailed();
+        }
+    }
 
 
+    private void addTutorialFailed() {
+        Toast.makeText(AddTutorialActivity.this, "woops something went wrong! Please try Again.", Toast.LENGTH_SHORT).show();
+        btn_add_tutorial.setEnabled(true);
+    }
 
+    private void addTutorialSuccessfull(){
+        Toast.makeText(AddTutorialActivity.this, "Tutorial added successfully!", Toast.LENGTH_SHORT).show();
+        btn_add_tutorial.setEnabled(true);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private boolean validateTutorial() {
+        boolean validated = true;
+        //validation logic here
+        int hour = picker_time.getHour();
+        int minute = picker_time.getMinute();
+        String day = spinner_days.getSelectedItem().toString();
+
+        if (hour <=0 && minute <=0) {
+            Toast.makeText(AddTutorialActivity.this, "Tutorial time must be entered", Toast.LENGTH_SHORT).show();
+            validated = false;
+        } else {
+            Log.d("TimePicker", "Inputted successfully");
+        }
+        if (day.isEmpty()){
+            Toast.makeText(AddTutorialActivity.this, "Tutorial day must be entered", Toast.LENGTH_SHORT).show();
+            validated = false;
+        } else {
+            Log.d("Day Spinner", "Inputted successfully");
+        }
+        return validated;
     }
 
     public class SpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {

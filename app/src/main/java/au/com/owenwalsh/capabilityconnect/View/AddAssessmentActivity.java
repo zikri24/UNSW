@@ -77,6 +77,7 @@ public class AddAssessmentActivity extends BaseActivity  {
         String date = String.valueOf(calender.get(Calendar.DATE));
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void addAssessment(){
        if(!validateAssessment()){
             addAssessmentFailed();
@@ -88,9 +89,9 @@ public class AddAssessmentActivity extends BaseActivity  {
         //String assessmentDesc = input_assessment_desc.getText().toString();
         int mark = Integer.parseInt(input_weighting.getText().toString());
         //String dueTime = time;
-        int  dueDay = day;
-        int  dueMonth = month;
-        int  dueYear = year;
+        int  dueDay = picker_date.getDayOfMonth();
+        int  dueMonth = picker_date.getMonth();
+        int  dueYear = picker_date.getYear();
         assessment = new Assessment(assessmentName, dueDay, dueMonth, dueYear, mark);
         assessmentLogic = new AssessmentLogic(AddAssessmentActivity.this);
         feedback = assessmentLogic.insertAssessment(assessment);
