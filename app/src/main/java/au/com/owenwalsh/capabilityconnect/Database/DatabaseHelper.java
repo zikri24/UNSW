@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
     //Database name and version
-    private static final String DATABASE_NAME = "StudentsDB";
+    private static final String DATABASE_NAME = "StudentsDB.db";
     private static final int DATABASE_VERSION = 1;
 
     //Students Table and columns names
@@ -122,7 +122,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + ASSESSMENTS + " (" + ASSESSMENT_ID + "  INTEGER PRIMARY KEY AUTOINCREMENT, "
             + ASSESSMENT_NAME + " TEXT, "
             + DUE_DATE + " TEXT, "
-            + ASSESSMENT_MARK + "INTEGER)";
+            + ASSESSMENT_MARK + " INTEGER)";
 
     //Creating the Students_Assessments table
     private static final String CREATE_STUDENTS_ASSESSMENTS_TABLE = "CREATE TABLE "
