@@ -73,7 +73,7 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void initViews() {
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_student_list);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_weeks_list);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
