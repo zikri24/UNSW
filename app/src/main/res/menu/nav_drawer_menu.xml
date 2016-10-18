@@ -24,13 +24,13 @@
         <item
         android:id="@+id/assessments"
         android:checked="false"
-        android:icon="@drawable/class_icon"
+        android:icon="@drawable/assignment_icon"
         android:title="Assessments" />
 
         <item
             android:id="@+id/competency"
             android:checked="false"
-            android:icon="@drawable/class_icon"
+            android:icon="@drawable/competency_icon"
             android:title="Competencies" />
 
     </group>

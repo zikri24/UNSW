@@ -30,7 +30,9 @@
         <activity android:name=".View.AddWeekDetailsActivity" />
         <activity android:name=".View.DummyActivity" />
         <activity android:name=".View.AddTutorialActivity" />
-        <activity android:name=".View.TutorialStudentsListActivity"></activity>
+        <activity android:name=".View.TutorialStudentsListActivity" />
+        <activity android:name=".View.AddWeekActivity" />
+        <activity android:name=".View.SendStudentEmailActivity"></activity>
     </application>
 
 </manifest>

@@ -109,7 +109,8 @@ public class AddStudentActivity extends BaseActivity {
             input_email.setError(null);
         }
         if (stream.isEmpty()){
-            input_stream.setError("Stream cannot be emp");
+            input_stream.setError("Stream cannot be empty");
+            validated = false;
         } else {
             input_stream.setError(null);
         }
