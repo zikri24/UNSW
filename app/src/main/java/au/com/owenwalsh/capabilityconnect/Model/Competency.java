@@ -11,8 +11,7 @@ public class Competency {
     public Competency() {
     }
 
-    public Competency( int id, String name, String description) {
-        this.id = id;
+    public Competency( String name, String description) {
         this.name = name;
         this.description = description;
     }

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/UNSW.iml" filepath="$PROJECT_DIR$/UNSW.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UNSWOMAR.iml" filepath="$PROJECT_DIR$/UNSWOMAR.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

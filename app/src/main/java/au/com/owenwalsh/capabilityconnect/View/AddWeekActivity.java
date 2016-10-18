@@ -15,7 +15,7 @@ import au.com.owenwalsh.capabilityconnect.R;
 
 public class AddWeekActivity extends BaseActivity {
     private WeekLogic weekLogic;
-    private Week student;
+    private Week week;
 
     private long feedback;
     private EditText input_week_name;
@@ -36,33 +36,33 @@ public class AddWeekActivity extends BaseActivity {
         input_comment = (EditText) findViewById(R.id.input_comment);
         btn_add_week = (Button) findViewById(R.id.btn_add_week);
 
-        btn_add_week.setOnClickListener(new View.OnClickListener(){
+        btn_add_week.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 addWeek();
             }
-            });
+        });
 
-        }
+    }
 
     private void addWeek() {
-        if(!validateWeek()){
+        if (!validateWeek()) {
             addWeekFailed();
             return;
         }
         btn_add_week.setEnabled(false);
         //add logic here for adding student
-       String weekName = input_week_name.getText().toString();
+        String weekName = input_week_name.getText().toString();
         String weekToDo = input_week_todo.getText().toString();
         String weekComment = input_comment.getText().toString();
 
-        week = new Week(id, weekName,weekToDo, weekComment);
+        week = new Week(weekName);
         weekLogic = new WeekLogic(AddWeekActivity.this);
         feedback = weekLogic.insertWeek(week);
-        if(feedback > 0){
+        if (feedback > 0) {
             addWeekSuccessfull();
-        }else{
+        } else {
             addWeekFailed();
         }
     }
@@ -72,23 +72,24 @@ public class AddWeekActivity extends BaseActivity {
         btn_add_week.setEnabled(true);
     }
 
-    private void addWeekSuccessfull(){
+    private void addWeekSuccessfull() {
         Toast.makeText(AddWeekActivity.this, "Week added successfully!", Toast.LENGTH_SHORT).show();
         btn_add_week.setEnabled(true);
     }
+
     private boolean validateWeek() {
         boolean validated = true;
         //validation logic here
         String weekName = input_week_name.getText().toString();
         //String weekToDo = input_week_todo.getText().toString();
-       // String weekComment = input_comment.getText().toString();
+        // String weekComment = input_comment.getText().toString();
 
         if (weekName.isEmpty()) {
             input_week_name.setError("Week name cannot be empty");
             validated = false;
         } else {
             input_week_name.setError(null);
-    }
+        }
         return validated;
     }
 

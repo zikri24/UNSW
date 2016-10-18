@@ -1,6 +1,7 @@
 package au.com.owenwalsh.capabilityconnect.View;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,7 +17,7 @@ import au.com.owenwalsh.capabilityconnect.R;
 public class AddStudentActivity extends BaseActivity {
     private StudentLogic studentLogic;
     private Student student;
-
+    private int tutorialId;
     private long feedback;
     private EditText input_firstName;
     private EditText input_lastName;
@@ -33,6 +34,9 @@ public class AddStudentActivity extends BaseActivity {
         View contentView = inflater.inflate(R.layout.activity_add_student, null, false);
         drawerLayout.addView(contentView, 0);
 
+        Intent intent = getIntent();
+        tutorialId = Integer.parseInt(intent.getStringExtra(TutorialStudentsListActivity.TUTORIAL_ID));
+
 
         input_firstName = (EditText) findViewById(R.id.input_first_name);
         input_lastName = (EditText) findViewById(R.id.input_last_name);
@@ -40,7 +44,6 @@ public class AddStudentActivity extends BaseActivity {
         input_zID = (EditText) findViewById(R.id.input_zid);
         btn_addStudent = (Button) findViewById(R.id.btn_add_student);
         input_stream = (EditText) findViewById(R.id.input_stream);
-
         btn_addStudent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +54,7 @@ public class AddStudentActivity extends BaseActivity {
     }
 
     private void addStudent() {
-        if(!validateStudent()){
+        if (!validateStudent()) {
             addStudentFailed();
             return;
         }
@@ -62,12 +65,12 @@ public class AddStudentActivity extends BaseActivity {
         String lastName = input_lastName.getText().toString();
         String email = input_email.getText().toString();
         String stream = input_stream.getText().toString();
-        student = new Student(zID, firstName,lastName, email, stream);
+        student = new Student(zID, firstName, lastName, email, stream);
         studentLogic = new StudentLogic(AddStudentActivity.this);
-        feedback = studentLogic.insertStudent(student);
-        if(feedback > 0){
+        feedback = studentLogic.insertStudent(student, tutorialId);
+        if (feedback > 0) {
             addStudentSuccessfull();
-        }else{
+        } else {
             addStudentFailed();
         }
     }
@@ -77,7 +80,7 @@ public class AddStudentActivity extends BaseActivity {
         btn_addStudent.setEnabled(true);
     }
 
-    private void addStudentSuccessfull(){
+    private void addStudentSuccessfull() {
         Toast.makeText(AddStudentActivity.this, "Student added successfully!", Toast.LENGTH_SHORT).show();
         btn_addStudent.setEnabled(true);
     }
@@ -96,7 +99,7 @@ public class AddStudentActivity extends BaseActivity {
         } else {
             input_firstName.setError(null);
         }
-        if (lastName.isEmpty()){
+        if (lastName.isEmpty()) {
             input_lastName.setError("Last name cannot be empty");
             validated = false;
         } else {
@@ -108,7 +111,7 @@ public class AddStudentActivity extends BaseActivity {
         } else {
             input_email.setError(null);
         }
-        if (stream.isEmpty()){
+        if (stream.isEmpty()) {
             input_stream.setError("Stream cannot be empty");
             validated = false;
         } else {

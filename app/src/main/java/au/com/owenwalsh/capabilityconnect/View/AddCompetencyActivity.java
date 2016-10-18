@@ -50,7 +50,8 @@ public class AddCompetencyActivity extends BaseActivity {
         String competencyDesc = input_competency_desc.getText().toString();
 
         competency = new Competency(competencyName,competencyDesc);
-        competencyLogic = new CompetencyLogic(competency);
+        competencyLogic = new CompetencyLogic(this);
+        feedback = competencyLogic.insertCompetency(competency);
         if (feedback > 0) {
             addCompetencySuccessfull();
         } else {

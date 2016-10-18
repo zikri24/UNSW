@@ -26,7 +26,7 @@
 
 
         <ImageButton
-            android:id="@+id/remove_button"
+            android:id="@+id/remove_comp_button"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_toLeftOf="@+id/edit_button"
@@ -37,7 +37,7 @@
             android:visibility="visible" />
 
         <ImageButton
-            android:id="@+id/edit_button"
+            android:id="@+id/edit_comp_button"
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_alignParentEnd="true"

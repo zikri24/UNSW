@@ -43,8 +43,9 @@ public class StudentLogic {
         db.close();
     }
 
-    public long insertStudent(Student student) {
+    public long insertStudent(Student student, int tutorialId) {
         ContentValues contentValues = new ContentValues();
+        ContentValues contentValues2 = new ContentValues();
         contentValues.put(dbHelper.ZID, student.getId());
         contentValues.put(dbHelper.FIRST_NAME, student.getFirsName());
         contentValues.put(dbHelper.LAST_NAME, student.getLastName());
@@ -52,11 +53,15 @@ public class StudentLogic {
         contentValues.put(dbHelper.WEAKNESS, student.getWeakness());
         contentValues.put(dbHelper.STRENGTH, student.getStrength());
         contentValues.put(dbHelper.STREAM, student.getStream());
+        contentValues2.put(dbHelper.STUDENT_ID, student.getId());
+        contentValues2.put(dbHelper.W_C_S_TUTORIAL_ID, student.getStream());
         open();
         long row = db.insert(dbHelper.STUDENTS_TABLE, null, contentValues);
+        long row2 = db.insert(dbHelper.CLASS_WEEK_STUDENT, null, contentValues2);
         close();
         return row;
     }
+
 
     public long updateStudent(Student student) {
         ContentValues contentValues = new ContentValues();

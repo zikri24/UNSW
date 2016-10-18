@@ -14,14 +14,15 @@ import java.util.List;
 
 import au.com.owenwalsh.capabilityconnect.Model.Competency;
 import au.com.owenwalsh.capabilityconnect.Model.Tutorial;
+import au.com.owenwalsh.capabilityconnect.Model.Week;
 import au.com.owenwalsh.capabilityconnect.R;
 
 /**
  * Created by owenw on 11/10/2016.
  */
-public class CompetencyAdapter extends RecyclerView.Adapter<CompetencyAdapter.ViewHolder> {
+public class WeeksAdapter extends RecyclerView.Adapter<WeeksAdapter.ViewHolder> {
     private Context mContext;
-    private List<Competency> competencyList;
+    private List<Week> weeksList;
 
     private ItemClickCallback itemClickCallback;
 
@@ -40,11 +41,11 @@ public class CompetencyAdapter extends RecyclerView.Adapter<CompetencyAdapter.Vi
     /**
      * Constructor for Tutorial Adapter
      *
-     * @param competencyList
+     * @param weeksList
      * @param mContext
      */
-    public CompetencyAdapter(List<Competency> competencyList, Context mContext) {
-        this.competencyList = competencyList;
+    public WeeksAdapter(List<Week> weeksList, Context mContext) {
+        this.weeksList = weeksList;
         this.mContext = mContext;
     }
 
@@ -54,8 +55,8 @@ public class CompetencyAdapter extends RecyclerView.Adapter<CompetencyAdapter.Vi
      * @return
      */
     @Override
-    public CompetencyAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.competency_row, viewGroup, false);
+    public WeeksAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.weeks_row, viewGroup, false);
         return new ViewHolder(view);
     }
 
@@ -64,50 +65,46 @@ public class CompetencyAdapter extends RecyclerView.Adapter<CompetencyAdapter.Vi
      * @param position
      */
     @Override
-    public void onBindViewHolder(CompetencyAdapter.ViewHolder viewHolder, int position) {
-        viewHolder.name.setText(competencyList.get(position).getName());
-        //viewHolder.desctiption.setText(competencyList.get(position).getDescription());
-
+    public void onBindViewHolder(WeeksAdapter.ViewHolder viewHolder, int position) {
+        viewHolder.weekName.setText(weeksList.get(position).getName());
     }
 
-    public void updateListAdapter(List<Competency> competencyList) {
-        this.competencyList = competencyList;
+    public void updateListAdapter(List<Week> weeksList) {
+        this.weeksList = weeksList;
     }
 
     @Override
     public int getItemCount() {
-        return competencyList.size();
+        return weeksList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView name;
-        //public TextView description;
+        public TextView weekName;
         public ImageButton removeButton;
         public ImageButton updateButton;
-        public RelativeLayout compLayout;
-        public View compContainer;
+        public RelativeLayout weekLayout;
+        public View weekContainer;
 
         public ViewHolder(View view) {
             super(view);
-            compLayout = (RelativeLayout) view.findViewById(R.id.competency_card);
-            name = (TextView) view.findViewById(R.id.competency_name);
-            //description = (TextView) view.findViewById(R.id.com);
+            weekLayout = (RelativeLayout) view.findViewById(R.id.weeks_card);
+            weekName = (TextView) view.findViewById(R.id.week_name);
 
-            removeButton = (ImageButton) view.findViewById(R.id.remove_comp_button);
-            updateButton = (ImageButton) view.findViewById(R.id.edit_comp_button);
-            compContainer = view.findViewById(R.id.comp_cont_item_root);
-            compContainer.setOnClickListener(this);
+            removeButton = (ImageButton) view.findViewById(R.id.remove_week_button);
+            updateButton = (ImageButton) view.findViewById(R.id.edit_week_button);
+            weekContainer = view.findViewById(R.id.week_cont_item_root);
+            weekContainer.setOnClickListener(this);
             updateButton.setOnClickListener(this);
             removeButton.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            if (view.getId() == R.id.comp_cont_item_root) {
+            if (view.getId() == R.id.week_cont_item_root) {
                 itemClickCallback.onItemClick(getAdapterPosition());
-            } else if (view.getId() == R.id.edit_comp_button) {
+            } else if (view.getId() == R.id.edit_week_button) {
                 itemClickCallback.onUpdateClick(getAdapterPosition());
-            } else if (view.getId() == R.id.remove_comp_button) {
+            } else if (view.getId() == R.id.remove_week_button) {
                 itemClickCallback.onDeleteClick(getAdapterPosition());
             }
         }

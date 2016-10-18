@@ -20,11 +20,13 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import au.com.owenwalsh.capabilityconnect.Adapters.StudentAdapter;
+import au.com.owenwalsh.capabilityconnect.Adapters.WeeksAdapter;
 import au.com.owenwalsh.capabilityconnect.Database.WeekLogic;
 import au.com.owenwalsh.capabilityconnect.Model.Week;
 import au.com.owenwalsh.capabilityconnect.R;
 
-public class WeeksListActivity extends BaseActivity implements View.OnClickListener, StudentAdapter.ItemClickCallback {
+public class WeeksListActivity extends BaseActivity implements View.OnClickListener, WeeksAdapter.ItemClickCallback {
+    public static final String WEEK_ID = "weekId";
     private RecyclerView recyclerView;
     private ProgressDialog progress;
     private Boolean isFabOpen = false;
@@ -40,7 +42,7 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         LayoutInflater inflater = (LayoutInflater) this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View contentView = inflater.inflate(R.layout.activity_student_list, null, false);
+        View contentView = inflater.inflate(R.layout.activity_weeks_list, null, false);
         drawerLayout.addView(contentView, 0);
 
         initViews();
@@ -112,9 +114,9 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     public void onItemClick(int p) {
-        Week student = weeks.get(p);
+        Week week = weeks.get(p);
         Intent intent = new Intent(WeeksListActivity.this, DummyActivity.class);
-        intent.putExtra(WEEK_NAME, weeks.getWeekName());
+        intent.putExtra(WEEK_ID, week.getId());
         startActivity(intent);
 
     }
@@ -122,10 +124,10 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
     @Override
     public void onDeleteClick(int p) {
         Week week = weeks.get(p);
-        WeekLogic.deleteWeek(week.getId());
+        weekLogic.deleteWeek(week.getId());
         new AlertDialog.Builder(WeeksListActivity.this)
-                .setTitle("Deleting " + week.getWeekName())
-                .setMessage("Are you sure you want to delete " +week.getWeekName())
+                .setTitle("Deleting " + week.getName())
+                .setMessage("Are you sure you want to delete " +week.getName())
                 .setIcon(R.drawable.warning)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
@@ -140,7 +142,7 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
     public void onUpdateClick(int p) {
         Week week = weeks.get(p);
         Intent intent = new Intent(this, DummyActivity.class);
-        intent.putExtra(WEEK_NAME, weeks.getWeekName());
+        intent.putExtra(WEEK_ID, week.getId());
         startActivity(intent);
     }
 

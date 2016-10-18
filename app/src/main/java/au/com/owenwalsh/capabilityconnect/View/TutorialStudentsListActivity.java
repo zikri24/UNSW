@@ -27,6 +27,7 @@ import au.com.owenwalsh.capabilityconnect.R;
 public class TutorialStudentsListActivity extends BaseActivity implements View.OnClickListener, StudentAdapter.ItemClickCallback {
 
     public static final String FIRST_NAME = "fistName";
+    public static String TUTORIAL_ID = "tutorialId";
     private RecyclerView recyclerView;
     private ProgressDialog progress;
     private Boolean isFabOpen = false;
@@ -57,6 +58,9 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
         rotate_forward = AnimationUtils.loadAnimation(TutorialStudentsListActivity.this, R.anim.rotate_forward);
         rotate_backward = AnimationUtils.loadAnimation(TutorialStudentsListActivity.this, R.anim.rotate_backward);
 
+        Intent intent = getIntent();
+        final String tutorialId = intent.getStringExtra(TutorialListActivity.TUT_ID);
+
         addActionBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,6 +74,7 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
                 Log.d("FAB FOCUSED:", "Add student selected");
                 //move user to AddStudentActivity
                 Intent intent = new Intent(getApplicationContext(), AddStudentActivity.class);
+                intent.putExtra(TUTORIAL_ID, tutorialId);
                 startActivity(intent);
             }
         });

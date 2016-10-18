@@ -44,13 +44,13 @@ public class CompetencyLogic {
         db.close();
     }
 
-    public void insertCompetency(Competency competency) {
+    public long insertCompetency(Competency competency) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(dbHelper.COMPETENCY_NAME, competency.getName());
         contentValues.put(dbHelper.DESCRIPTION, competency.getDescription());
-        long row = db.insert(dbHelper.STUDENTS_TABLE, null, contentValues);
+        long row = db.insert(dbHelper.COMPETENCIES, null, contentValues);
         close();
-        Log.d("Competency added ID IS:", String.valueOf(row));
+       return row;
     }
 
     public long deleteCompetency(int competencyId ) {

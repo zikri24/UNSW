@@ -18,6 +18,9 @@ public class Week {
         this.toDoNextWeek = toDoNextWeek;
         this.comment = comment;
     }
+    public Week(String name) {
+        this.name = name;
+    }
 
     public int getId() {
         return id;
