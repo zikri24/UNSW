@@ -7,51 +7,55 @@
         android:id="@+id/add_assessment_header"
         android:layout_width="match_parent"
         android:layout_height="190dp"
-        android:paddingTop="100dp"
         android:background="@drawable/background_material"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="100dp">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="56dp"
+            android:orientation="vertical"
             android:paddingLeft="24dp"
-            android:paddingRight="24dp">
+            android:paddingRight="24dp"
+            android:paddingTop="56dp">
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/input_assessment_name"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp">
+
+                <EditText
+                    android:id="@+id/input_assessment_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:hint="Assessment Name" />
+                    android:hint="Assessment Name"
+                    android:inputType="text" />
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
+       <!--     <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/input_assessment_desc"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp">
+
+                <EditText
+                    android:id="@+id/input_assessment_desc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textMultiLine"
                     android:hint="Assessment Description"
+                    android:inputType="textMultiLine"
                     android:lines="3"
-                    android:minLines="2"
                     android:maxLines="4"
-                    android:scrollbars="vertical"/>
+                    android:minLines="2"
+                    android:scrollbars="vertical" />
             </android.support.design.widget.TextInputLayout>
 
-
-
+-->
         </LinearLayout>
 
     </RelativeLayout>
+
     <ScrollView
         android:id="@+id/scroll_view"
         android:layout_width="fill_parent"
@@ -60,34 +64,35 @@
         android:fillViewport="true">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="56dp"
+            android:orientation="vertical"
             android:paddingLeft="24dp"
-            android:paddingRight="24dp">
+            android:paddingRight="24dp"
+            android:paddingTop="56dp">
 
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp">
-                <EditText android:id="@+id/input_weighting"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp">
+
+                <EditText
+                    android:id="@+id/input_weighting"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:hint="Assessment Weighting" />
+                    android:hint="Assessment Weighting"
+                    android:inputType="text" />
             </android.support.design.widget.TextInputLayout>
 
-            <TimePicker
+ <!--      <TimePicker
                 android:id="@+id/picker_time"
+                style="@style/Theme.MyTheme.TimePicker"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Theme.MyTheme.TimePicker"
-                android:padding="20dp">
-            </TimePicker>
-
+                android:padding="20dp"></TimePicker>
+-->
             <DatePicker
                 android:id="@+id/picker_date"
                 android:layout_width="wrap_content"
@@ -97,10 +102,10 @@
                 android:id="@+id/btn_add_Assessment"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
                 android:layout_marginBottom="24dp"
+                android:layout_marginTop="24dp"
                 android:padding="12dp"
-                android:text="Add"/>
+                android:text="Add" />
         </LinearLayout>
     </ScrollView>
 

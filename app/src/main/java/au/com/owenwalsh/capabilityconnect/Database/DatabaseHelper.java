@@ -46,9 +46,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public final static String ASSESSMENT_ID = "AssessmentId";
     public final static String ASSESSMENT_NAME = "AssessmentName";
     public final static String ASSESSMENT_MARK = "AssessmentMark";
-    public final static String DUE_DAY = "DueDay";
-    public final static String DUE_MONTH = "DueMonth";
-    public final static String DUE_Year = "DueYear";
+    public final static String DUE_DATE = "DueDate";
+
 
     //Assessments_Students table and columns names
     public final static String STUDENTS_ASSESSMENTS = "Students_Assessments";
@@ -120,9 +119,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_ASSESSMENTS_TABLE = "CREATE TABLE "
             + ASSESSMENTS + " (" + ASSESSMENT_ID + "  INTEGER PRIMARY KEY AUTOINCREMENT, "
             + ASSESSMENT_NAME + " TEXT, "
-            + DUE_DAY + "INTEGER, "
-            + DUE_MONTH + "INTEGER, "
-            + DUE_Year + "INTEGER, "
+            + DUE_DATE + " TEXT, "
             + ASSESSMENT_MARK + "INTEGER)";
 
     //Creating the Students_Assessments table

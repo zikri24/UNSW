@@ -10,8 +10,6 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import au.com.owenwalsh.capabilityconnect.Model.Assessment;
-import au.com.owenwalsh.capabilityconnect.Model.Competency;
-import au.com.owenwalsh.capabilityconnect.Model.Student;
 
 /**
  * Created by Zikri on 13/10/2016.
@@ -49,9 +47,7 @@ public class AssessmentLogic {
         ContentValues contentValues = new ContentValues();
         contentValues.put(dbHelper.ASSESSMENT_NAME, assessment.getName());
         contentValues.put(dbHelper.ASSESSMENT_MARK, assessment.getMark());
-        contentValues.put(dbHelper.DUE_DAY, assessment.getDueDay());
-        contentValues.put(dbHelper.DUE_MONTH, assessment.getDueMonth());
-        contentValues.put(dbHelper.DUE_Year, assessment.getDueYear());
+        contentValues.put(dbHelper.DUE_DATE, assessment.getDueDate());
         long row = db.insert(dbHelper.STUDENTS_TABLE, null, contentValues);
         close();
         return row;
@@ -74,10 +70,8 @@ public class AssessmentLogic {
                 assessment = new Assessment();
                 assessment.setId(cursor.getInt(0));
                 assessment.setName(cursor.getString(1));
-                assessment.setDueMonth(cursor.getInt(2));
-                assessment.setDueYear(cursor.getInt(3));
-                assessment.setDueDay(cursor.getInt(4));
-                assessment.setMark(cursor.getInt(5));
+                assessment.setDueDate(cursor.getString(2));
+                assessment.setMark(cursor.getInt(3));
                 assessments.add(assessment);
             }
             cursor.close();

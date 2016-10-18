@@ -67,6 +67,7 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.Vi
     @Override
     public void onBindViewHolder(AssessmentAdapter.ViewHolder viewHolder, int position) {
         viewHolder.name.setText(assessmentsList.get(position).getName());
+        viewHolder.dueDate.setText(assessmentsList.get(position).getDueDate());
 
     }
 
@@ -81,7 +82,7 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.Vi
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView name;
-        public TextView description;
+        public TextView dueDate;
         public ImageButton removeButton;
         public ImageButton updateButton;
         public RelativeLayout compLayout;
@@ -91,6 +92,7 @@ public class AssessmentAdapter extends RecyclerView.Adapter<AssessmentAdapter.Vi
             super(view);
             compLayout = (RelativeLayout) view.findViewById(R.id.assessment_card);
             name = (TextView) view.findViewById(R.id.assessment_name);
+            dueDate =(TextView) view.findViewById(R.id.assessment_due_date);
             removeButton = (ImageButton) view.findViewById(R.id.btn_remove_assessment);
             updateButton = (ImageButton) view.findViewById(R.id.btn_edit_assessment);
             compContainer = view.findViewById(R.id.assessment_cont_item_root);
