@@ -34,9 +34,6 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
     private RecyclerView recyclerView;
     private ProgressDialog progress;
     private Boolean isFabOpen = false;
-    private FloatingActionButton addActionBar;
-    private FloatingActionButton addStudentActionBar;
-    private Animation actionbar_open,actionbar_close,rotate_forward,rotate_backward;
 
     private StudentLogic studentLogic;
     private ArrayList<Student> students;
@@ -58,29 +55,6 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
 
         initViews();
 
-        addActionBar = (FloatingActionButton) findViewById(R.id.fab);
-        addStudentActionBar = (FloatingActionButton) findViewById(R.id.fab1);
-        actionbar_open = AnimationUtils.loadAnimation(StudentListActivity.this, R.anim.actionbar_open);
-        actionbar_close = AnimationUtils.loadAnimation(StudentListActivity.this,R.anim.actionbar_close);
-        rotate_forward = AnimationUtils.loadAnimation(StudentListActivity.this,R.anim.rotate_forward);
-        rotate_backward = AnimationUtils.loadAnimation(StudentListActivity.this,R.anim.rotate_backward);
-
-        addActionBar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                animateFAB();
-            }
-        });
-        addStudentActionBar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(StudentListActivity.this, "Add student selected", Toast.LENGTH_SHORT).show();
-                Log.d("FAB FOCUSED:", "Add student selected");
-                //move user to AddStudentActivity
-                Intent intent = new Intent(getApplicationContext(), AddStudentActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     private void initViews() {
@@ -89,27 +63,6 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         loadStudents();
-    }
-
-    public void animateFAB(){
-
-        if(isFabOpen){
-
-            addActionBar.startAnimation(rotate_backward);
-            addStudentActionBar.startAnimation(actionbar_close);
-            addStudentActionBar.setClickable(false);
-            isFabOpen = false;
-            Log.d("Raj", "close");
-
-        } else {
-
-            addActionBar.startAnimation(rotate_forward);
-            addStudentActionBar.startAnimation(actionbar_open);
-            addStudentActionBar.setClickable(true);
-            isFabOpen = true;
-            Log.d("Raj","open");
-
-        }
     }
 
     private void loadStudents() {
@@ -181,12 +134,6 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
         }
     }
     */
-    public void hideFloatingActionBar(){
-        addStudentActionBar.startAnimation(actionbar_close);
-        addStudentActionBar.setClickable(false);
-        addStudentActionBar.hide();
-        addActionBar.hide();
-    }
 
     @Override
     public void onClick(View v) {
