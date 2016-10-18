@@ -21,5 +21,17 @@
             android:icon="@drawable/cal_icon"
             android:title="Weeks" />
 
+        <item
+        android:id="@+id/assessments"
+        android:checked="false"
+        android:icon="@drawable/class_icon"
+        android:title="Assessments" />
+
+        <item
+            android:id="@+id/competency"
+            android:checked="false"
+            android:icon="@drawable/class_icon"
+            android:title="Competencies" />
+
     </group>
 </menu>

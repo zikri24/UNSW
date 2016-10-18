@@ -132,7 +132,7 @@ public class TutorialListActivity extends BaseActivity implements View.OnClickLi
     @Override
     public void onItemClick(int p) {
         Tutorial tutorial = tutorials.get(p);
-        Intent intent = new Intent(this, TutorialStudents.class);
+        Intent intent = new Intent(this, TutorialStudentsListActivity.class);
         intent.putExtra(TUT_ID, String.valueOf(tutorial.getId()));
         startActivity(intent);
     }

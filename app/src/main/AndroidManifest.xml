@@ -17,20 +17,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="au.com.owenwalsh.capabilityconnect.View.MainActivity" />
-        <activity android:name="au.com.owenwalsh.capabilityconnect.View.StudentListActivity" />
-        <activity android:name="au.com.owenwalsh.capabilityconnect.View.BaseActivity" />
-        <activity android:name="au.com.owenwalsh.capabilityconnect.View.AddStudentActivity" />
-        <activity android:name="au.com.owenwalsh.capabilityconnect.View.TutorialListActivity" />
-        <activity android:name="au.com.owenwalsh.capabilityconnect.View.AssessmentListActivity" />
-        <activity android:name="au.com.owenwalsh.capabilityconnect.View.AddAssessmentActivity" />
-        <activity android:name="au.com.owenwalsh.capabilityconnect.View.CompetencyListActivity" />
-        <activity android:name="au.com.owenwalsh.capabilityconnect.View.AddCompetencyActivity" />
-        <activity android:name="au.com.owenwalsh.capabilityconnect.View.WeeksListActivity" />
-        <activity android:name="au.com.owenwalsh.capabilityconnect.View.AddWeekDetailsActivity" />
-        <activity android:name="au.com.owenwalsh.capabilityconnect.View.DummyActivity" />
-        <activity android:name="au.com.owenwalsh.capabilityconnect.View.TutorialStudents" />
-        <activity android:name="au.com.owenwalsh.capabilityconnect.View.AddTutorialActivity" />
+        <activity android:name=".View.MainActivity" />
+        <activity android:name=".View.StudentListActivity" />
+        <activity android:name=".View.BaseActivity" />
+        <activity android:name=".View.AddStudentActivity" />
+        <activity android:name=".View.TutorialListActivity" />
+        <activity android:name=".View.AssessmentListActivity" />
+        <activity android:name=".View.AddAssessmentActivity" />
+        <activity android:name=".View.CompetencyListActivity" />
+        <activity android:name=".View.AddCompetencyActivity" />
+        <activity android:name=".View.WeeksListActivity" />
+        <activity android:name=".View.AddWeekDetailsActivity" />
+        <activity android:name=".View.DummyActivity" />
+        <activity android:name=".View.AddTutorialActivity" />
+        <activity android:name=".View.TutorialStudentsListActivity"></activity>
     </application>
 
 </manifest>
