@@ -28,6 +28,7 @@ public class AddTutorialActivity extends BaseActivity {
 
     private TutorialLogic tutorialLogic;
     private Tutorial tutorial;
+    private long feedback;
 
     //private String time;
 
@@ -57,7 +58,7 @@ public class AddTutorialActivity extends BaseActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void addTutorial() {
-        if(!validatetutorial()){
+        if(!validateTutorial()){
             addTutorialFailed();
             return;
         }
@@ -67,7 +68,7 @@ public class AddTutorialActivity extends BaseActivity {
         int tutorialMinute = picker_time.getMinute();
         String time = String.valueOf(tutorialHour+ ":" + tutorialMinute);
         String day = spinner_days.getSelectedItem().toString();
-        tutorial = new Tutorial(id, day,lastName,time);
+        tutorial = new Tutorial(day,time);
         tutorialLogic = new TutorialLogic(AddTutorialActivity.this);
         feedback = tutorialLogic.addTutorial(tutorial);
         if(feedback > 0){
