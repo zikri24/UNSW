@@ -149,11 +149,13 @@ public class AddAssessmentActivity extends BaseActivity {
         }*/
         if (weighting.isEmpty()) {
             input_weighting.setError("Stream cannot be emp");
+            validated = false;
         } else {
             input_weighting.setError(null);
         }
         if (day <= 0 && month <= 0 && year <= 0) {
             Toast.makeText(AddAssessmentActivity.this, "The assessment date must not be empty", Toast.LENGTH_SHORT).show();
+            validated = false;
         } else {
             Log.d("Date", "input is valid");
         }
