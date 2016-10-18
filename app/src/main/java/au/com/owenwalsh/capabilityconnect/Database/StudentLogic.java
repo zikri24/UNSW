@@ -54,7 +54,7 @@ public class StudentLogic {
         contentValues.put(dbHelper.STRENGTH, student.getStrength());
         contentValues.put(dbHelper.STREAM, student.getStream());
         contentValues2.put(dbHelper.STUDENT_ID, student.getId());
-        contentValues2.put(dbHelper.W_C_S_TUTORIAL_ID, student.getStream());
+        contentValues2.put(dbHelper.W_C_S_TUTORIAL_ID, tutorialId);
         open();
         long row = db.insert(dbHelper.STUDENTS_TABLE, null, contentValues);
         long row2 = db.insert(dbHelper.CLASS_WEEK_STUDENT, null, contentValues2);
