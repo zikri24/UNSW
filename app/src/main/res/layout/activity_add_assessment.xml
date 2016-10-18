@@ -19,19 +19,6 @@
             android:paddingRight="24dp"
             android:paddingTop="56dp">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp">
-
-                <EditText
-                    android:id="@+id/input_assessment_name"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Assessment Name"
-                    android:inputType="text" />
-            </android.support.design.widget.TextInputLayout>
 
        <!--     <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -70,7 +57,19 @@
             android:paddingLeft="24dp"
             android:paddingRight="24dp"
             android:paddingTop="56dp">
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp">
 
+                <EditText
+                    android:id="@+id/input_assessment_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Assessment Name"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"

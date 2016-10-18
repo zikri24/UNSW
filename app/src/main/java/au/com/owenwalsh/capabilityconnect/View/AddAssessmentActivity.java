@@ -21,14 +21,14 @@ import au.com.owenwalsh.capabilityconnect.Database.AssessmentLogic;
 import au.com.owenwalsh.capabilityconnect.Model.Assessment;
 import au.com.owenwalsh.capabilityconnect.R;
 
-public class AddAssessmentActivity extends BaseActivity  {
+public class AddAssessmentActivity extends BaseActivity {
 
     private long feedback;
     private AssessmentLogic assessmentLogic;
     private Assessment assessment;
 
     private EditText input_assessment_name;
-   // private EditText input_assessment_desc;
+    // private EditText input_assessment_desc;
     private EditText input_weighting;
     //private TimePicker picker_time;
     private DatePicker picker_date;
@@ -43,11 +43,19 @@ public class AddAssessmentActivity extends BaseActivity  {
         drawerLayout.addView(contentView, 0);
 
         input_assessment_name = (EditText) findViewById(R.id.input_assessment_name);
-       // input_assessment_desc = (EditText) findViewById(R.id.input_assessment_desc);
+        // input_assessment_desc = (EditText) findViewById(R.id.input_assessment_desc);
         input_weighting = (EditText) findViewById(R.id.input_weighting);
         //picker_time = (TimePicker) findViewById(R.id.picker_time);
         picker_date = (DatePicker) findViewById(R.id.picker_date);
         btn_addAssessment = (Button) findViewById(R.id.btn_add_Assessment);
+        btn_addAssessment.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
+            @Override
+            public void onClick(View view) {
+                addAssessment();
+            }
+        });
+
 
     }
 
@@ -65,7 +73,7 @@ public class AddAssessmentActivity extends BaseActivity  {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void getSpinnerTime(){
+    public void getSpinnerTime() {
         Calendar calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
         int min = calendar.get(Calendar.MINUTE);
@@ -73,14 +81,14 @@ public class AddAssessmentActivity extends BaseActivity  {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    public void getDueDate(){
+    public void getDueDate() {
         Calendar calender = Calendar.getInstance();
         String date = String.valueOf(calender.get(Calendar.DATE));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public void addAssessment(){
-       if(!validateAssessment()){
+    public void addAssessment() {
+        if (!validateAssessment()) {
             addAssessmentFailed();
             return;
         }
@@ -90,16 +98,16 @@ public class AddAssessmentActivity extends BaseActivity  {
         //String assessmentDesc = input_assessment_desc.getText().toString();
         int mark = Integer.parseInt(input_weighting.getText().toString());
         //String dueTime = time;
-        int  dueDay = picker_date.getDayOfMonth();
-        int  dueMonth = picker_date.getMonth();
-        int  dueYear = picker_date.getYear();
-        String dueDate = dueDay + "/"+dueMonth+"/"+dueYear;
+        int dueDay = picker_date.getDayOfMonth();
+        int dueMonth = picker_date.getMonth();
+        int dueYear = picker_date.getYear();
+        String dueDate = dueDay + "/" + dueMonth + "/" + dueYear;
         assessment = new Assessment(assessmentName, dueDate, mark);
         assessmentLogic = new AssessmentLogic(AddAssessmentActivity.this);
         feedback = assessmentLogic.insertAssessment(assessment);
-        if(feedback > 0){
+        if (feedback > 0) {
             addAssessmentSuccessfull();
-        }else{
+        } else {
             addAssessmentFailed();
         }
     }
@@ -109,7 +117,7 @@ public class AddAssessmentActivity extends BaseActivity  {
         btn_addAssessment.setEnabled(true);
     }
 
-    private void addAssessmentSuccessfull(){
+    private void addAssessmentSuccessfull() {
         Toast.makeText(AddAssessmentActivity.this, "Assessment added successfully!", Toast.LENGTH_SHORT).show();
         btn_addAssessment.setEnabled(true);
     }
@@ -139,14 +147,15 @@ public class AddAssessmentActivity extends BaseActivity  {
         } else {
             input_assessment_desc.setError(null);
         }*/
-        if (weighting.isEmpty()){
+        if (weighting.isEmpty()) {
             input_weighting.setError("Stream cannot be emp");
         } else {
             input_weighting.setError(null);
-        } if (day <=0 && month <=0 && day <=0){
+        }
+        if (day <= 0 && month <= 0 && year <= 0) {
             Toast.makeText(AddAssessmentActivity.this, "The assessment date must not be empty", Toast.LENGTH_SHORT).show();
         } else {
-            Log.d("Date","input is valid");
+            Log.d("Date", "input is valid");
         }
         /*if (hour <=0 && minute <=0) {
             Toast.makeText(AddAssessmentActivity.this, "A time must be selected", Toast.LENGTH_SHORT).show();
