@@ -71,15 +71,10 @@ public class BaseActivity extends AppCompatActivity {
                         startActivity(intent);
 
                         return true;
-
-                       /* StudentListFragment studentFragment = new StudentListFragment();
-                        android.support.v4.app.FragmentTransaction studentFragmentTransaction = getSupportFragmentManager().beginTransaction();
-                        studentFragmentTransaction.replace(R.id.frame,studentFragment);
-                       studentFragmentTransaction.commit();
-                        return true;
-                        */
                     case R.id.weeks:
-                        Toast.makeText(getApplicationContext(),"Send Selected",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Weeks Selected",Toast.LENGTH_SHORT).show();
+                        Intent weeksIntent = new Intent(getApplicationContext(), WeeksListActivity.class);
+                        startActivity(weeksIntent);
                         return true;
                     case R.id.assessments:
                         Toast.makeText(getApplicationContext(),"Assessments Selected",Toast.LENGTH_SHORT).show();
