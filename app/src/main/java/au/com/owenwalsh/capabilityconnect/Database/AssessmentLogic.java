@@ -48,7 +48,7 @@ public class AssessmentLogic {
         contentValues.put(dbHelper.ASSESSMENT_NAME, assessment.getName());
         contentValues.put(dbHelper.ASSESSMENT_MARK, assessment.getMark());
         contentValues.put(dbHelper.DUE_DATE, assessment.getDueDate());
-        long row = db.insert(dbHelper.STUDENTS_TABLE, null, contentValues);
+        long row = db.insert(dbHelper.ASSESSMENTS, null, contentValues);
         close();
         return row;
     }
