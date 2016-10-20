@@ -17,18 +17,34 @@
         android:orientation="horizontal"
         android:visibility="visible">
 
+        <TextView android:id="@+id/id_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="zID:"
+            android:gravity="left"
+            android:textSize="12dip"/>
+
         <TextView
             android:id="@+id/student_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
+            android:layout_toRightOf="@id/id_label"
             android:paddingLeft="@dimen/activity_horizontal_margin" />
+
+        <TextView android:id="@+id/id_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:text="Name:"
+            android:layout_below="@id/id_label"
+            android:textSize="12dip"/>
 
         <TextView
             android:id="@+id/student_first_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/student_id"
+            android:layout_toLeftOf="@id/id_name"
             android:padding="20dp" />
 
         <TextView

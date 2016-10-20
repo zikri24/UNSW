@@ -2,6 +2,7 @@ package au.com.owenwalsh.capabilityconnect.View;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -73,6 +74,8 @@ public class AddTutorialActivity extends BaseActivity {
         feedback = tutorialLogic.addTutorial(tutorial);
         if(feedback > 0){
             addTutorialSuccessfull();
+            Intent intent = new Intent(AddTutorialActivity.this, TutorialListActivity.class);
+            startActivity(intent);
         }else{
             addTutorialFailed();
         }

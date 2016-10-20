@@ -42,15 +42,12 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-     //  setContentView(R.layout.activity_student_list);
+        //  setContentView(R.layout.activity_student_list);
         super.onCreate(savedInstanceState);
         LayoutInflater inflater = (LayoutInflater) this
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_student_list, null, false);
         drawerLayout.addView(contentView, 0);
-
-
-
 
 
         initViews();
@@ -73,11 +70,11 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         adapter.setItemClickCallback(this);
-       // hideProgressDialog();
+        // hideProgressDialog();
     }
 
 
-  @Override
+    @Override
     public void onItemClick(int p) {
         Student student = students.get(p);
         Intent intent = new Intent(StudentListActivity.this, DummyActivity.class);
@@ -92,17 +89,19 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
         studentLogic.deleteStudent(student.getId());
         new AlertDialog.Builder(StudentListActivity.this)
                 .setTitle("Deleting " + student.getLastName())
-                .setMessage("Are you sure you want to delete " +student.getLastName())
+                .setMessage("Are you sure you want to delete " + student.getLastName())
                 .setIcon(R.drawable.warning)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
                         Toast.makeText(StudentListActivity.this, "Student has been deleted ", Toast.LENGTH_SHORT).show();
-                    }})
+                    }
+                })
                 .setNegativeButton(android.R.string.no, null).show();
         adapter.notifyDataSetChanged();
 
     }
+
     @Override
     public void onUpdateClick(int p) {
         Student student = students.get(p);
@@ -110,10 +109,6 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
         intent.putExtra(FIRST_NAME, student.getFirsName());
         startActivity(intent);
     }
-
-
-
-
 
 
     /**
@@ -134,7 +129,6 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
         }
     }
     */
-
     @Override
     public void onClick(View v) {
 
