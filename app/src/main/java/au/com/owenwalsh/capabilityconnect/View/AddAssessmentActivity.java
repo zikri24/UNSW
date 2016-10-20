@@ -2,6 +2,7 @@ package au.com.owenwalsh.capabilityconnect.View;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -107,6 +108,8 @@ public class AddAssessmentActivity extends BaseActivity {
         feedback = assessmentLogic.insertAssessment(assessment);
         if (feedback > 0) {
             addAssessmentSuccessfull();
+            Intent intent = new Intent(AddAssessmentActivity.this, AssessmentListActivity.class);
+            startActivity(intent);
         } else {
             addAssessmentFailed();
         }

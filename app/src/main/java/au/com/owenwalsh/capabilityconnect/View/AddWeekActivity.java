@@ -1,6 +1,7 @@
 package au.com.owenwalsh.capabilityconnect.View;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -62,6 +63,8 @@ public class AddWeekActivity extends BaseActivity {
         feedback = weekLogic.insertWeek(week);
         if (feedback > 0) {
             addWeekSuccessfull();
+            Intent intent = new Intent(AddWeekActivity.this, WeeksListActivity.class);
+            startActivity(intent);
         } else {
             addWeekFailed();
         }

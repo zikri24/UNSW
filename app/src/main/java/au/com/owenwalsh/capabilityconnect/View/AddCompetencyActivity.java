@@ -1,6 +1,7 @@
 package au.com.owenwalsh.capabilityconnect.View;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -54,6 +55,8 @@ public class AddCompetencyActivity extends BaseActivity {
         feedback = competencyLogic.insertCompetency(competency);
         if (feedback > 0) {
             addCompetencySuccessfull();
+            Intent intent = new Intent(AddCompetencyActivity.this, CompetencyListActivity.class);
+            startActivity(intent);
         } else {
             addCompetencyFailed();
         }
