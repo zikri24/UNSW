@@ -32,7 +32,9 @@
         <activity android:name=".View.AddTutorialActivity" />
         <activity android:name=".View.TutorialStudentsListActivity" />
         <activity android:name=".View.AddWeekActivity" />
-        <activity android:name=".View.SendStudentEmailActivity"></activity>
+        <activity android:name=".View.SendStudentEmailActivity" />
+        <activity android:name=".View.StudentViewDetailsActivity" />
+        <activity android:name=".View.EditStudentActivity"></activity>
     </application>
 
 </manifest>

@@ -30,8 +30,12 @@ import au.com.owenwalsh.capabilityconnect.Database.StudentLogic;
 import au.com.owenwalsh.capabilityconnect.Model.Student;
 import au.com.owenwalsh.capabilityconnect.R;
 
+import static au.com.owenwalsh.capabilityconnect.Database.DatabaseHelper.LAST_NAME;
+
 public class StudentListActivity extends BaseActivity implements View.OnClickListener, StudentAdapter.ItemClickCallback {
-    public static final String FIRST_NAME = "fistName";
+    public static final String FIRST_NAME = "firstName";
+    public static final String STU_ID = "stuID";
+    public static final String LAST_NAME = "lastname";
     private RecyclerView recyclerView;
     private ProgressDialog progress;
     private Boolean isFabOpen = false;
@@ -85,8 +89,10 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void onItemClick(int p) {
         Student student = students.get(p);
-        Intent intent = new Intent(StudentListActivity.this, DummyActivity.class);
+        Intent intent = new Intent(StudentListActivity.this, StudentViewDetailsActivity.class);
+        intent.putExtra(STU_ID, student.getId());
         intent.putExtra(FIRST_NAME, student.getFirsName());
+        intent.putExtra(LAST_NAME, student.getLastName());
         startActivity(intent);
 
     }

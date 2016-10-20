@@ -86,6 +86,8 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
                 Toast.makeText(TutorialStudentsListActivity.this, "Email student selected", Toast.LENGTH_SHORT).show();
                 Log.d("FAB FOCUSED:", "Email student selected");
                 //move user to EmailStudentActivity
+                Intent intent = new Intent(getApplicationContext(), SendStudentEmailActivity.class);
+                startActivity(intent);
             }
         });
     }

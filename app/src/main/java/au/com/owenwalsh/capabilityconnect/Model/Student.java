@@ -1,5 +1,7 @@
 package au.com.owenwalsh.capabilityconnect.Model;
 
+import java.io.Serializable;
+
 /**
  * Created by owenw on 11/10/2016.
  */
