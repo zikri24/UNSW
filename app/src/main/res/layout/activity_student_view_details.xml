@@ -7,8 +7,13 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/add_student_header"
+        android:id="@+id/view_student_header"
         android:layout_width="match_parent"
         android:layout_height="190dp"
         android:background="@drawable/background_material"
@@ -16,45 +21,142 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:orientation="vertical"
+            android:id="@+id/name_layout"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="56dp"
             android:paddingLeft="24dp"
             android:paddingRight="24dp">
 
-
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
             <TextView
                 android:id="@+id/student_first_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18dip" />
+                android:textSize="46dip" />
 
             <TextView
                 android:id="@+id/student_last_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18dip"
+                android:textSize="46dip"
                 android:padding="10dp"/>
 </LinearLayout>
 
             <TextView
                 android:id="@+id/student_id"
+                android:layout_below="@+id/name_layout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="18dip"
-                android:padding="10dp"/>
+                android:paddingLeft="40dp"
+                android:text="No id found"/>
 
-
-
-        </LinearLayout>
 
     </RelativeLayout>
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:fillViewport="true">
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="56dp"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/image_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/email_icon_white"/>
+                    <TextView
+                        android:id="@+id/student_email"
+                        android:textSize="18sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="No email found"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/stream_layout"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp">
+
+                        <ImageView
+                            android:id="@+id/image_stream"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/class_icon"/>
+                        <TextView
+                            android:id="@+id/student_stream"
+                            android:textSize="18sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="No stream found"/>
+</LinearLayout>
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp">
+
+                            <ImageView
+                                android:id="@+id/image_strength"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/happy_icon"/>
+                            <TextView
+                                android:id="@+id/student_strength"
+                                android:textSize="18sp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:inputType="textMultiLine"
+                                android:maxLines="4"
+                                android:lines="4"
+                                android:text="No strength found"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/image_weakness"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/sad_icon"/>
+                    <TextView
+                        android:id="@+id/student_weakness"
+                        android:textSize="18sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:inputType="textMultiLine"
+                        android:maxLines="4"
+                        android:lines="4"
+                        android:text="No Weakness found"/>
+
+                </LinearLayout>
+</LinearLayout>
+            </ScrollView>
+</LinearLayout>
 
 
     <android.support.design.widget.AppBarLayout
@@ -118,7 +220,6 @@
         app:pressedTranslationZ="12dp"
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/plus_icon"/>
-
 
 
 

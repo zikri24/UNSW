@@ -142,7 +142,7 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
     @Override
     public void onItemClick(int p) {
         Student student = students.get(p);
-        Intent intent = new Intent(TutorialStudentsListActivity.this, DummyActivity.class);
+        Intent intent = new Intent(TutorialStudentsListActivity.this, StudentViewDetailsActivity.class);
         intent.putExtra(FIRST_NAME, student.getFirsName());
         startActivity(intent);
 

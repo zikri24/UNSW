@@ -49,14 +49,14 @@ public class StudentViewDetailsActivity  extends BaseActivity {
         student_first_name = (TextView) findViewById(R.id.student_first_name);
         student_last_name = (TextView) findViewById(R.id.student_last_name);
         student_id = (TextView) findViewById(R.id.student_id);
-       // student_email = (TextView) findViewById(R.id.student_email);
-       // student_stream = (TextView) findViewById(R.id.student_stream);
-       // student_strength = (TextView) findViewById(R.id.student_strength);
-        //student_weakness = (TextView) findViewById(R.id.student_weakness);
-       // image_email = (ImageView) findViewById(R.id.image_email);
-      //  image_stream = (ImageView) findViewById(R.id.image_stream);
-       // image_strength = (ImageView) findViewById(R.id.image_strength);
-       // image_weakness = (ImageView) findViewById(R.id.image_weakness);
+        student_email = (TextView) findViewById(R.id.student_email);
+       student_stream = (TextView) findViewById(R.id.student_stream);
+       student_strength = (TextView) findViewById(R.id.student_strength);
+        student_weakness = (TextView) findViewById(R.id.student_weakness);
+       image_email = (ImageView) findViewById(R.id.image_email);
+       image_stream = (ImageView) findViewById(R.id.image_stream);
+       image_strength = (ImageView) findViewById(R.id.image_strength);
+       image_weakness = (ImageView) findViewById(R.id.image_weakness);
         getIntentItems();
 
 
