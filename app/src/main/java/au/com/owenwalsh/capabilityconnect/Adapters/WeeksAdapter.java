@@ -80,6 +80,7 @@ public class WeeksAdapter extends RecyclerView.Adapter<WeeksAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView weekName;
+        public TextView todo;
         public ImageButton removeButton;
         public ImageButton updateButton;
         public RelativeLayout weekLayout;
@@ -89,6 +90,8 @@ public class WeeksAdapter extends RecyclerView.Adapter<WeeksAdapter.ViewHolder> 
             super(view);
             weekLayout = (RelativeLayout) view.findViewById(R.id.weeks_card);
             weekName = (TextView) view.findViewById(R.id.week_name);
+            todo = (TextView) view.findViewById(R.id.week_todo);
+
 
             removeButton = (ImageButton) view.findViewById(R.id.remove_week_button);
             updateButton = (ImageButton) view.findViewById(R.id.edit_week_button);

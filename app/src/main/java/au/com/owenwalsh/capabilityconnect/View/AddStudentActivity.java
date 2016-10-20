@@ -70,7 +70,7 @@ public class AddStudentActivity extends BaseActivity {
         feedback = studentLogic.insertStudent(student, tutorialId);
         if (feedback > 0) {
             addStudentSuccessfull();
-            Intent intent = new Intent(AddStudentActivity.this, StudentListActivity.class);
+            Intent intent = new Intent(AddStudentActivity.this, TutorialListActivity.class);
             startActivity(intent);
         } else {
             addStudentFailed();

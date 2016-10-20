@@ -82,7 +82,6 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:background="@android:color/transparent"
-            android:paddingRight="10dp"
             android:scaleType="fitXY"
             android:src="@drawable/assessment_edit_icon"
             android:visibility="visible" />
@@ -91,8 +90,8 @@
             android:id="@+id/btn_remove_assessment"
             android:layout_width="55dp"
             android:layout_height="55dp"
+            android:layout_marginLeft="10dp"
             android:background="@android:color/transparent"
-            android:paddingRight="10dp"
             android:scaleType="fitXY"
             android:src="@drawable/assessment_remove_icon"
             android:visibility="visible" />

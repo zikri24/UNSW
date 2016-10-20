@@ -91,7 +91,7 @@
 
         <ImageButton
             android:id="@+id/edit_button"
-            android:layout_width="65dp"
+            android:layout_width="55dp"
             android:layout_height="55dp"
             android:scaleType="fitXY"
             android:src="@drawable/student_edit_icon"
@@ -100,9 +100,9 @@
 
             <ImageButton
                 android:id="@+id/remove_button"
-                android:layout_width="65dp"
+                android:layout_width="55dp"
                 android:layout_height="55dp"
-                android:padding="10dp"
+                android:layout_marginLeft="10dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/student_remove_icon"
                 android:background="@android:color/transparent"
