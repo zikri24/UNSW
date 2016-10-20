@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class CompetencyListActivity extends BaseActivity implements View.OnClick
     private FloatingActionButton addActionBar;
     private FloatingActionButton addCompetencyActionBar;
     private Animation actionbar_open, actionbar_close, rotate_forward, rotate_backward;
+    private TextView emptyView;
 
     private CompetencyLogic competencyLogic;
     private ArrayList<Competency> competencies;
@@ -76,6 +78,7 @@ public class CompetencyListActivity extends BaseActivity implements View.OnClick
 
     private void initViews() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_competency_list);
+        emptyView = (TextView)  findViewById(R.id.empty_view);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -107,11 +110,16 @@ public class CompetencyListActivity extends BaseActivity implements View.OnClick
         //showProgressDialog();
         competencyLogic = new CompetencyLogic(CompetencyListActivity.this);
         competencies = competencyLogic.findAllCompetencies();
-        adapter = new CompetencyAdapter(competencies, CompetencyListActivity.this);
-        recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-        adapter.setItemClickCallback(this);
-        // hideProgressDialog();
+        if (competencies.isEmpty()) {
+            recyclerView.setVisibility(View.GONE);
+            emptyView.setVisibility(View.VISIBLE);
+        } else {
+            adapter = new CompetencyAdapter(competencies, CompetencyListActivity.this);
+            recyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            adapter.setItemClickCallback(this);
+            // hideProgressDialog();
+        }
     }
 
 

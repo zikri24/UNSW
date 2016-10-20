@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
     private FloatingActionButton addStudentActionBar;
     private FloatingActionButton emailStudentActionBar;
     private Animation actionbar_open,actionbar_close,rotate_forward,rotate_backward;
+    private TextView emptyView;
 
     private StudentLogic studentLogic;
     private ArrayList<Student> students;
@@ -90,6 +92,7 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
 
     private void initViews() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_tutorial_student_list);
+        emptyView = (TextView)  findViewById(R.id.empty_view);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -122,11 +125,16 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
         Intent intent = getIntent();
         final int tutId = Integer.parseInt(intent.getStringExtra(TutorialListActivity.TUT_ID));
         students = studentLogic.findStudentByClassId(tutId);
-        adapter = new StudentAdapter(students, TutorialStudentsListActivity.this);
-        recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-        adapter.setItemClickCallback(this);
-        // hideProgressDialog();
+        if (students.isEmpty()) {
+            recyclerView.setVisibility(View.GONE);
+            emptyView.setVisibility(View.VISIBLE);
+        } else {
+            adapter = new StudentAdapter(students, TutorialStudentsListActivity.this);
+            recyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            adapter.setItemClickCallback(this);
+            // hideProgressDialog();
+        }
     }
 
     @Override

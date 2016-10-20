@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,11 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import au.com.owenwalsh.capabilityconnect.Adapters.StudentAdapter;
 import au.com.owenwalsh.capabilityconnect.Adapters.WeeksAdapter;
 import au.com.owenwalsh.capabilityconnect.Database.WeekLogic;
 import au.com.owenwalsh.capabilityconnect.Model.Week;
@@ -33,10 +32,12 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
     private FloatingActionButton addActionBar;
     private FloatingActionButton addWeekActionBar;
     private Animation actionbar_open,actionbar_close,rotate_forward,rotate_backward;
+    private TextView emptyView;
 
     private WeekLogic weekLogic;
     private ArrayList<Week> weeks;
     private WeeksAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +75,7 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
 
     private void initViews() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_weeks_list);
+        emptyView = (TextView)  findViewById(R.id.empty_view);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -105,11 +107,16 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
         //showProgressDialog();
         weekLogic = new WeekLogic(WeeksListActivity.this);
         weeks = weekLogic.findAllWeeks();
-        adapter = new WeeksAdapter(weeks, WeeksListActivity.this);
-        recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-        adapter.setItemClickCallback(this);
-        // hideProgressDialog();
+        if (weeks.isEmpty()) {
+            recyclerView.setVisibility(View.GONE);
+            emptyView.setVisibility(View.VISIBLE);
+        } else {
+            adapter = new WeeksAdapter(weeks, WeeksListActivity.this);
+            recyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            adapter.setItemClickCallback(this);
+            // hideProgressDialog();
+        }
     }
 
     @Override

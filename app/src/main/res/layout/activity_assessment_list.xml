@@ -14,6 +14,13 @@
         android:paddingTop="80dp"
         android:scrollbars="vertical" />
 
+    <TextView
+        android:id="@+id/empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="No data found. Lets try adding some things!" />
 
     <android.support.design.widget.AppBarLayout
         android:layout_height="wrap_content"

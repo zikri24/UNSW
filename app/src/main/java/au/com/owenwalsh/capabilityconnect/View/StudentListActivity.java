@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
     private RecyclerView recyclerView;
     private ProgressDialog progress;
     private Boolean isFabOpen = false;
+    private TextView emptyView;
 
     private StudentLogic studentLogic;
     private ArrayList<Student> students;
@@ -56,6 +58,7 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
 
     private void initViews() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_student_list);
+        emptyView = (TextView)  findViewById(R.id.empty_view);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -66,11 +69,16 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
         //showProgressDialog();
         studentLogic = new StudentLogic(StudentListActivity.this);
         students = studentLogic.findAllStudent();
-        adapter = new StudentAdapter(students, StudentListActivity.this);
-        recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-        adapter.setItemClickCallback(this);
-        // hideProgressDialog();
+        if (students.isEmpty()) {
+            recyclerView.setVisibility(View.GONE);
+            emptyView.setVisibility(View.VISIBLE);
+        } else {
+            adapter = new StudentAdapter(students, StudentListActivity.this);
+            recyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            adapter.setItemClickCallback(this);
+            // hideProgressDialog();
+        }
     }
 
 

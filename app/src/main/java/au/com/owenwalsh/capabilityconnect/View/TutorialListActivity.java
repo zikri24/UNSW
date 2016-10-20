@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class TutorialListActivity extends BaseActivity implements View.OnClickLi
     private FloatingActionButton addActionBar;
     private FloatingActionButton addTutorialActionBar;
     private Animation actionbar_open, actionbar_close, rotate_forward, rotate_backward;
+    private TextView emptyView;
 
     private TutorialLogic tutorialLogic;
     private ArrayList<Tutorial> tutorials;
@@ -83,6 +85,7 @@ public class TutorialListActivity extends BaseActivity implements View.OnClickLi
 
     private void initViews() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_tutorial_list);
+        emptyView = (TextView)  findViewById(R.id.empty_view);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -92,9 +95,14 @@ public class TutorialListActivity extends BaseActivity implements View.OnClickLi
     private void loadTutorials() {
         tutorialLogic = new TutorialLogic(TutorialListActivity.this);
         tutorials = tutorialLogic.findAllTutorials();
-        adapter = new TutorialAdapter(tutorials, TutorialListActivity.this);
-        recyclerView.setAdapter(adapter);
-        adapter.setItemClickCallback(this);
+        if (tutorials.isEmpty()) {
+            recyclerView.setVisibility(View.GONE);
+            emptyView.setVisibility(View.VISIBLE);
+        } else {
+            adapter = new TutorialAdapter(tutorials, TutorialListActivity.this);
+            recyclerView.setAdapter(adapter);
+            adapter.setItemClickCallback(this);
+        }
     }
 
     public void animateFAB() {
