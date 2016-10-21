@@ -55,7 +55,7 @@
     app:elevation="6dp"
     app:backgroundTint="@color/colorFAB1"
     app:pressedTranslationZ="12dp"
-    android:src="@drawable/class_add_icon"
+    android:src="@drawable/student_add_icon"
     android:scaleType="center"/>
 
     <android.support.design.widget.FloatingActionButton

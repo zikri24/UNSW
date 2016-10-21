@@ -14,10 +14,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import au.com.owenwalsh.capabilityconnect.Database.StudentLogic;
+import au.com.owenwalsh.capabilityconnect.Model.Student;
 import au.com.owenwalsh.capabilityconnect.R;
 
 public class StudentViewDetailsActivity  extends BaseActivity {
-
+    private StudentLogic studentLogic;
     private Boolean isFabOpen = false;
     private FloatingActionButton addActionBar;
     private FloatingActionButton editStudentActionBar;
@@ -36,6 +38,8 @@ public class StudentViewDetailsActivity  extends BaseActivity {
     private ImageView image_strength;
     private ImageView image_weakness;
     public static final String STU_ID = "stuID";
+    public static final String FIRST_NAME = "firstName";
+    public static final String LAST_NAME = "lastName";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +75,8 @@ public class StudentViewDetailsActivity  extends BaseActivity {
 
         Intent intent = getIntent();
         final String studentID = intent.getStringExtra(StudentListActivity.STU_ID);
+        final String firstName = intent.getStringExtra(StudentListActivity.FIRST_NAME);
+        final String lastName = intent.getStringExtra(StudentListActivity.LAST_NAME);
 
         addActionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +94,8 @@ public class StudentViewDetailsActivity  extends BaseActivity {
                 //move user to EditStudentActivity
                 Intent intent = new Intent(getApplicationContext(), EditStudentActivity.class);
                 intent.putExtra(STU_ID, studentID);
+                intent.putExtra(FIRST_NAME, firstName);
+                intent.putExtra(LAST_NAME, lastName);
                 startActivity(intent);
             }
         });
@@ -114,15 +122,19 @@ public class StudentViewDetailsActivity  extends BaseActivity {
 
     public void getIntentItems(){
     Intent intent = getIntent();
+        final String zID = intent.getStringExtra(StudentListActivity.STU_ID);
     final String firstName = intent.getStringExtra(StudentListActivity.FIRST_NAME);
     final String lastName = intent.getStringExtra(StudentListActivity.LAST_NAME);
-    getRecordForIntent();
+        studentLogic = new StudentLogic(StudentViewDetailsActivity.this);
+        Student student = studentLogic.findStudentById(zID);
+        String email = student.getEmail().toString();
+       // String stream = student.getStream().toString();
 
         student_first_name.setText(firstName);
         student_last_name.setText(lastName);
-        //student_id.setText(stuID);
-        //student_email.setText(email);
-        //student_stream.setText(stream);
+        student_id.setText(zID);
+        student_email.setText(email);
+       // student_stream.setText(stream);
        // student_strength.setText(strength);
        // student_weakness.setText(weakness;
 }
