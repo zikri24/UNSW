@@ -37,8 +37,8 @@ public class StudentViewDetailsActivity extends BaseActivity {
     private ImageView image_stream;
     private ImageView image_strength;
     private ImageView image_weakness;
-    private static final String FIRST_NAME = "firstName";
     private static final String STU_ID = "stuID";
+    private static final String FIRST_NAME = "firstName";
     private static final String LAST_NAME = "lastname";
 
     @Override
@@ -126,17 +126,17 @@ public class StudentViewDetailsActivity extends BaseActivity {
         final String lastName = intent.getStringExtra(LAST_NAME);
         studentLogic = new StudentLogic(StudentViewDetailsActivity.this);
         Student student = studentLogic.findStudentById(zID);
-        String email = student.getEmail().toString();
-        String stream = student.getStream().toString();
-        String weakness = student.getWeakness().toString();
-        String strength = student.getStrength().toString();
+        String email = student.getEmail();
+        String stream = student.getStream();
+        String weakness = student.getWeakness();
+        String strength = student.getStrength();
 
         student_first_name.setText(firstName);
         student_last_name.setText(lastName);
         student_id.setText(zID);
         student_email.setText(email);
         student_stream.setText(stream);
-          student_strength.setText(strength);
+        student_strength.setText(strength);
         student_weakness.setText(weakness);
     }
 

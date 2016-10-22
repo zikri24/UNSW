@@ -27,7 +27,9 @@ import au.com.owenwalsh.capabilityconnect.R;
 
 public class TutorialStudentsListActivity extends BaseActivity implements View.OnClickListener, StudentAdapter.ItemClickCallback {
 
-    public static final String FIRST_NAME = "fistName";
+    private static final String STU_ID = "stuID";
+    private static final String FIRST_NAME = "firstName";
+    private static final String LAST_NAME = "lastname";
     private static String TUT_ID = "tutorialId";
     private RecyclerView recyclerView;
     private ProgressDialog progress;
@@ -148,7 +150,9 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
     public void onItemClick(int p) {
         Student student = students.get(p);
         Intent intent = new Intent(TutorialStudentsListActivity.this, StudentViewDetailsActivity.class);
+        intent.putExtra(STU_ID, student.getId());
         intent.putExtra(FIRST_NAME, student.getFirsName());
+        intent.putExtra(LAST_NAME, student.getLastName());
         startActivity(intent);
 
     }
@@ -174,7 +178,7 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
     public void onUpdateClick(int p) {
         Student student = students.get(p);
         Intent intent = new Intent(this, EditTutorialActivity.class);
-        intent.putExtra(FIRST_NAME, student.getFirsName());
+        intent.putExtra(STU_ID, student.getId());
         startActivity(intent);
     }
 

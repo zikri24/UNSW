@@ -62,7 +62,7 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
 
     private void initViews() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_student_list);
-        emptyView = (TextView)  findViewById(R.id.empty_view);
+        emptyView = (TextView) findViewById(R.id.empty_view);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -94,7 +94,6 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
         intent.putExtra(FIRST_NAME, student.getFirsName());
         intent.putExtra(LAST_NAME, student.getLastName());
         startActivity(intent);
-
     }
 
     @Override
@@ -120,7 +119,7 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
     public void onUpdateClick(int p) {
         Student student = students.get(p);
         Intent intent = new Intent(this, EditStudentActivity.class);
-        intent.putExtra(FIRST_NAME, student.getFirsName());
+        intent.putExtra(STU_ID, student.getId());
         startActivity(intent);
     }
 
