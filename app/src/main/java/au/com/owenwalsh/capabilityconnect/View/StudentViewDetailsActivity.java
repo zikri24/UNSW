@@ -128,15 +128,17 @@ public class StudentViewDetailsActivity  extends BaseActivity {
         studentLogic = new StudentLogic(StudentViewDetailsActivity.this);
         Student student = studentLogic.findStudentById(zID);
         String email = student.getEmail().toString();
-       // String stream = student.getStream().toString();
+//       String stream = student.getStream().toString();
+//        String weakness = student.getWeakness().toString();
+    //    String strength = student.getStrength().toString();
 
         student_first_name.setText(firstName);
         student_last_name.setText(lastName);
         student_id.setText(zID);
         student_email.setText(email);
        // student_stream.setText(stream);
-       // student_strength.setText(strength);
-       // student_weakness.setText(weakness;
+      //  student_strength.setText(strength);
+       //student_weakness.setText(weakness);
 }
 public void getRecordForIntent(){
     //get the record for the first name and last name here and set the remainder of the variables

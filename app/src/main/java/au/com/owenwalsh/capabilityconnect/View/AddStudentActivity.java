@@ -25,6 +25,8 @@ public class AddStudentActivity extends BaseActivity {
     private EditText input_zID;
     private Button btn_addStudent;
     private EditText input_stream;
+    private EditText input_strength;
+    private EditText input_weakness;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,8 @@ public class AddStudentActivity extends BaseActivity {
         input_zID = (EditText) findViewById(R.id.input_zid);
         btn_addStudent = (Button) findViewById(R.id.btn_add_student);
         input_stream = (EditText) findViewById(R.id.input_stream);
+        input_strength = (EditText) findViewById(R.id.input_strength);
+        input_weakness = (EditText) findViewById(R.id.input_weakness);
         btn_addStudent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +69,9 @@ public class AddStudentActivity extends BaseActivity {
         String lastName = input_lastName.getText().toString();
         String email = input_email.getText().toString();
         String stream = input_stream.getText().toString();
-        student = new Student(zID, firstName, lastName, email, stream);
+        String strength = input_strength.getText().toString();
+        String weakness = input_weakness.getText().toString();
+        student = new Student(zID, firstName, lastName, email, stream,strength,weakness);
         studentLogic = new StudentLogic(AddStudentActivity.this);
         feedback = studentLogic.insertStudent(student, tutorialId);
         if (feedback > 0) {
@@ -94,6 +100,9 @@ public class AddStudentActivity extends BaseActivity {
         String lastName = input_lastName.getText().toString();
         String email = input_email.getText().toString();
         String stream = input_stream.getText().toString();
+        String strength = input_strength.getText().toString();
+        String weakness = input_weakness.getText().toString();
+        String zID = input_zID.getText().toString();
 
         if (firstName.isEmpty()) {
             input_firstName.setError("First name cannot be empty");
@@ -118,6 +127,24 @@ public class AddStudentActivity extends BaseActivity {
             validated = false;
         } else {
             input_stream.setError(null);
+        }
+        if (zID.isEmpty() && (zID.length()>8 || zID.length()<8)) {
+            input_zID.setError("zID is incorrect");
+            validated = false;
+        } else {
+            input_zID.setError(null);
+        }
+        if (strength.isEmpty()) {
+            input_strength.setError("Lets try adding some strengths");
+            validated = false;
+        } else {
+            input_strength.setError(null);
+        }
+        if (weakness.isEmpty()){
+            input_weakness.setError("Lets try adding some weaknesses");
+            validated = false;
+        } else {
+            input_weakness.setError(null);
         }
         return validated;
     }

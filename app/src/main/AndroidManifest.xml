@@ -27,14 +27,21 @@
         <activity android:name=".View.CompetencyListActivity" />
         <activity android:name=".View.AddCompetencyActivity" />
         <activity android:name=".View.WeeksListActivity" />
-        <activity android:name=".View.AddWeekDetailsActivity" />
         <activity android:name=".View.DummyActivity" />
         <activity android:name=".View.AddTutorialActivity" />
         <activity android:name=".View.TutorialStudentsListActivity" />
         <activity android:name=".View.AddWeekActivity" />
         <activity android:name=".View.SendStudentEmailActivity" />
         <activity android:name=".View.StudentViewDetailsActivity" />
-        <activity android:name=".View.EditStudentActivity"></activity>
+        <activity android:name=".View.EditStudentActivity" />
+        <activity android:name=".View.EditCompetencyActivity" />
+        <activity android:name=".View.CompetencyViewDetailsActivity" />
+        <activity android:name=".View.EditAssessmentActivity" />
+        <activity android:name=".View.AssessmentViewDetailsActivity" />
+        <activity android:name=".View.EditWeekActivity" />
+        <activity android:name=".View.WeekViewDetailsActivity" />
+        <activity android:name=".View.EditTutorialActivity" />
+        <activity android:name=".View.TutorialViewDetailsActivity"></activity>
     </application>
 
 </manifest>
