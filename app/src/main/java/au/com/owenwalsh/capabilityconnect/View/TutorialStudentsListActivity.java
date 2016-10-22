@@ -34,7 +34,7 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
     private Boolean isFabOpen = false;
     private FloatingActionButton addActionBar;
     private FloatingActionButton addStudentActionBar;
-    private FloatingActionButton emailStudentActionBar;
+    private FloatingActionButton viewTutorialDetailsActionBar;
     private Animation actionbar_open,actionbar_close,rotate_forward,rotate_backward;
     private TextView emptyView;
 
@@ -54,7 +54,7 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
 
         addActionBar = (FloatingActionButton) findViewById(R.id.fab);
         addStudentActionBar = (FloatingActionButton) findViewById(R.id.fab1);
-        emailStudentActionBar = (FloatingActionButton) findViewById(R.id.fab2);
+        viewTutorialDetailsActionBar = (FloatingActionButton) findViewById(R.id.fab2);
         actionbar_open = AnimationUtils.loadAnimation(TutorialStudentsListActivity.this, R.anim.actionbar_open);
         actionbar_close = AnimationUtils.loadAnimation(TutorialStudentsListActivity.this, R.anim.actionbar_close);
         rotate_forward = AnimationUtils.loadAnimation(TutorialStudentsListActivity.this, R.anim.rotate_forward);
@@ -80,13 +80,13 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
                 startActivity(intent);
             }
         });
-        emailStudentActionBar.setOnClickListener(new View.OnClickListener() {
+        viewTutorialDetailsActionBar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(TutorialStudentsListActivity.this, "Email student selected", Toast.LENGTH_SHORT).show();
-                Log.d("FAB FOCUSED:", "Email student selected");
+                Toast.makeText(TutorialStudentsListActivity.this, "Tutorial details selected", Toast.LENGTH_SHORT).show();
+                Log.d("FAB FOCUSED:", "Tutorial details selected");
                 //move user to EmailStudentActivity
-                Intent intent = new Intent(getApplicationContext(), SendStudentEmailActivity.class);
+                Intent intent = new Intent(getApplicationContext(), TutorialViewDetailsActivity.class);
                 startActivity(intent);
             }
         });
@@ -108,6 +108,8 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
             addActionBar.startAnimation(rotate_backward);
             addStudentActionBar.startAnimation(actionbar_close);
             addStudentActionBar.setClickable(false);
+            viewTutorialDetailsActionBar.startAnimation(actionbar_close);
+            viewTutorialDetailsActionBar.setClickable(false);
             isFabOpen = false;
             Log.d("Raj", "close");
 
@@ -116,6 +118,8 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
             addActionBar.startAnimation(rotate_forward);
             addStudentActionBar.startAnimation(actionbar_open);
             addStudentActionBar.setClickable(true);
+            viewTutorialDetailsActionBar.startAnimation(actionbar_open);
+            viewTutorialDetailsActionBar.setClickable(true);
             isFabOpen = true;
             Log.d("Raj","open");
         }

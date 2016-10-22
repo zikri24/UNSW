@@ -45,6 +45,20 @@
         android:scaleType="center"/>
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="160dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginRight="@dimen/fab_margin"
+        android:visibility="invisible"
+        app:elevation="6dp"
+        app:backgroundTint="@color/colorFAB1"
+        app:pressedTranslationZ="12dp"
+        android:src="@drawable/class_view_icon"
+        android:scaleType="center"/>
+
+    <android.support.design.widget.FloatingActionButton
     android:id="@+id/fab1"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -58,19 +72,6 @@
     android:src="@drawable/student_add_icon"
     android:scaleType="center"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="90dp"
-        android:layout_gravity="bottom|end"
-        android:layout_marginRight="@dimen/fab_margin"
-        android:visibility="invisible"
-        app:elevation="6dp"
-        app:backgroundTint="@color/colorFAB1"
-        app:pressedTranslationZ="12dp"
-        android:src="@drawable/email_icon"
-        android:scaleType="center"/>
 
 </android.support.design.widget.CoordinatorLayout>
 
