@@ -18,14 +18,14 @@ import au.com.owenwalsh.capabilityconnect.Database.StudentLogic;
 import au.com.owenwalsh.capabilityconnect.Model.Student;
 import au.com.owenwalsh.capabilityconnect.R;
 
-public class StudentViewDetailsActivity  extends BaseActivity {
+public class StudentViewDetailsActivity extends BaseActivity {
     private StudentLogic studentLogic;
     private Boolean isFabOpen = false;
     private FloatingActionButton addActionBar;
     private FloatingActionButton editStudentActionBar;
     private FloatingActionButton removeStudentActionBar;
     private FloatingActionButton emailStudentActionBar;
-    private Animation actionbar_open,actionbar_close,rotate_forward,rotate_backward;
+    private Animation actionbar_open, actionbar_close, rotate_forward, rotate_backward;
     private TextView student_first_name;
     private TextView student_last_name;
     private TextView student_id;
@@ -37,9 +37,9 @@ public class StudentViewDetailsActivity  extends BaseActivity {
     private ImageView image_stream;
     private ImageView image_strength;
     private ImageView image_weakness;
-    public static final String STU_ID = "stuID";
-    public static final String FIRST_NAME = "firstName";
-    public static final String LAST_NAME = "lastName";
+    private static final String FIRST_NAME = "firstName";
+    private static final String STU_ID = "stuID";
+    private static final String LAST_NAME = "lastname";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +54,13 @@ public class StudentViewDetailsActivity  extends BaseActivity {
         student_last_name = (TextView) findViewById(R.id.student_last_name);
         student_id = (TextView) findViewById(R.id.student_id);
         student_email = (TextView) findViewById(R.id.student_email);
-       student_stream = (TextView) findViewById(R.id.student_stream);
-       student_strength = (TextView) findViewById(R.id.student_strength);
+        student_stream = (TextView) findViewById(R.id.student_stream);
+        student_strength = (TextView) findViewById(R.id.student_strength);
         student_weakness = (TextView) findViewById(R.id.student_weakness);
-       image_email = (ImageView) findViewById(R.id.image_email);
-       image_stream = (ImageView) findViewById(R.id.image_stream);
-       image_strength = (ImageView) findViewById(R.id.image_strength);
-       image_weakness = (ImageView) findViewById(R.id.image_weakness);
+        image_email = (ImageView) findViewById(R.id.image_email);
+        image_stream = (ImageView) findViewById(R.id.image_stream);
+        image_strength = (ImageView) findViewById(R.id.image_strength);
+        image_weakness = (ImageView) findViewById(R.id.image_weakness);
         getIntentItems();
 
 
@@ -74,9 +74,9 @@ public class StudentViewDetailsActivity  extends BaseActivity {
         rotate_backward = AnimationUtils.loadAnimation(StudentViewDetailsActivity.this, R.anim.rotate_backward);
 
         Intent intent = getIntent();
-        final String studentID = intent.getStringExtra(StudentListActivity.STU_ID);
-        final String firstName = intent.getStringExtra(StudentListActivity.FIRST_NAME);
-        final String lastName = intent.getStringExtra(StudentListActivity.LAST_NAME);
+        final String studentID = intent.getStringExtra(STU_ID);
+        final String firstName = intent.getStringExtra(FIRST_NAME);
+        final String lastName = intent.getStringExtra(LAST_NAME);
 
         addActionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +85,7 @@ public class StudentViewDetailsActivity  extends BaseActivity {
             }
         });
 
-        editStudentActionBar.setOnClickListener(new View.OnClickListener(){
+        editStudentActionBar.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -119,35 +119,35 @@ public class StudentViewDetailsActivity  extends BaseActivity {
     }
 
 
-
-    public void getIntentItems(){
-    Intent intent = getIntent();
-        final String zID = intent.getStringExtra(StudentListActivity.STU_ID);
-    final String firstName = intent.getStringExtra(StudentListActivity.FIRST_NAME);
-    final String lastName = intent.getStringExtra(StudentListActivity.LAST_NAME);
+    public void getIntentItems() {
+        Intent intent = getIntent();
+        final String zID = intent.getStringExtra(STU_ID);
+        final String firstName = intent.getStringExtra(FIRST_NAME);
+        final String lastName = intent.getStringExtra(LAST_NAME);
         studentLogic = new StudentLogic(StudentViewDetailsActivity.this);
         Student student = studentLogic.findStudentById(zID);
         String email = student.getEmail().toString();
-//       String stream = student.getStream().toString();
-//        String weakness = student.getWeakness().toString();
-    //    String strength = student.getStrength().toString();
+        String stream = student.getStream().toString();
+        String weakness = student.getWeakness().toString();
+        String strength = student.getStrength().toString();
 
         student_first_name.setText(firstName);
         student_last_name.setText(lastName);
         student_id.setText(zID);
         student_email.setText(email);
-       // student_stream.setText(stream);
-      //  student_strength.setText(strength);
-       //student_weakness.setText(weakness);
-}
-public void getRecordForIntent(){
-    //get the record for the first name and last name here and set the remainder of the variables
-}
+        student_stream.setText(stream);
+          student_strength.setText(strength);
+        student_weakness.setText(weakness);
+    }
+
+    public void getRecordForIntent() {
+        //get the record for the first name and last name here and set the remainder of the variables
+    }
 
 
-    public void animateFAB(){
+    public void animateFAB() {
 
-        if(isFabOpen){
+        if (isFabOpen) {
 
             addActionBar.startAnimation(rotate_backward);
             editStudentActionBar.startAnimation(actionbar_close);
@@ -169,12 +169,12 @@ public void getRecordForIntent(){
             emailStudentActionBar.startAnimation(actionbar_open);
             emailStudentActionBar.setClickable(true);
             isFabOpen = true;
-            Log.d("Raj","open");
+            Log.d("Raj", "open");
         }
     }
 
 
-    public void hideFloatingActionBar(){
+    public void hideFloatingActionBar() {
         editStudentActionBar.startAnimation(actionbar_close);
         editStudentActionBar.setClickable(false);
         editStudentActionBar.hide();

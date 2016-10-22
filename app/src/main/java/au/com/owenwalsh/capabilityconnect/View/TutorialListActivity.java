@@ -33,7 +33,7 @@ import static au.com.owenwalsh.capabilityconnect.R.anim.rotate_forward;
 
 public class TutorialListActivity extends BaseActivity implements View.OnClickListener, TutorialAdapter.ItemClickCallback {
 
-    public static String TUT_ID = "tutorialId";
+    private static String TUT_ID = "tutorialId";
 
     private RecyclerView recyclerView;
     private ProgressDialog progress;

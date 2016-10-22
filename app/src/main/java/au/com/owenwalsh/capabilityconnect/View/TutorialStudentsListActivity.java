@@ -28,7 +28,7 @@ import au.com.owenwalsh.capabilityconnect.R;
 public class TutorialStudentsListActivity extends BaseActivity implements View.OnClickListener, StudentAdapter.ItemClickCallback {
 
     public static final String FIRST_NAME = "fistName";
-    public static final String TUTORIAL_ID = "tutorialId";
+    private static String TUT_ID = "tutorialId";
     private RecyclerView recyclerView;
     private ProgressDialog progress;
     private Boolean isFabOpen = false;
@@ -61,7 +61,7 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
         rotate_backward = AnimationUtils.loadAnimation(TutorialStudentsListActivity.this, R.anim.rotate_backward);
 
         Intent intent = getIntent();
-        final String tutorialId = intent.getStringExtra(TutorialListActivity.TUT_ID);
+        final String tutorialId = intent.getStringExtra(TUT_ID);
 
         addActionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,7 +76,7 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
                 Log.d("FAB FOCUSED:", "Add student selected");
                 //move user to AddStudentActivity
                 Intent intent = new Intent(getApplicationContext(), AddStudentActivity.class);
-                intent.putExtra(TUTORIAL_ID, tutorialId);
+                intent.putExtra(TUT_ID, tutorialId);
                 startActivity(intent);
             }
         });
@@ -87,7 +87,7 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
                 Log.d("FAB FOCUSED:", "Tutorial details selected");
                 //move user to EmailStudentActivity
                 Intent intent = new Intent(getApplicationContext(), TutorialViewDetailsActivity.class);
-                intent.putExtra(TUTORIAL_ID, tutorialId);
+                intent.putExtra(TUT_ID, tutorialId);
                 startActivity(intent);
             }
         });
@@ -130,7 +130,7 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
         //showProgressDialog();
         studentLogic = new StudentLogic(TutorialStudentsListActivity.this);
         Intent intent = getIntent();
-        final int tutId = Integer.parseInt(intent.getStringExtra(TutorialListActivity.TUT_ID));
+        final int tutId = Integer.parseInt(intent.getStringExtra(TUT_ID));
         students = studentLogic.findStudentByClassId(tutId);
         if (students.isEmpty()) {
             recyclerView.setVisibility(View.GONE);
@@ -173,7 +173,7 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
     @Override
     public void onUpdateClick(int p) {
         Student student = students.get(p);
-        Intent intent = new Intent(this, DummyActivity.class);
+        Intent intent = new Intent(this, EditTutorialActivity.class);
         intent.putExtra(FIRST_NAME, student.getFirsName());
         startActivity(intent);
     }

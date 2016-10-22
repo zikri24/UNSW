@@ -27,6 +27,7 @@ public class AddStudentActivity extends BaseActivity {
     private EditText input_stream;
     private EditText input_strength;
     private EditText input_weakness;
+    private static String TUT_ID = "tutorialId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class AddStudentActivity extends BaseActivity {
         drawerLayout.addView(contentView, 0);
 
         Intent intent = getIntent();
-        tutorialId = Integer.parseInt(intent.getStringExtra(TutorialStudentsListActivity.TUTORIAL_ID));
+        tutorialId = Integer.parseInt(intent.getStringExtra(TUT_ID));
 
 
         input_firstName = (EditText) findViewById(R.id.input_first_name);

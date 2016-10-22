@@ -25,6 +25,9 @@ public class EditStudentActivity extends BaseActivity {
     private EditText input_zID;
     private Button btn_updateStudent;
     private EditText input_stream;
+    private static final String FIRST_NAME = "firstName";
+    private static final String STU_ID = "stuID";
+    private static final String LAST_NAME = "lastname";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +45,9 @@ public class EditStudentActivity extends BaseActivity {
         input_stream = (EditText) findViewById(R.id.input_stream);
 
         Intent intent = getIntent();
-        final String zID = intent.getStringExtra(StudentViewDetailsActivity.LAST_NAME);
-        final String firstName = intent.getStringExtra(StudentViewDetailsActivity.FIRST_NAME);
-        final String lastName = intent.getStringExtra(StudentViewDetailsActivity.LAST_NAME);
+        final String zID = intent.getStringExtra(LAST_NAME);
+        final String firstName = intent.getStringExtra(FIRST_NAME);
+        final String lastName = intent.getStringExtra(LAST_NAME);
 
 
         studentLogic = new StudentLogic(EditStudentActivity.this);

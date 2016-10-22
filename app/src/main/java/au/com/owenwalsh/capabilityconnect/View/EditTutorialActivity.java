@@ -29,6 +29,7 @@ public class EditTutorialActivity extends BaseActivity {
     private TutorialLogic tutorialLogic;
     private Tutorial tutorial;
     private long feedback;
+    private static String TUT_ID = "tutorialId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +45,7 @@ public class EditTutorialActivity extends BaseActivity {
         btn_update_tutorial = (Button) findViewById(R.id.btn_add_tutorial);
 
         Intent intent = getIntent();
-        final String tutorialIDString = intent.getStringExtra(TutorialViewDetailsActivity.TUTORIAL_ID);
+        final String tutorialIDString = intent.getStringExtra(TUT_ID);
         int tutorialID = Integer.parseInt(tutorialIDString);
         tutorialLogic = new TutorialLogic(EditTutorialActivity.this);
         Tutorial tutorial = tutorialLogic.findTutorialById(tutorialID);

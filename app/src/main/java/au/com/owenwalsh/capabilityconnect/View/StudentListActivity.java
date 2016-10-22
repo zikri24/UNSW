@@ -33,9 +33,9 @@ import au.com.owenwalsh.capabilityconnect.R;
 import static au.com.owenwalsh.capabilityconnect.Database.DatabaseHelper.LAST_NAME;
 
 public class StudentListActivity extends BaseActivity implements View.OnClickListener, StudentAdapter.ItemClickCallback {
-    public static final String FIRST_NAME = "firstName";
-    public static final String STU_ID = "stuID";
-    public static final String LAST_NAME = "lastname";
+    private static final String FIRST_NAME = "firstName";
+    private static final String STU_ID = "stuID";
+    private static final String LAST_NAME = "lastname";
     private RecyclerView recyclerView;
     private ProgressDialog progress;
     private Boolean isFabOpen = false;
@@ -119,7 +119,7 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
     @Override
     public void onUpdateClick(int p) {
         Student student = students.get(p);
-        Intent intent = new Intent(this, DummyActivity.class);
+        Intent intent = new Intent(this, EditStudentActivity.class);
         intent.putExtra(FIRST_NAME, student.getFirsName());
         startActivity(intent);
     }

@@ -27,7 +27,6 @@
         <activity android:name=".View.CompetencyListActivity" />
         <activity android:name=".View.AddCompetencyActivity" />
         <activity android:name=".View.WeeksListActivity" />
-        <activity android:name=".View.DummyActivity" />
         <activity android:name=".View.AddTutorialActivity" />
         <activity android:name=".View.TutorialStudentsListActivity" />
         <activity android:name=".View.AddWeekActivity" />

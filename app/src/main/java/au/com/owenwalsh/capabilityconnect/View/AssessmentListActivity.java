@@ -127,11 +127,11 @@ public class AssessmentListActivity extends BaseActivity implements View.OnClick
         }
     }
 
-    //passing the pokemon name to the detail activity on item clicked
+
     @Override
     public void onItemClick(int p) {
-        assessment = assessments.get(p);
-        Intent intent = new Intent(AssessmentListActivity.this, DummyActivity.class);
+        Assessment assessment = assessments.get(p);
+        Intent intent = new Intent(this, AssessmentViewDetailsActivity.class);
         intent.putExtra(ASSESS_ID, String.valueOf(assessment.getId()));
         startActivity(intent);
 
@@ -158,7 +158,7 @@ public class AssessmentListActivity extends BaseActivity implements View.OnClick
     @Override
     public void onUpdateClick(int p) {
         assessment = assessments.get(p);
-        Intent intent = new Intent(this, DummyActivity.class);
+        Intent intent = new Intent(this, EditAssessmentActivity.class);
         intent.putExtra(ASSESS_ID, String.valueOf(assessment.getId()));
         startActivity(intent);
     }

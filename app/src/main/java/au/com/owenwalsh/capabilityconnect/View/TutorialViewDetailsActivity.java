@@ -26,7 +26,7 @@ public class TutorialViewDetailsActivity extends BaseActivity {
     private Animation actionbar_open,actionbar_close,rotate_forward,rotate_backward;
     private TextView tutorial_day;
     private TextView tutorial_time;
-    public static final String TUTORIAL_ID = "tutorialID";
+    private static String TUT_ID = "tutorialId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class TutorialViewDetailsActivity extends BaseActivity {
         rotate_backward = AnimationUtils.loadAnimation(TutorialViewDetailsActivity.this, R.anim.rotate_backward);
 
         Intent intent = getIntent();
-        final String tutorialID = intent.getStringExtra(TutorialStudentsListActivity.TUTORIAL_ID);
+        final String tutorialID = intent.getStringExtra(TUT_ID);
 
 
         addActionBar.setOnClickListener(new View.OnClickListener() {
@@ -67,7 +67,7 @@ public class TutorialViewDetailsActivity extends BaseActivity {
                 Log.d("FAB FOCUSED:", "Add student selected");
                 //move user to EditStudentActivity
                 Intent intent = new Intent(getApplicationContext(), EditTutorialActivity.class);
-                intent.putExtra(TUTORIAL_ID, tutorialID);
+                intent.putExtra(TUT_ID, tutorialID);
                 startActivity(intent);
             }
         });
@@ -83,7 +83,7 @@ public class TutorialViewDetailsActivity extends BaseActivity {
 
     private void getIntentItems() {
         Intent intent = getIntent();
-        final String tutIDString = intent.getStringExtra(TutorialStudentsListActivity.TUTORIAL_ID);
+        final String tutIDString = intent.getStringExtra(TUT_ID);
         final int tutorialID = Integer.parseInt(tutIDString);
         tutorialLogic = new TutorialLogic(TutorialViewDetailsActivity.this);
         Tutorial tutorial = tutorialLogic.findTutorialById(tutorialID);

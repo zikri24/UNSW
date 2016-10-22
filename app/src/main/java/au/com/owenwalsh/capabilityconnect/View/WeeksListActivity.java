@@ -122,7 +122,7 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
     @Override
     public void onItemClick(int p) {
         Week week = weeks.get(p);
-        Intent intent = new Intent(WeeksListActivity.this, DummyActivity.class);
+        Intent intent = new Intent(WeeksListActivity.this, EditWeekActivity.class);
         intent.putExtra(WEEK_ID, week.getId());
         startActivity(intent);
 
@@ -148,7 +148,7 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
     @Override
     public void onUpdateClick(int p) {
         Week week = weeks.get(p);
-        Intent intent = new Intent(this, DummyActivity.class);
+        Intent intent = new Intent(this, EditWeekActivity.class);
         intent.putExtra(WEEK_ID, week.getId());
         startActivity(intent);
     }
