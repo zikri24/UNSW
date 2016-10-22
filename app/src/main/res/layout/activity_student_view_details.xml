@@ -208,7 +208,8 @@
         app:elevation="6dp"
         app:backgroundTint="@color/colorFAB1"
         app:pressedTranslationZ="12dp"
-        android:src="@drawable/student_edit_icon"/>
+        android:src="@drawable/student_edit_icon"
+        android:scaleType="center"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"

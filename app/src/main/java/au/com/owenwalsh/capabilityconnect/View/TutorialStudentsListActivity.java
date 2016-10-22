@@ -28,7 +28,7 @@ import au.com.owenwalsh.capabilityconnect.R;
 public class TutorialStudentsListActivity extends BaseActivity implements View.OnClickListener, StudentAdapter.ItemClickCallback {
 
     public static final String FIRST_NAME = "fistName";
-    public static String TUTORIAL_ID = "tutorialId";
+    public static final String TUTORIAL_ID = "tutorialId";
     private RecyclerView recyclerView;
     private ProgressDialog progress;
     private Boolean isFabOpen = false;
@@ -87,6 +87,7 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
                 Log.d("FAB FOCUSED:", "Tutorial details selected");
                 //move user to EmailStudentActivity
                 Intent intent = new Intent(getApplicationContext(), TutorialViewDetailsActivity.class);
+                intent.putExtra(TUTORIAL_ID, tutorialId);
                 startActivity(intent);
             }
         });
