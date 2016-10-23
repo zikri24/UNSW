@@ -51,13 +51,28 @@
                 android:layout_height="wrap_content"
                 android:textSize="18dip"
                 android:text="0%"/>
-
+        <LinearLayout
+            android:id="@+id/competency_seekbar"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
             <SeekBar
                 android:id="@+id/competency_slider"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:max="100" >
             </SeekBar>
+            <TextView
+                android:id="@+id/seekbar_tracker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18dip"
+                android:layout_gravity="center"
+                android:text="X%"/>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/competency_finish"

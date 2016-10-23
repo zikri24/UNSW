@@ -55,6 +55,7 @@ public class StudentAssessmentAdapter {
         public SeekBar competencyBar;
         public RelativeLayout compLayout;
         public View compContainer;
+        private TextView seekbarTracker;
 
         public ViewHolder(View view) {
             super(view);
@@ -64,6 +65,8 @@ public class StudentAssessmentAdapter {
             compContainer = view.findViewById(R.id.comp_cont_item_root);
             compContainer.setOnClickListener(this);
             competencyBar = (SeekBar) view.findViewById(R.id.assessment_slider);
+            //this field will update the numerical value of the slider to the user
+            seekbarTracker = (TextView) view.findViewById(R.id.seekbar_tracker);
         }
 
         @Override
