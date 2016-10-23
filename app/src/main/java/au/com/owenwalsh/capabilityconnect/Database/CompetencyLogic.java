@@ -1,5 +1,6 @@
 package au.com.owenwalsh.capabilityconnect.Database;
 
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -25,6 +26,7 @@ public class CompetencyLogic {
     private SQLiteDatabase db;
     private DatabaseHelper dbHelper;
     private Context context;
+    private Cursor cursor;
 
     public CompetencyLogic(Context context) {
         this.context = context;
@@ -80,5 +82,25 @@ public class CompetencyLogic {
         }
         close();
         return competencies;
+    }
+
+    public Competency findCompetencyById(int competencyId) {
+        competency = new Competency();
+        open();
+        try {
+            cursor = db.rawQuery("SELECT * FROM " + dbHelper.COMPETENCIES + " WHERE " + dbHelper.COMPETENCY_ID + " = " + competencyId , null);
+            if (cursor != null) {
+                cursor.moveToFirst();
+                competency.setName(cursor.getString(1));
+                competency.setDescription(cursor.getString(2));
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+            competency = null;
+        }
+        cursor.close();
+        close();
+        return competency;
     }
 }

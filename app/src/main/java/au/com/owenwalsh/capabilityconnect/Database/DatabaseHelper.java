@@ -68,8 +68,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public final static String COMPETENCY_STUDENT_ID = "CompetencyStudentId";
     public final static String COMPETENCY_COMPETENCY_ID = "CompetencyCompetencyId";
     public final static String RATING = "Rating";
+/*
+    //Notes table and columns names
+    public final static String NOTES = "Notes";
+    public final static String COMPETENCY_STUDENT_ID = "CompetencyStudentId";
+    public final static String COMPETENCY_COMPETENCY_ID = "CompetencyCompetencyId";
+    public final static String RATING = "Rating";
 
-
+*/
     //Creating the Students table
     private static final String CREATE_STUDENTS_TABLE = "CREATE TABLE "
             + STUDENTS_TABLE + " (" + ZID + " TEXT PRIMARY KEY, "
