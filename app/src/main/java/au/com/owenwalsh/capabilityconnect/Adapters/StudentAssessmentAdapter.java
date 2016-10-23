@@ -13,18 +13,33 @@ import android.widget.TextView;
 import java.util.List;
 
 import au.com.owenwalsh.capabilityconnect.Model.Competency;
+import au.com.owenwalsh.capabilityconnect.Model.StudentAssessment;
 import au.com.owenwalsh.capabilityconnect.R;
 
 /**
  * Created by owenw on 23/10/2016.
  */
 
-public class StudentAssessmentAdapter {
+public class StudentAssessmentAdapter extends RecyclerView.Adapter<StudentAssessmentAdapter.ViewHolder>{
     private Context mContext;
-    private List<Competency> assessmentList;
+    private List<StudentAssessment> studentAssessmentList;
 
-    public StudentAssessmentAdapter(List<Competency> competencyList, Context mContext) {
-        this.assessmentList = competencyList;
+    private ItemClickCallback itemClickCallback;
+
+
+    //declaring interface for the on click event
+    public interface ItemClickCallback {
+        void onItemClick(int p);
+        //void onDeleteClick(int p);
+        //void onUpdateClick(int p);
+    }
+
+    public void setItemClickCallback(final ItemClickCallback itemClickCallback) {
+        this.itemClickCallback = itemClickCallback;
+    }
+
+    public StudentAssessmentAdapter(List<StudentAssessment> studentAssessmentList, Context mContext) {
+        this.studentAssessmentList = studentAssessmentList;
         this.mContext = mContext;
     }
 
@@ -36,13 +51,14 @@ public class StudentAssessmentAdapter {
 
     @Override
     public void onBindViewHolder(StudentAssessmentAdapter.ViewHolder viewHolder, int position) {
-        viewHolder.name.setText(assessmentList.get(position).getName());
+        viewHolder.name.setText(studentAssessmentList.get(position).getAssessmentName());
+        viewHolder.assessmentMark.setText(String.valueOf(studentAssessmentList.get(position).getStudentMark()));
 
     }
 
 
-    public void updateListAdapter(List<Competency> competencyList) {
-        this.assessmentList = assessmentList;
+    public void updateListAdapter(List<StudentAssessment> studentAssessmentList) {
+        this.studentAssessmentList = studentAssessmentList;
     }
 
     @Override
@@ -52,25 +68,30 @@ public class StudentAssessmentAdapter {
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView name;
-        public TextView date;
-        public EditText assessmentMark;
-        public RelativeLayout compLayout;
-        public View compContainer;
+        public TextView dueDate;
+        public TextView assessmentMark;
+        public RelativeLayout studentAssessmentLayout;
+        public View studentAssessmentContainer;
 
         public ViewHolder(View view) {
             super(view);
-            compLayout = (RelativeLayout) view.findViewById(R.id.competency_card);
+            studentAssessmentLayout = (RelativeLayout) view.findViewById(R.id.assessment_card);
             name = (TextView) view.findViewById(R.id.assessment_name);
-            date = (TextView) view.findViewById(R.id.assessment_due_date);
-            compContainer = view.findViewById(R.id.comp_cont_item_root);
-            compContainer.setOnClickListener(this);
-           assessmentMark = (EditText) view.findViewById(R.id.input_assessment_mark);
+            dueDate = (TextView) view.findViewById(R.id.assessment_due_date);
+            studentAssessmentContainer = view.findViewById(R.id.student_assess_cont_item_root);
+            studentAssessmentContainer.setOnClickListener(this);
+            assessmentMark = (TextView) view.findViewById(R.id.student_assessment_mark);
         }
 
         @Override
         public void onClick(View view) {
-
-
+            if (view.getId() == R.id.comp_cont_item_root) {
+                itemClickCallback.onItemClick(getAdapterPosition());
+            }/* else if (view.getId() == R.id.btn_edit_assessment) {
+                itemClickCallback.onUpdateClick(getAdapterPosition());
+            } else if (view.getId() == R.id.btn_remove_assessment) {
+                itemClickCallback.onDeleteClick(getAdapterPosition());
+            }*/
         }
     }
 }

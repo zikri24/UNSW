@@ -17,9 +17,9 @@ import au.com.owenwalsh.capabilityconnect.R;
 public class AddStudentNotesActivity extends BaseActivity {
     private NotesLogic notesLogic;
     private Note note;
-    private int studentID;
+    private String studentID;
     private long feedback;
-    private EditText note_name;
+    //private EditText note_name;
     private EditText input_notes;
     private Button btn_add_note;
     private static String STU_ID = "studentID";
@@ -33,10 +33,10 @@ public class AddStudentNotesActivity extends BaseActivity {
         drawerLayout.addView(contentView, 0);
 
         Intent intent = getIntent();
-        studentID = Integer.parseInt(intent.getStringExtra(STU_ID));]
-
-        note_name = (EditText) findViewById(R.id.note_name);
+        studentID = intent.getStringExtra(STU_ID);
+       // note_name = (EditText) findViewById(R.id.note_name);
         input_notes = (EditText) findViewById(R.id.input_notes);
+        addNote();
 
     }
     private void addNote() {
@@ -46,9 +46,9 @@ public class AddStudentNotesActivity extends BaseActivity {
         }
         btn_add_note.setEnabled(false);
         //add logic here for adding student
-        String noteName = note_name.getText().toString();
+        //String noteName = note_name.getText().toString();
         String noteContents = input_notes.getText().toString();
-        note = new Note(noteID,noteName,noteContents);
+        note = new Note(noteContents, studentID);
         notesLogic = new NotesLogic(AddStudentNotesActivity.this);
         feedback = notesLogic.insertNote(note);
         if (feedback > 0) {
@@ -66,7 +66,7 @@ public class AddStudentNotesActivity extends BaseActivity {
         btn_add_note.setEnabled(true);
     }
 
-    private void addNoteSuccessfull() {
+    private void addNoteSuccessful() {
         Toast.makeText(AddStudentNotesActivity.this, "Note added successfully!", Toast.LENGTH_SHORT).show();
         btn_add_note.setEnabled(true);
     }
@@ -74,15 +74,15 @@ public class AddStudentNotesActivity extends BaseActivity {
     private boolean validateNote() {
         boolean validated = true;
         //validation logic here
-        String noteName = note_name.getText().toString();
+        //String noteName = note_name.getText().toString();
         String noteContents = input_notes.getText().toString();
 
-        if (noteName.isEmpty()) {
+        /*if (noteName.isEmpty()) {
             note_name.setError("Note name cannot be empty");
             validated = false;
         } else {
             note_name.setError(null);
-        }
+        }*/
         if (noteContents.isEmpty()){
             input_notes.setError("Lets try adding some notes");
             validated = false;
@@ -91,5 +91,4 @@ public class AddStudentNotesActivity extends BaseActivity {
         }
         return validated;
     }
-
 }

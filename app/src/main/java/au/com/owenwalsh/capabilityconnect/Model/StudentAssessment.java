@@ -5,6 +5,7 @@ package au.com.owenwalsh.capabilityconnect.Model;
  */
 public class StudentAssessment {
     private int assessmentId;
+    private String assessmentName;
     private String studentId;
     private double studentMark;
     private String comment;
@@ -12,11 +13,20 @@ public class StudentAssessment {
     public StudentAssessment() {
     }
 
-    public StudentAssessment(int assessmentId, String studentId, double studentMark, String comment) {
+    public StudentAssessment(int assessmentId, String assessmentName, String studentId, double studentMark, String comment) {
         this.assessmentId = assessmentId;
+        this.assessmentName = assessmentName;
         this.studentId = studentId;
         this.studentMark = studentMark;
         this.comment = comment;
+    }
+
+    public String getAssessmentName() {
+        return assessmentName;
+    }
+
+    public void setAssessmentName(String assessmentName) {
+        this.assessmentName = assessmentName;
     }
 
     public int getAssessmentId() {

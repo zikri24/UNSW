@@ -2,7 +2,6 @@ package au.com.owenwalsh.capabilityconnect.View;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -13,12 +12,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import au.com.owenwalsh.capabilityconnect.Adapters.StudentCompetencyAdapter;
+import au.com.owenwalsh.capabilityconnect.Adapters.StudentAssessmentAdapter;
 import au.com.owenwalsh.capabilityconnect.Database.AssessmentLogic;
-import au.com.owenwalsh.capabilityconnect.Database.CompetencyLogic;
+import au.com.owenwalsh.capabilityconnect.Database.StudentAssessmentLogic;
 import au.com.owenwalsh.capabilityconnect.Model.Assessment;
+import au.com.owenwalsh.capabilityconnect.Model.StudentAssessment;
 import au.com.owenwalsh.capabilityconnect.R;
-import au.com.owenwalsh.capabilityconnect.StudentAssessmentAdapter;
 
 public class StudentAssessmentActivity extends BaseActivity implements View.OnClickListener, StudentAssessmentAdapter.ItemClickCallback {
     private static final String STU_ID = "stuID";
@@ -27,9 +26,10 @@ public class StudentAssessmentActivity extends BaseActivity implements View.OnCl
     private Button submitButton;
     private TextView emptyView;
 
-    private AssessmentLogic assessmentLogic;
-    private ArrayList<Assessment> assessments;
+    private StudentAssessmentLogic studentAssessmentLogic;
+    private ArrayList<StudentAssessment> studentAssessments;
     private StudentAssessmentAdapter adapter;
+    private String studentId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +43,7 @@ public class StudentAssessmentActivity extends BaseActivity implements View.OnCl
         submitButton = (Button) findViewById(R.id.btn_submit_competencies);
         Intent intent = getIntent();
         final String assID = intent.getStringExtra(ASS_ID);
-        final String stuID = intent.getStringExtra(STU_ID);
+        studentId = intent.getStringExtra(STU_ID);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,13 +65,13 @@ public class StudentAssessmentActivity extends BaseActivity implements View.OnCl
 
     private void loadAssessments() {
         //showProgressDialog();
-        assessmentLogic = new AssessmentLogic(StudentAssessmentActivity.this);
-        assessments = assessmentLogic.findAllAssessments();
-        if (assessments.isEmpty()) {
+        studentAssessmentLogic = new StudentAssessmentLogic(StudentAssessmentActivity.this);
+        //studentAssessments = studentAssessmentLogic.findAssessmentByStudentId(studentId);
+        if (studentAssessments.isEmpty()) {
             recyclerView.setVisibility(View.GONE);
             emptyView.setVisibility(View.VISIBLE);
         } else {
-            adapter = new StudentAssessmentAdapter(assessments, StudentAssessmentActivity.this);
+            adapter = new StudentAssessmentAdapter(studentAssessments, StudentAssessmentActivity.this);
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
             adapter.setItemClickCallback(this);
@@ -81,6 +81,11 @@ public class StudentAssessmentActivity extends BaseActivity implements View.OnCl
 
     @Override
     public void onClick(View v) {
+
+    }
+
+    @Override
+    public void onItemClick(int p) {
 
     }
 }

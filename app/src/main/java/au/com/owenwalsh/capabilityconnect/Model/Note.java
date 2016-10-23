@@ -6,15 +6,15 @@ package au.com.owenwalsh.capabilityconnect.Model;
 
 public class Note {
     private int noteId;
-    private String note;
-    private int studentId;
+    private String content;
+    private String studentId;
 
     public Note() {
     }
 
-    public Note( String note, int studentId) {
+    public Note(String content, String studentId) {
         this.noteId = noteId;
-        this.note = note;
+        this.content = content;
         this.studentId = studentId;
     }
 
@@ -26,19 +26,19 @@ public class Note {
         this.noteId = noteId;
     }
 
-    public String getNote() {
-        return note;
+    public String getContent() {
+        return content;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public int getStudentId() {
+    public String getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(int studentId) {
+    public void setStudentId(String studentId) {
         this.studentId = studentId;
     }
 }
