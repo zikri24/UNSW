@@ -336,7 +336,7 @@
                             android:id="@+id/image_notes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:src="@drawable/competency_icon"/>
+                            android:src="@drawable/note_icon"/>
                         <TextView
                             android:id="@+id/notes_label"
                             android:textSize="18sp"
