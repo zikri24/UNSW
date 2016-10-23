@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -59,7 +60,7 @@ public class StudentCompetencyAdapter  extends RecyclerView.Adapter<StudentCompe
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView name;
         //public TextView description;
-        public SeekBar competencyBar;
+        public EditText competencyMark;
         public TextView seekbarTracker;
         public RelativeLayout compLayout;
         public View compContainer;
@@ -70,9 +71,7 @@ public class StudentCompetencyAdapter  extends RecyclerView.Adapter<StudentCompe
             name = (TextView) view.findViewById(R.id.competency_name);
             compContainer = view.findViewById(R.id.comp_cont_item_root);
             compContainer.setOnClickListener(this);
-            competencyBar = (SeekBar) view.findViewById(R.id.competency_slider);
-            //this field will update the numerical value of the slider to the user
-            seekbarTracker = (TextView) view.findViewById(R.id.seekbar_tracker);
+            competencyMark = (EditText) view.findViewById(R.id.input_competency_mark);
         }
 
         @Override

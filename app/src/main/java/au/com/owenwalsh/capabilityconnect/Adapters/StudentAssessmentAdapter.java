@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -52,10 +53,9 @@ public class StudentAssessmentAdapter {
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView name;
         public TextView date;
-        public SeekBar competencyBar;
+        public EditText assessmentMark;
         public RelativeLayout compLayout;
         public View compContainer;
-        private TextView seekbarTracker;
 
         public ViewHolder(View view) {
             super(view);
@@ -64,9 +64,7 @@ public class StudentAssessmentAdapter {
             date = (TextView) view.findViewById(R.id.assessment_due_date);
             compContainer = view.findViewById(R.id.comp_cont_item_root);
             compContainer.setOnClickListener(this);
-            competencyBar = (SeekBar) view.findViewById(R.id.assessment_slider);
-            //this field will update the numerical value of the slider to the user
-            seekbarTracker = (TextView) view.findViewById(R.id.seekbar_tracker);
+           assessmentMark = (EditText) view.findViewById(R.id.input_assessment_mark);
         }
 
         @Override

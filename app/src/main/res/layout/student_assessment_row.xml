@@ -1,6 +1,6 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/assessment_cont_item_root"
+    android:id="@+id/comp_cont_item_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="5dp"
@@ -9,111 +9,91 @@
     android:visibility="visible"
     card_view:cardCornerRadius="5dp">
 
-    <RelativeLayout
-        android:id="@+id/assessment_card"
+    <LinearLayout
+        android:id="@+id/competency_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        android:orientation="horizontal"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
         android:visibility="visible">
 
         <LinearLayout
-            android:id="@+id/layout_lines"
+            android:id="@+id/layout_lineOne"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal" >
 
-
-            <LinearLayout
-                android:id="@+id/layout_lineOne"
+            <TextView android:id="@+id/assessment_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+                android:ellipsize="end"
+                android:text="Name:"
+                android:textSize="18dip"
+                android:textStyle="bold"/>
 
-                <TextView android:id="@+id/name_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:text="Name:"
-                    android:textSize="18dip"
-                    android:textStyle="bold"/>
-
-                <TextView
-                    android:id="@+id/assessment_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18dip"
-                    android:padding="10dp" />
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/layout_lineTwo"
+            <TextView
+                android:id="@+id/assessment_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/layout_lineOne"
-                android:orientation="horizontal" >
-
-                <TextView android:id="@+id/label_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Due Date:"
-                    android:textSize="18dip"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:id="@+id/assessment_due_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:padding="20dp"
-                    android:textSize="18dip" />
-            </LinearLayout>
+                android:textSize="18dip"
+                android:padding="10dp"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/assessment_inputs"
+    <LinearLayout
+        android:id="@+id/layout_lineTwo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+
+        <TextView android:id="@+id/weighting_label"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:text="Name:"
+            android:textSize="18dip"
+            android:textStyle="bold"/>
 
-            <TextView
-                android:id="@+id/assessment_start"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18dip"
-                android:text="0%"/>
-
-        <LinearLayout
-            android:id="@+id/assessment_seekbar"
+        <TextView
+            android:id="@+id/assessment_weighting"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:textSize="18dip"
+            android:padding="10dp"/>
 
-            <SeekBar
-                android:id="@+id/assessment_slider"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:max="100" >
-            </SeekBar>
-            <TextView
-                android:id="@+id/seekbar_tracker"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18dip"
-                android:layout_gravity="center"
-                android:text="X%"/>
-
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/assessment_finish"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18dip"
-                android:text="100%"/>
         </LinearLayout>
-    </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout_lineThree"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView android:id="@+id/assessment_mark_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:text="Mark:"
+                android:textSize="18dip"
+                android:textStyle="bold"/>
+
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp">
+
+                <EditText
+                    android:id="@+id/input_assessment_mark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Competency Mark"
+                    android:inputType="text" />
+            </android.support.design.widget.TextInputLayout>
+        </LinearLayout>
+
+    </LinearLayout>
 
 </android.support.v7.widget.CardView>
