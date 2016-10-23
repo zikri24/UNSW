@@ -94,12 +94,12 @@
             android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/btn_edit_tutorial"
+            android:id="@+id/btn_add_attendance"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:background="@android:color/transparent"
             android:scaleType="fitXY"
-            android:src="@drawable/class_edit_icon"
+            android:src="@drawable/attendence_icon"
             android:visibility="visible"/>
 
         <ImageButton

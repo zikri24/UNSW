@@ -164,6 +164,7 @@ public class TutorialListActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onUpdateClick(int p) {
-
+            //intent to move to StudentAttendanceActivity
+        //neeed to display students for this tutorial
     }
 }

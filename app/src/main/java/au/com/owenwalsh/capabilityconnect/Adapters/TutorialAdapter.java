@@ -85,7 +85,7 @@ public class TutorialAdapter extends RecyclerView.Adapter<TutorialAdapter.ViewHo
         public TextView tutorialTime;
         public TextView numOfStudents;
         public ImageButton removeButton;
-        public ImageButton updateButton;
+        public ImageButton attandanceButton;
         public RelativeLayout classLayout;
         public View tutContainer;
 
@@ -96,10 +96,10 @@ public class TutorialAdapter extends RecyclerView.Adapter<TutorialAdapter.ViewHo
             tutorialTime = (TextView) view.findViewById(R.id.tutorial_time);
             numOfStudents = (TextView) view.findViewById(R.id.num_of_students);
             removeButton = (ImageButton) view.findViewById(R.id.btn_remove_tutorial);
-            updateButton = (ImageButton) view.findViewById(R.id.btn_edit_tutorial);
+            attandanceButton = (ImageButton) view.findViewById(R.id.btn_add_attendance);
             tutContainer = view.findViewById(R.id.tutorial_cont_item_root);
             tutContainer.setOnClickListener(this);
-            updateButton.setOnClickListener(this);
+            attandanceButton.setOnClickListener(this);
             removeButton.setOnClickListener(this);
         }
 
@@ -107,7 +107,7 @@ public class TutorialAdapter extends RecyclerView.Adapter<TutorialAdapter.ViewHo
         public void onClick(View view) {
             if (view.getId() == R.id.tutorial_cont_item_root) {
                 itemClickCallback.onItemClick(getAdapterPosition());
-            } else if (view.getId() == R.id.btn_edit_tutorial) {
+            } else if (view.getId() == R.id.btn_add_attendance) {
                 itemClickCallback.onUpdateClick(getAdapterPosition());
             } else if (view.getId() == R.id.btn_remove_tutorial) {
                 itemClickCallback.onDeleteClick(getAdapterPosition());

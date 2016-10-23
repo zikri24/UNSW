@@ -40,7 +40,8 @@
         <activity android:name=".View.EditWeekActivity" />
         <activity android:name=".View.WeekViewDetailsActivity" />
         <activity android:name=".View.EditTutorialActivity" />
-        <activity android:name=".View.TutorialViewDetailsActivity"></activity>
+        <activity android:name=".View.TutorialViewDetailsActivity" />
+        <activity android:name=".View.StudentAttendanceActivity"></activity>
     </application>
 
 </manifest>
