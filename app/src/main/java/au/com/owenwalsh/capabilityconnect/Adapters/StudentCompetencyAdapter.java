@@ -19,7 +19,7 @@ import au.com.owenwalsh.capabilityconnect.R;
  * Created by owenw on 23/10/2016.
  */
 
-public class StudentCompetencyAdapter  extends RecyclerView.Adapter<CompetencyAdapter.ViewHolder> {
+public class StudentCompetencyAdapter  extends RecyclerView.Adapter<StudentCompetencyAdapter.ViewHolder> {
     private Context mContext;
     private List<Competency> competencyList;
 
@@ -35,13 +35,13 @@ public class StudentCompetencyAdapter  extends RecyclerView.Adapter<CompetencyAd
     }
 
     @Override
-    public CompetencyAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+    public StudentCompetencyAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.student_competency_row, viewGroup, false);
         return null;
     }
 
     @Override
-    public void onBindViewHolder(CompetencyAdapter.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(StudentCompetencyAdapter.ViewHolder viewHolder, int position) {
         viewHolder.name.setText(competencyList.get(position).getName());
 
     }
