@@ -43,7 +43,8 @@
         <activity android:name=".View.TutorialViewDetailsActivity" />
         <activity android:name=".View.StudentAttendanceActivity" />
         <activity android:name=".View.StudentCompetenciesActivity" />
-        <activity android:name=".View.StudentAssessmentActivity"></activity>
+        <activity android:name=".View.StudentAssessmentActivity" />
+        <activity android:name=".View.AddStudentNotesActivity"></activity>
     </application>
 
 </manifest>
