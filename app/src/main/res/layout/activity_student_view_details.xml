@@ -7,161 +7,6 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/view_student_header"
-        android:layout_width="match_parent"
-        android:layout_height="190dp"
-        android:background="@drawable/background_material"
-        android:elevation="1dp"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:id="@+id/name_layout"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingTop="56dp"
-            android:paddingLeft="24dp"
-            android:paddingRight="24dp">
-
-            <TextView
-                android:id="@+id/student_first_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="46dip" />
-
-            <TextView
-                android:id="@+id/student_last_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="46dip"
-                android:padding="10dp"/>
-</LinearLayout>
-
-            <TextView
-                android:id="@+id/student_id"
-                android:layout_below="@+id/name_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18dip"
-                android:paddingLeft="40dp"
-                android:text="No id found"/>
-
-
-    </RelativeLayout>
-        <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:fillViewport="true">
-
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="56dp"
-                android:paddingLeft="24dp"
-                android:paddingRight="24dp">
-
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp">
-
-                    <ImageView
-                        android:id="@+id/image_email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/email_icon_white"/>
-                    <TextView
-                        android:id="@+id/student_email"
-                        android:textSize="18sp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:text="No email found"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/stream_layout"
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="5dp">
-
-                        <ImageView
-                            android:id="@+id/image_stream"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/class_icon"/>
-                        <TextView
-                            android:id="@+id/student_stream"
-                            android:textSize="18sp"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:text="No stream found"/>
-</LinearLayout>
-                        <LinearLayout
-                            android:orientation="horizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp">
-
-                            <ImageView
-                                android:id="@+id/image_strength"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/happy_icon"/>
-                            <TextView
-                                android:id="@+id/student_strength"
-                                android:textSize="18sp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="10dp"
-                                android:inputType="textMultiLine"
-                                android:maxLines="4"
-                                android:lines="4"
-                                android:text="No strength found"/>
-
-                </LinearLayout>
-                <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp">
-
-                    <ImageView
-                        android:id="@+id/image_weakness"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/sad_icon"/>
-                    <TextView
-                        android:id="@+id/student_weakness"
-                        android:textSize="18sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:inputType="textMultiLine"
-                        android:maxLines="4"
-                        android:lines="4"
-                        android:text="No Weakness found"/>
-
-                </LinearLayout>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@android:color/darker_gray"/>
-</LinearLayout>
-            </ScrollView>
-</LinearLayout>
-
 
     <android.support.design.widget.AppBarLayout
         android:layout_height="wrap_content"
@@ -226,6 +71,291 @@
         android:layout_margin="@dimen/fab_margin"
         android:src="@drawable/plus_icon"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/view_student_header"
+            android:layout_width="match_parent"
+            android:layout_height="190dp"
+            android:background="@drawable/background_material"
+            android:elevation="1dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/name_layout"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="56dp"
+                android:paddingLeft="24dp"
+                android:paddingRight="24dp">
+
+                <TextView
+                    android:id="@+id/student_first_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="46dip" />
+
+                <TextView
+                    android:id="@+id/student_last_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="46dip"
+                    android:padding="10dp"/>
+    </LinearLayout>
+
+                <TextView
+                    android:id="@+id/student_id"
+                    android:layout_below="@+id/name_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dip"
+                    android:paddingLeft="40dp"
+                    android:text="No id found"/>
 
 
-    </android.support.design.widget.CoordinatorLayout>
+        </RelativeLayout>
+            <ScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:fillViewport="true">
+
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="56dp"
+                    android:paddingLeft="24dp"
+                    android:paddingRight="24dp">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp">
+
+                        <ImageView
+                            android:id="@+id/image_email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/email_icon_white"/>
+                        <TextView
+                            android:id="@+id/student_email"
+                            android:textSize="18sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="No email found"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/stream_layout"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp">
+
+                            <ImageView
+                                android:id="@+id/image_stream"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/class_icon"/>
+                            <TextView
+                                android:id="@+id/student_stream"
+                                android:textSize="18sp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text="No stream found"/>
+    </LinearLayout>
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp">
+
+                                <ImageView
+                                    android:id="@+id/image_strength"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/happy_icon"/>
+                                <TextView
+                                    android:id="@+id/student_strength"
+                                    android:textSize="18sp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:inputType="textMultiLine"
+                                    android:maxLines="4"
+                                    android:lines="4"
+                                    android:text="No strength found"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp">
+
+                        <ImageView
+                            android:id="@+id/image_weakness"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/sad_icon"/>
+                        <TextView
+                            android:id="@+id/student_weakness"
+                            android:textSize="18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:inputType="textMultiLine"
+                            android:maxLines="4"
+                            android:lines="4"
+                            android:text="No Weakness found"/>
+
+                    </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@android:color/darker_gray"/>
+
+                <LinearLayout
+                    android:id="@+id/attendance_layout"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+                    <ImageView
+                        android:id="@+id/image_attendance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/cal_icon"/>
+                    <TextView
+                        android:id="@+id/attendance_label"
+                        android:textSize="18sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="Attendance"/>
+                    <TextView
+                        android:id="@+id/attendance_score"
+                        android:textSize="18sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:text="X%"/>
+
+                </LinearLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@android:color/darker_gray"/>
+                <LinearLayout
+                    android:id="@+id/assessments_layout"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp">
+
+                    <ImageView
+                        android:id="@+id/image_assessment"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/assignment_icon"/>
+                    <TextView
+                        android:id="@+id/assessments_label"
+                        android:textSize="18sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="Assessments"/>
+                    </LinearLayout>
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_student_assessment_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        android:paddingTop="80dp"
+                        android:scrollbars="vertical" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@android:color/darker_gray"/>
+
+                    <LinearLayout
+                        android:id="@+id/competencies_layout"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp">
+
+                        <ImageView
+                            android:id="@+id/image_competency"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/competency_icon"/>
+                        <TextView
+                            android:id="@+id/competency_label"
+                            android:textSize="18sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Competency"/>
+                    </LinearLayout>
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_student_competency_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        android:paddingTop="80dp"
+                        android:scrollbars="vertical" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@android:color/darker_gray"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@android:color/darker_gray"/>
+
+                    <LinearLayout
+                        android:id="@+id/noteslayout"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp">
+
+                        <ImageView
+                            android:id="@+id/image_notes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/competency_icon"/>
+                        <TextView
+                            android:id="@+id/notes_label"
+                            android:textSize="18sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:text="Notes"/>
+                    </LinearLayout>
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/recycler_student_notes_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                        android:paddingTop="80dp"
+                        android:scrollbars="vertical" />
+
+    </LinearLayout>
+                </ScrollView>
+    </LinearLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>
