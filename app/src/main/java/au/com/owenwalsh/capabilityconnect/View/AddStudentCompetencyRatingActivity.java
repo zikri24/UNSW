@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import au.com.owenwalsh.capabilityconnect.Database.StudentAssessmentLogic;
+import au.com.owenwalsh.capabilityconnect.Database.StudentCompetencyLogic;
 import au.com.owenwalsh.capabilityconnect.Model.StudentAssessment;
 import au.com.owenwalsh.capabilityconnect.Model.StudentCompetency;
 import au.com.owenwalsh.capabilityconnect.R;
@@ -21,7 +22,7 @@ public class AddStudentCompetencyRatingActivity extends BaseActivity {
     private StudentCompetencyLogic studentCompetencyLogic;
     private StudentCompetency studentCompetency;
     private String studentID;
-    private String competencyID;
+    private int competencyID;
     private long feedback;
     private EditText competency_name;
     private Button btn_add_competency_mark;
@@ -41,7 +42,7 @@ public class AddStudentCompetencyRatingActivity extends BaseActivity {
 
         Intent intent = getIntent();
         studentID = intent.getStringExtra(STU_ID);
-        competencyID = intent.getStringExtra(COMP_ID);
+        competencyID = Integer.valueOf(intent.getStringExtra(COMP_ID));
         studentCompetency = new StudentCompetency();
         competency_name.setText(studentCompetency.getCompetencyId());
         markSeekBar = (SeekBar) findViewById(R.id.mark_seek_bar);
@@ -55,12 +56,12 @@ public class AddStudentCompetencyRatingActivity extends BaseActivity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                Toast.makeText(AddStudentCompetencyRatingActivity.this, "Mark selection started", Toast.LENGTH_SHORT).show()
+                Toast.makeText(AddStudentCompetencyRatingActivity.this, "Mark selection started", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                Toast.makeText(AddStudentCompetencyRatingActivity.this, "Mark selection finished", Toast.LENGTH_SHORT).show()
+                Toast.makeText(AddStudentCompetencyRatingActivity.this, "Mark selection finished", Toast.LENGTH_SHORT).show();
             }
         });
         addMark();
@@ -73,9 +74,9 @@ public class AddStudentCompetencyRatingActivity extends BaseActivity {
         }
         int mark = markSeekBar.getProgress();
         btn_add_competency_mark.setEnabled(false);
-        StudentCompetency = new StudentAssessment(studentID, competencyID, mark);
-        StudentCompetencyLogic = new StudentCompetencyLogic(AddStudentCompetencyRatingActivity.this);
-        feedback = StudentCompetencyLogic.insertMark(StudentCompetency);
+        studentCompetency = new StudentCompetency(studentID, competencyID, mark);
+        studentCompetencyLogic = new StudentCompetencyLogic(AddStudentCompetencyRatingActivity.this);
+        feedback = studentCompetencyLogic.insertRating(studentCompetency);
         if (feedback > 0) {
             addMarkSuccessful();
             Intent intent = new Intent(AddStudentCompetencyRatingActivity.this, StudentViewDetailsActivity.class);
@@ -100,7 +101,7 @@ public class AddStudentCompetencyRatingActivity extends BaseActivity {
         boolean validated = true;
         int mark = markSeekBar.getProgress();
         String markString = Integer.toString(mark);
-        if (markString.isEmpty()){
+        if (markString.isEmpty()) {
             Toast.makeText(this, "Please select a mark", Toast.LENGTH_SHORT).show();
             validated = false;
         } else {
@@ -108,3 +109,4 @@ public class AddStudentCompetencyRatingActivity extends BaseActivity {
         }
         return validated;
     }
+}

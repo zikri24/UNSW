@@ -21,9 +21,16 @@ public class StudentAssessment {
         this.comment = comment;
     }
 
+    public StudentAssessment(int assessmentId, String studentId, double studentMark) {
+        this.assessmentId = assessmentId;
+        this.studentId = studentId;
+        this.studentMark = studentMark;
+    }
+
     public String getAssessmentName() {
         return assessmentName;
     }
+
 
     public void setAssessmentName(String assessmentName) {
         this.assessmentName = assessmentName;

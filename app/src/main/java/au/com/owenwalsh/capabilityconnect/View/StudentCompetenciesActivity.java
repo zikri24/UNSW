@@ -16,8 +16,10 @@ import java.util.ArrayList;
 import au.com.owenwalsh.capabilityconnect.Adapters.AttendanceAdapter;
 import au.com.owenwalsh.capabilityconnect.Adapters.StudentCompetencyAdapter;
 import au.com.owenwalsh.capabilityconnect.Database.CompetencyLogic;
+import au.com.owenwalsh.capabilityconnect.Database.StudentCompetencyLogic;
 import au.com.owenwalsh.capabilityconnect.Database.StudentLogic;
 import au.com.owenwalsh.capabilityconnect.Model.Competency;
+import au.com.owenwalsh.capabilityconnect.Model.StudentCompetency;
 import au.com.owenwalsh.capabilityconnect.R;
 
 public class StudentCompetenciesActivity extends BaseActivity implements View.OnClickListener, StudentCompetencyAdapter.ItemClickCallback {
@@ -27,9 +29,11 @@ public class StudentCompetenciesActivity extends BaseActivity implements View.On
     private Button submitButton;
     private TextView emptyView;
 
-    private CompetencyLogic competencyLogic;
-    private ArrayList<Competency> competencies;
+    private StudentCompetencyLogic studentCompetencyLogic;
+    private ArrayList<StudentCompetency> studentCompetencies;
     private StudentCompetencyAdapter adapter;
+
+    private String stuID;
 
 
 
@@ -45,7 +49,7 @@ public class StudentCompetenciesActivity extends BaseActivity implements View.On
         submitButton = (Button) findViewById(R.id.btn_submit_competencies);
         Intent intent = getIntent();
         final String competencyID = intent.getStringExtra(COMP_ID);
-        final String stuID = intent.getStringExtra(STU_ID);
+        stuID = intent.getStringExtra(STU_ID);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,13 +70,13 @@ public class StudentCompetenciesActivity extends BaseActivity implements View.On
 
     private void loadCompetencies() {
         //showProgressDialog();
-        competencyLogic = new CompetencyLogic(StudentCompetenciesActivity.this);
-        competencies = competencyLogic.findAllCompetencies();
-        if (competencies.isEmpty()) {
+        studentCompetencyLogic = new StudentCompetencyLogic(StudentCompetenciesActivity.this);
+        studentCompetencies = studentCompetencyLogic.findCompetenciesByStudentId(stuID);
+        if (studentCompetencies.isEmpty()) {
             recyclerView.setVisibility(View.GONE);
             emptyView.setVisibility(View.VISIBLE);
         } else {
-            adapter = new StudentCompetencyAdapter(competencies, StudentCompetenciesActivity.this);
+            adapter = new StudentCompetencyAdapter(studentCompetencies, StudentCompetenciesActivity.this);
             recyclerView.setAdapter(adapter);
             adapter.notifyDataSetChanged();
             adapter.setItemClickCallback(this);
@@ -83,6 +87,11 @@ public class StudentCompetenciesActivity extends BaseActivity implements View.On
 
     @Override
     public void onClick(View v) {
+
+    }
+
+    @Override
+    public void onItemClick(int p) {
 
     }
 }

@@ -9,24 +9,23 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import au.com.owenwalsh.capabilityconnect.Model.Assessment;
 import au.com.owenwalsh.capabilityconnect.Model.StudentAssessment;
+import au.com.owenwalsh.capabilityconnect.Model.StudentCompetency;
 
 /**
- * Created by Zikri on 23/10/2016.
+ * Created by Zikri on 24/10/2016.
  */
 
-public class StudentAssessmentLogic {
-    public static final String TAG = "StudentAssessmentLogic";
-
-    private ArrayList<StudentAssessment> studentAssessments;
-    private StudentAssessment studentAssessment;
+public class StudentCompetencyLogic {
+    public static final String TAG = "StudentCompetencyLogic";
+    private ArrayList<StudentCompetency> studentCompetencies;
+    private StudentCompetency studentCompetency;
     private SQLiteDatabase db;
     private DatabaseHelper dbHelper;
     private Context context;
     private Cursor cursor;
 
-    public StudentAssessmentLogic(Context context) {
+    public StudentCompetencyLogic(Context context) {
         this.context = context;
         dbHelper = new DatabaseHelper(context);
         try {
@@ -43,47 +42,24 @@ public class StudentAssessmentLogic {
     public void close() {
         db.close();
     }
-/*
-    public StudentAssessment findAssessmentByStudentId(String studentId) {
-        studentAssessment = new StudentAssessment();
-        open();
-        try {
-            cursor = db.rawQuery("SELECT * FROM " + dbHelper.STUDENTS_ASSESSMENTS + " WHERE " + dbHelper.ASSESSMENTS_STUDENT_ID + " = '" + studentId + "' " , null);
-            if (cursor != null) {
-                cursor.moveToFirst();
-                studentAssessment.setAssessmentName(cursor.getString(1));
-                studentAssessment.setStudentMark(cursor.getString(2));
-                studentAssessment.setMark(cursor.getInt(3));
-            }
-            cursor.close();
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage());
-            studentAssessment = null;
-        }
-        cursor.close();
-        close();
-        return studentAssessment;
-    }
-*/
 
-    public long insertAssessmentMark(StudentAssessment studentAssessment) {
+    public long insertRating(StudentCompetency studentCompetency) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(dbHelper.ASSESSMENTS_STUDENT_ID, studentAssessment.getStudentId());
-        contentValues.put(dbHelper.ASSESSMENTS_ASSESSMENTS_ID, studentAssessment.getAssessmentId());
-        contentValues.put(dbHelper.STUDENT_MARK, studentAssessment.getStudentMark());
+        contentValues.put(dbHelper.COMPETENCY_STUDENT_ID, studentCompetency.getStudentId());
+        contentValues.put(dbHelper.RATING, studentCompetency.getRating());
+        contentValues.put(dbHelper.COMPETENCY_COMPETENCY_ID, studentCompetency.getCompetencyId());
         open();
-        long row = db.insert(dbHelper.STUDENTS_ASSESSMENTS, null, contentValues);
+        long row = db.insert(dbHelper.STUDENTS_COMPETENCIES, null, contentValues);
         close();
         return row;
     }
-
     public long updateRating(StudentCompetency studentCompetency) {
         ContentValues contentValues = new ContentValues();
         contentValues.put(dbHelper.COMPETENCY_STUDENT_ID, studentCompetency.getStudentId());
         contentValues.put(dbHelper.RATING, studentCompetency.getRating());
         contentValues.put(dbHelper.COMPETENCY_COMPETENCY_ID, studentCompetency.getCompetencyId());
         open();
-        long row = db.update(dbHelper.STUDENTS_COMPETENCIES, contentValues, dbHelper.COMPETENCY_STUDENT_ID + "='" + studentCompetency.getStudentId() + "' AND " + dbHelper.COMPETENCY_COMPETENCY_ID + " = " + studentCompetency.getCompetencyId(), null);
+        long row = db.update(dbHelper.STUDENTS_COMPETENCIES, contentValues, dbHelper.COMPETENCY_STUDENT_ID + "='" + studentCompetency.getStudentId()+"' AND " + dbHelper.COMPETENCY_COMPETENCY_ID + " = " + studentCompetency.getCompetencyId(), null);
         close();
         return row;
     }
@@ -115,4 +91,5 @@ public class StudentAssessmentLogic {
         close();
         return studentCompetencies;
     }
+
 }

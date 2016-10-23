@@ -14,24 +14,40 @@ import android.widget.TextView;
 import java.util.List;
 
 import au.com.owenwalsh.capabilityconnect.Model.Competency;
+import au.com.owenwalsh.capabilityconnect.Model.StudentCompetency;
 import au.com.owenwalsh.capabilityconnect.R;
 
 /**
  * Created by owenw on 23/10/2016.
  */
 
-public class StudentCompetencyAdapter  extends RecyclerView.Adapter<StudentCompetencyAdapter.ViewHolder> {
+public class StudentCompetencyAdapter extends RecyclerView.Adapter<StudentCompetencyAdapter.ViewHolder> {
     private Context mContext;
-    private List<Competency> competencyList;
+    private List<StudentCompetency> studentCompetenciesList;
+
+
+    private ItemClickCallback itemClickCallback;
+
+
+    //declaring interface for the on click event
+    public interface ItemClickCallback {
+        void onItemClick(int p);
+        //void onDeleteClick(int p);
+        //void onUpdateClick(int p);
+    }
+
+    public void setItemClickCallback(final ItemClickCallback itemClickCallback) {
+        this.itemClickCallback = itemClickCallback;
+    }
 
     /**
      * Constructor for Tutorial Adapter
      *
-     * @param competencyList
+     * @param studentCompetenciesList
      * @param mContext
      */
-    public StudentCompetencyAdapter(List<Competency> competencyList, Context mContext) {
-        this.competencyList = competencyList;
+    public StudentCompetencyAdapter(List<StudentCompetency> studentCompetenciesList, Context mContext) {
+        this.studentCompetenciesList = studentCompetenciesList;
         this.mContext = mContext;
     }
 
@@ -43,13 +59,13 @@ public class StudentCompetencyAdapter  extends RecyclerView.Adapter<StudentCompe
 
     @Override
     public void onBindViewHolder(StudentCompetencyAdapter.ViewHolder viewHolder, int position) {
-        viewHolder.name.setText(competencyList.get(position).getName());
-
+        viewHolder.name.setText(studentCompetenciesList.get(position).getCompName());
+        viewHolder.competencyMark.setText(String.valueOf(studentCompetenciesList.get(position).getRating()));
     }
 
 
-    public void updateListAdapter(List<Competency> competencyList) {
-        this.competencyList = competencyList;
+    public void updateListAdapter(List<StudentCompetency> studentCompetenciesList) {
+        this.studentCompetenciesList = studentCompetenciesList;
     }
 
     @Override
@@ -59,24 +75,29 @@ public class StudentCompetencyAdapter  extends RecyclerView.Adapter<StudentCompe
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView name;
-        //public TextView description;
-        public EditText competencyMark;
-        public TextView seekbarTracker;
-        public RelativeLayout compLayout;
+        public TextView competencyMark;
+        public RelativeLayout studentCompLayout;
         public View compContainer;
 
         public ViewHolder(View view) {
             super(view);
-            compLayout = (RelativeLayout) view.findViewById(R.id.competency_card);
+            studentCompLayout = (RelativeLayout) view.findViewById(R.id.competency_card);
             name = (TextView) view.findViewById(R.id.competency_name);
-            compContainer = view.findViewById(R.id.comp_cont_item_root);
+            competencyMark = (TextView) view.findViewById(R.id.competency_mark);
+            compContainer = view.findViewById(R.id.student_comp_cont_item_root);
             compContainer.setOnClickListener(this);
-            competencyMark = (EditText) view.findViewById(R.id.input_competency_mark);
+
         }
 
         @Override
         public void onClick(View view) {
-
+            if (view.getId() == R.id.comp_cont_item_root) {
+                itemClickCallback.onItemClick(getAdapterPosition());
+            }/* else if (view.getId() == R.id.btn_edit_assessment) {
+                itemClickCallback.onUpdateClick(getAdapterPosition());
+            } else if (view.getId() == R.id.btn_remove_assessment) {
+                itemClickCallback.onDeleteClick(getAdapterPosition());
+            }*/
 
         }
     }

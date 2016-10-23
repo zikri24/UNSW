@@ -7,6 +7,7 @@ public class StudentCompetency {
     private String studentId;
     private int competencyId;
     private int rating;
+    private String compName;
 
     public StudentCompetency() {
     }
@@ -15,6 +16,19 @@ public class StudentCompetency {
         this.studentId = studentId;
         this.competencyId = competencyId;
         this.rating = rating;
+    }
+
+    public StudentCompetency(String compName, int rating) {
+        this.compName = compName;
+        this.rating = rating;
+    }
+
+    public String getCompName() {
+        return compName;
+    }
+
+    public void setCompName(String compName) {
+        this.compName = compName;
     }
 
     public String getStudentId() {
