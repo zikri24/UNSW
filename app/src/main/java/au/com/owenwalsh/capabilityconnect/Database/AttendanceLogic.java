@@ -7,19 +7,19 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import au.com.owenwalsh.capabilityconnect.Model.Attendance;
-import au.com.owenwalsh.capabilityconnect.Model.TutorialWeekStudent;
 
 /**
- * Created by Zikri on 13/10/2016.
+ * Created by Zikri on 23/10/2016.
  */
 
-public class TutorialWeekStudentLogic {
+public class AttendanceLogic {
+
     public static final String TAG = "TutWeekStudentLogic";
     private SQLiteDatabase db;
     private DatabaseHelper dbHelper;
     private Context context;
 
-    public TutorialWeekStudentLogic(Context context) {
+    public AttendanceLogic(Context context) {
         this.context = context;
         dbHelper = new DatabaseHelper(context);
         try {
@@ -36,20 +36,14 @@ public class TutorialWeekStudentLogic {
     public void close() {
         db.close();
     }
-
-    public void addStudentToClass(String studentId, int tutorialId) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(dbHelper.STUDENT_ID, studentId);
-        contentValues.put(dbHelper.W_C_S_TUTORIAL_ID, tutorialId);
-        long row = db.insert(dbHelper.CLASS_WEEK_STUDENT, null, contentValues);
-        Log.d("Student Added to tut :", String.valueOf(row));
-    }
+/*
     public long takeAttendance(Attendance attendance) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(dbHelper.ATTEND, attendance.getAttended());
-        contentValues.put(dbHelper.W_C_S_WEEK_ID, attendance.getWeekId());
-        long row =db.update(dbHelper.CLASS_WEEK_STUDENT,  contentValues, dbHelper.STUDENT_ID + " = '" + attendance.getStudentId() + "' ",null);
+        contentValues.put(dbHelper.ATTENDANCE_STUDENT_ID, attendance.getStudentId());
+        contentValues.put(dbHelper.ATTENDANCE_WEEK_ID, attendance.getWeekId());
+        contentValues.put(dbHelper.ATTENDED, attendance.getAttended());
+        long row = db.insert(dbHelper.ATTENDANCES, null, contentValues);
         return row;
     }
-
+    */
 }

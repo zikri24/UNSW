@@ -31,7 +31,7 @@ public class TutorialAdapter extends RecyclerView.Adapter<TutorialAdapter.ViewHo
 
         void onDeleteClick(int p);
 
-        void onUpdateClick(int p);
+        void onAttendanceClick(int p);
     }
 
     public void setItemClickCallback(final ItemClickCallback itemClickCallback) {
@@ -108,7 +108,7 @@ public class TutorialAdapter extends RecyclerView.Adapter<TutorialAdapter.ViewHo
             if (view.getId() == R.id.tutorial_cont_item_root) {
                 itemClickCallback.onItemClick(getAdapterPosition());
             } else if (view.getId() == R.id.btn_add_attendance) {
-                itemClickCallback.onUpdateClick(getAdapterPosition());
+                itemClickCallback.onAttendanceClick(getAdapterPosition());
             } else if (view.getId() == R.id.btn_remove_tutorial) {
                 itemClickCallback.onDeleteClick(getAdapterPosition());
             }

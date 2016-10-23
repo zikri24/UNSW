@@ -25,7 +25,7 @@ import au.com.owenwalsh.capabilityconnect.Model.Week;
 import au.com.owenwalsh.capabilityconnect.R;
 
 public class WeeksListActivity extends BaseActivity implements View.OnClickListener, WeeksAdapter.ItemClickCallback {
-    public static final String WEEK_ID = "weekId";
+    public static String WEEK_ID = "weekId";
     private RecyclerView recyclerView;
     private ProgressDialog progress;
     private Boolean isFabOpen = false;
@@ -123,7 +123,7 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
     public void onItemClick(int p) {
         Week week = weeks.get(p);
         Intent intent = new Intent(WeeksListActivity.this, TutorialListActivity.class);
-        intent.putExtra(WEEK_ID, week.getId());
+        intent.putExtra(WEEK_ID, String.valueOf(week.getId()));
         startActivity(intent);
 
     }
@@ -149,7 +149,7 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
     public void onUpdateClick(int p) {
         Week week = weeks.get(p);
         Intent intent = new Intent(this, EditWeekActivity.class);
-        intent.putExtra(WEEK_ID, week.getId());
+        intent.putExtra(WEEK_ID, String.valueOf(week.getId()));
         startActivity(intent);
     }
 

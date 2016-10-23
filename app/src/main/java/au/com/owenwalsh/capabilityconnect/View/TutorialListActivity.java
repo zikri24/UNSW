@@ -34,6 +34,7 @@ import static au.com.owenwalsh.capabilityconnect.R.anim.rotate_forward;
 public class TutorialListActivity extends BaseActivity implements View.OnClickListener, TutorialAdapter.ItemClickCallback {
 
     private static String TUT_ID = "tutorialId";
+    private static String WEEK_ID = "weekId";
 
     private RecyclerView recyclerView;
     private ProgressDialog progress;
@@ -46,6 +47,7 @@ public class TutorialListActivity extends BaseActivity implements View.OnClickLi
     private TutorialLogic tutorialLogic;
     private ArrayList<Tutorial> tutorials;
     private TutorialAdapter adapter;
+    private String weekId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,11 +83,13 @@ public class TutorialListActivity extends BaseActivity implements View.OnClickLi
                 startActivity(intent);
             }
         });
+        Intent intent  = getIntent();
+        weekId = intent.getStringExtra(WEEK_ID);
     }
 
     private void initViews() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_tutorial_list);
-        emptyView = (TextView)  findViewById(R.id.empty_view);
+        emptyView = (TextView) findViewById(R.id.empty_view);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -142,6 +146,7 @@ public class TutorialListActivity extends BaseActivity implements View.OnClickLi
         Tutorial tutorial = tutorials.get(p);
         Intent intent = new Intent(this, TutorialStudentsListActivity.class);
         intent.putExtra(TUT_ID, String.valueOf(tutorial.getId()));
+        intent.putExtra(WEEK_ID, weekId);
         startActivity(intent);
     }
 
@@ -150,21 +155,25 @@ public class TutorialListActivity extends BaseActivity implements View.OnClickLi
         Tutorial tutorial = tutorials.get(p);
         tutorialLogic.deleteTutorial(tutorial.getId());
         new AlertDialog.Builder(this)
-                .setTitle("Deleting " + tutorial.getDay() + " " +tutorial.getTime() + "tutorial")
-                .setMessage("Are you sure you want to delete " +tutorial.getDay() + " " +tutorial.getTime() + "tutorial")
+                .setTitle("Deleting " + tutorial.getDay() + " " + tutorial.getTime() + "tutorial")
+                .setMessage("Are you sure you want to delete " + tutorial.getDay() + " " + tutorial.getTime() + "tutorial")
                 .setIcon(R.drawable.warning)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
                         Toast.makeText(TutorialListActivity.this, "Tutorial has been deleted ", Toast.LENGTH_SHORT).show();
-                    }})
+                    }
+                })
                 .setNegativeButton(android.R.string.no, null).show();
         adapter.notifyDataSetChanged();
     }
 
     @Override
-    public void onUpdateClick(int p) {
-            //intent to move to StudentAttendanceActivity
-        //neeed to display students for this tutorial
+    public void onAttendanceClick(int p) {
+        Tutorial tutorial = tutorials.get(p);
+        Intent intent = new Intent(this, StudentAttendanceActivity.class);
+        intent.putExtra(TUT_ID, String.valueOf(tutorial.getId()));
+        intent.putExtra(WEEK_ID, weekId);
+        startActivity(intent);
     }
 }

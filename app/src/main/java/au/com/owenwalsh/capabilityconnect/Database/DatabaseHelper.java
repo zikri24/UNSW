@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
     //Database name and version
-    private static final String DATABASE_NAME = "StudentsDB.db";
+    private static final String DATABASE_NAME = "Capability.db";
     private static final int DATABASE_VERSION = 1;
 
     //Students Table and columns names
@@ -68,14 +68,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public final static String COMPETENCY_STUDENT_ID = "CompetencyStudentId";
     public final static String COMPETENCY_COMPETENCY_ID = "CompetencyCompetencyId";
     public final static String RATING = "Rating";
-/*
+
+    //attendance table and columns names
+    public final static String ATTENDANCES = "attendances";
+    public final static String ATTENDANCE_STUDENT_ID = "attendanceStudentId";
+    public final static String ATTENDANCE_WEEK_ID = "attendanceWeekId";
+    public final static String ATTENDED = "attended";
+
     //Notes table and columns names
     public final static String NOTES = "Notes";
-    public final static String COMPETENCY_STUDENT_ID = "CompetencyStudentId";
-    public final static String COMPETENCY_COMPETENCY_ID = "CompetencyCompetencyId";
-    public final static String RATING = "Rating";
+    public final static String NOTE_ID = "noteId";
+    public final static String NOTE = "note";
+    public final static String NOTE_STUDENT_ID = "noteStudentId";
 
-*/
+
+
     //Creating the Students table
     private static final String CREATE_STUDENTS_TABLE = "CREATE TABLE "
             + STUDENTS_TABLE + " (" + ZID + " TEXT PRIMARY KEY, "
@@ -138,6 +145,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + "FOREIGN KEY(" + ASSESSMENTS_STUDENT_ID + ") REFERENCES " + STUDENTS_TABLE + "(" + ZID + "),"
             + "FOREIGN KEY(" + ASSESSMENTS_ASSESSMENTS_ID + ") REFERENCES " + ASSESSMENTS + "(" + ASSESSMENT_ID + "))";
 
+    //Creating the Attendance table
+    private static final String CREATE_ATTENDANCE_TABLE = "CREATE TABLE "
+            + ATTENDANCES + " (" + ATTENDANCE_STUDENT_ID + " INTEGER, "
+            + ATTENDANCE_WEEK_ID + " INTEGER, "
+            + ATTENDED + " INTEGER, "
+            + "FOREIGN KEY(" + ATTENDANCE_STUDENT_ID + ") REFERENCES " + STUDENTS_TABLE + "(" + ZID + "),"
+            + "FOREIGN KEY(" + ATTENDANCE_WEEK_ID + ") REFERENCES " + WEEKS + "(" + WEEK_ID + "))";
+
+    //Creating the Assessments table
+    private static final String CREATE_NOTES_TABLE = "CREATE TABLE "
+            + NOTES + " (" + NOTE_ID + "  INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + NOTE + " TEXT, "
+            + NOTE_STUDENT_ID + " TEXT, "
+            + "FOREIGN KEY(" + NOTE_STUDENT_ID + ") REFERENCES " + STUDENTS_TABLE + "(" + ZID + "))";
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -153,6 +175,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         database.execSQL(CREATE_STUDENTS_COMPETENCIES_TABLE);
         database.execSQL(CREATE_ASSESSMENTS_TABLE);
         database.execSQL(CREATE_STUDENTS_ASSESSMENTS_TABLE);
+        database.execSQL(CREATE_ATTENDANCE_TABLE);
+        database.execSQL(CREATE_NOTES_TABLE);
     }
 
     @Override
@@ -165,6 +189,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         database.execSQL("DROP TABLE IF EXISTS " + CREATE_STUDENTS_COMPETENCIES_TABLE);
         database.execSQL("DROP TABLE IF EXISTS " + CREATE_ASSESSMENTS_TABLE);
         database.execSQL("DROP TABLE IF EXISTS " + CREATE_STUDENTS_ASSESSMENTS_TABLE);
+        database.execSQL("DROP TABLE IF EXISTS " + CREATE_ATTENDANCE_TABLE);
+        database.execSQL("DROP TABLE IF EXISTS " + CREATE_NOTES_TABLE);
         onCreate(database);
     }
 
