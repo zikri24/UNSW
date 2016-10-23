@@ -41,7 +41,9 @@
         <activity android:name=".View.WeekViewDetailsActivity" />
         <activity android:name=".View.EditTutorialActivity" />
         <activity android:name=".View.TutorialViewDetailsActivity" />
-        <activity android:name=".View.StudentAttendanceActivity"></activity>
+        <activity android:name=".View.StudentAttendanceActivity" />
+        <activity android:name=".View.StudentCompetenciesActivity" />
+        <activity android:name=".View.StudentAssessmentActivity"></activity>
     </application>
 
 </manifest>
