@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,7 +34,7 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
     private FloatingActionButton addWeekActionBar;
     private Animation actionbar_open, actionbar_close, rotate_forward, rotate_backward;
     private TextView emptyView;
-
+    private Toolbar toolbar;
     private WeekLogic weekLogic;
     private ArrayList<Week> weeks;
     private WeeksAdapter adapter;
@@ -46,6 +47,10 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_weeks_list, null, false);
         drawerLayout.addView(contentView, 0);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Weeks");
 
         initViews();
 
