@@ -9,8 +9,8 @@
     android:visibility="visible"
     card_view:cardCornerRadius="5dp">
 
-    <LinearLayout
-        android:id="@+id/competency_card"
+    <RelativeLayout
+        android:id="@+id/student_assessment_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
@@ -70,7 +70,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
-            <TextView android:id="@+id/assessment_mark_label"
+            <TextView android:id="@+id/assessment_student_mark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -98,7 +98,7 @@
             android:orientation="horizontal"
             android:layout_gravity="right">
         <ImageButton
-            android:id="@+id/edit_button"
+            android:id="@+id/edit_assessment_mark_button"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:scaleType="fitXY"
@@ -107,7 +107,7 @@
             android:visibility="visible" />
 
         <ImageButton
-            android:id="@+id/add_button"
+            android:id="@+id/add_assessment_mark"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:scaleType="fitXY"
@@ -118,7 +118,7 @@
 
         </LinearLayout>
 
-       </LinearLayout>
+       </RelativeLayout>
 
 
 </android.support.v7.widget.CardView>

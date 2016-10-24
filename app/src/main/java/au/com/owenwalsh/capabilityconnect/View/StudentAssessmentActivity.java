@@ -23,7 +23,6 @@ public class StudentAssessmentActivity extends BaseActivity implements View.OnCl
     private static final String STU_ID = "stuID";
     private static final String ASS_ID = "assID";
     private RecyclerView recyclerView;
-    private Button submitButton;
     private TextView emptyView;
 
     private StudentAssessmentLogic studentAssessmentLogic;
@@ -39,19 +38,11 @@ public class StudentAssessmentActivity extends BaseActivity implements View.OnCl
         View contentView = inflater.inflate(R.layout.activity_student_assessment, null, false);
         drawerLayout.addView(contentView, 0);
 
-        initViews();
-        submitButton = (Button) findViewById(R.id.btn_submit_competencies);
         Intent intent = getIntent();
         final String assID = intent.getStringExtra(ASS_ID);
         studentId = intent.getStringExtra(STU_ID);
 
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //loop through to get and submit assessment marks
-            }
-        });
-
+        initViews();
     }
 
     private void initViews() {
@@ -66,7 +57,7 @@ public class StudentAssessmentActivity extends BaseActivity implements View.OnCl
     private void loadAssessments() {
         //showProgressDialog();
         studentAssessmentLogic = new StudentAssessmentLogic(StudentAssessmentActivity.this);
-        //studentAssessments = studentAssessmentLogic.findAssessmentByStudentId(studentId);
+        studentAssessments = studentAssessmentLogic.findAllAssessments(studentId);
         if (studentAssessments.isEmpty()) {
             recyclerView.setVisibility(View.GONE);
             emptyView.setVisibility(View.VISIBLE);
@@ -86,6 +77,16 @@ public class StudentAssessmentActivity extends BaseActivity implements View.OnCl
 
     @Override
     public void onItemClick(int p) {
+
+    }
+
+    @Override
+    public void onEditClick(int p) {
+
+    }
+
+    @Override
+    public void onAddClick(int p) {
 
     }
 }

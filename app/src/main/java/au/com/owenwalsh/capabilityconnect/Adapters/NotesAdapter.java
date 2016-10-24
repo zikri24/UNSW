@@ -24,14 +24,14 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
     private Context mContext;
     private List<Note> notes;
 
-    private StudentAdapter.ItemClickCallback itemClickCallback;
+    private NotesAdapter.ItemClickCallback itemClickCallback;
 
 
     //declaring interface for the on click event
     public interface ItemClickCallback {
-        void onItemClick(int p);
+        //void onItemClick(int p);
         void onDeleteClick(int p);
-        void onUpdateClick(int p);
+       // void onUpdateClick(int p);
     }
 
     public void setItemClickCallback(final NotesAdapter.ItemClickCallback itemClickCallback) {
@@ -41,7 +41,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
     /**
      * Constructor for Tutorial Adapter
      *
-     * @param studentList
+     * @param notesList
      * @param mContext
      */
 
@@ -73,32 +73,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(NotesAdapter.ViewHolder viewHolder, int position) {
-        //viewHolder.notesContent.setText(studentList.get(position).getFirsName());
-        //viewHolder.studentLastName.setText(studentList.get(position).getLastName());
-        /*viewHolder.studentLayout.setOnClickListener(new View.OnClickListener(){
+        viewHolder.notesContent.setText(notes.get(position).getContent());
+        viewHolder.notesContent.setText(notes.get(position).getContent());
 
-            @Override
-            public void onClick(View view) {
-                Log.d("Student Clicked: ","a student has been clicked");
-                //code for whatever happens when  class is clicked
-            }
-        });
-        viewHolder.editStudentButton.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                Log.d("Edit Clicked: ","edit student button has been clicked");
-                //code for whatever happens when  class is clicked
-            }
-        });
-        viewHolder.removeStudentButton.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                Log.d("Remove Clicked: ","remove student button has been clicked");
-                //code for whatever happens when  class is clicked
-            }
-        });*/
     }
 
     @Override
@@ -112,29 +89,28 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
 
     public class ViewHolder extends android.support.v7.widget.RecyclerView.ViewHolder  implements View.OnClickListener {
         public TextView notesContent;
-        public ImageButton editNoteButton;
+        public ImageButton deleteNoteButton;
         public LinearLayout notesLayout;
-        public View container;
+       /// public View container;
 
         public ViewHolder(View view) {
             super(view);
             notesLayout = (LinearLayout) view.findViewById(R.id.note_card);
             notesContent = (TextView) view.findViewById(R.id.note_content);
-            editNoteButton = (ImageButton) view.findViewById(R.id.edit_button);
-            container = view.findViewById(R.id.cont_item_root);
-            container.setOnClickListener(this);
-            editNoteButton.setOnClickListener(this);
+            deleteNoteButton = (ImageButton) view.findViewById(R.id.delete_note_button);
+
+            deleteNoteButton.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            if (view.getId() == R.id.cont_item_root) {
-                itemClickCallback.onItemClick(getAdapterPosition());
-            }else if(view.getId() == R.id.edit_button) {
+            if (view.getId() == R.id.delete_note_button) {
+                itemClickCallback.onDeleteClick(getAdapterPosition());
+            }/*else if(view.getId() == R.id.edit_button) {
                 itemClickCallback.onUpdateClick(getAdapterPosition());
-            }//else if(view.getId() == R.id.remove_button) {
-                //itemClickCallback.onDeleteClick(getAdapterPosition());
-           // }
+            }else if(view.getId() == R.id.remove_button) {
+                itemClickCallback.onDeleteClick(getAdapterPosition());
+            }*/
         }
     }
 }

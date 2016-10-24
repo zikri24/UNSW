@@ -94,4 +94,14 @@ public class StudentCompetenciesActivity extends BaseActivity implements View.On
     public void onItemClick(int p) {
 
     }
+
+    @Override
+    public void onEditClick(int p) {
+
+    }
+
+    @Override
+    public void onAddClick(int p) {
+
+    }
 }

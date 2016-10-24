@@ -22,7 +22,7 @@ public class AddStudentAssessmentMarkActivity extends BaseActivity {
     private StudentAssessmentLogic studentAssessmentLogic;
     private StudentAssessment studentAssessment;
     private String studentID;
-    private String assessmentID;
+    private int assessmentID;
     private long feedback;
     // private EditText assessment_name;
     private EditText input_assessment_mark;
@@ -44,7 +44,7 @@ public class AddStudentAssessmentMarkActivity extends BaseActivity {
 
         Intent intent = getIntent();
         studentID = intent.getStringExtra(STU_ID);
-        assessmentID = intent.getStringExtra(ASS_ID);
+        assessmentID = Integer.parseInt(intent.getStringExtra(ASS_ID));
         studentAssessment = new StudentAssessment();
         assessment_name.setText(studentAssessment.getAssessmentName().toString());
         markSeekBar = (SeekBar) findViewById(R.id.mark_seek_bar);
@@ -76,9 +76,9 @@ public class AddStudentAssessmentMarkActivity extends BaseActivity {
         }
         int mark = markSeekBar.getProgress();
         btn_add_assessment_mark.setEnabled(false);
-        studentAssessment = new StudentAssessment(mark, studentID);
+        studentAssessment = new StudentAssessment(assessmentID, studentID, mark);
         studentAssessmentLogic = new StudentAssessmentLogic(AddStudentAssessmentMarkActivity.this);
-        feedback = studentAssessmentLogic.insertMark(studentAssessment);
+        feedback = studentAssessmentLogic.insertAssessmentMark(studentAssessment);
         if (feedback > 0) {
             addMarkSuccessful();
             Intent intent = new Intent(AddStudentAssessmentMarkActivity.this, StudentViewDetailsActivity.class);

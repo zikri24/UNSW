@@ -46,6 +46,8 @@ public class StudentViewDetailsActivity extends BaseActivity {
     private Button btn_view_assessments;
     private TextView attendance_score;
 
+    private String studentID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,17 +81,15 @@ public class StudentViewDetailsActivity extends BaseActivity {
         rotate_backward = AnimationUtils.loadAnimation(StudentViewDetailsActivity.this, R.anim.rotate_backward);
 
         Intent intent = getIntent();
-        final String studentID = intent.getStringExtra(STU_ID);
+        studentID = intent.getStringExtra(STU_ID);
         final String firstName = intent.getStringExtra(FIRST_NAME);
         final String lastName = intent.getStringExtra(LAST_NAME);
-
 
 
         attendance_score = (TextView) findViewById(R.id.attendance_score);
         btn_view_notes = (Button) findViewById(R.id.btn_view_notes);
         btn_view_assessments = (Button) findViewById(R.id.btn_view_assessments);
         btn_view_competencies = (Button) findViewById(R.id.btn_view_competencies);
-
 
 
         btn_view_notes.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +103,9 @@ public class StudentViewDetailsActivity extends BaseActivity {
         btn_view_assessments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //intent to go to StudentAssessmentActivity
+                Intent intent = new Intent(StudentViewDetailsActivity.this, StudentAssessmentActivity.class);
+                intent.putExtra(STU_ID, studentID);
+                startActivity(intent);
             }
         });
 
@@ -113,11 +115,6 @@ public class StudentViewDetailsActivity extends BaseActivity {
                 //intent to go to StudentCompetenciesActivity
             }
         });
-
-
-
-
-
 
 
         addActionBar.setOnClickListener(new View.OnClickListener() {

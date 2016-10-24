@@ -46,7 +46,7 @@
 
 
         <ImageButton
-            android:id="@+id/edit_button"
+            android:id="@+id/delete_note_button"
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:layout_gravity="right"

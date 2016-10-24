@@ -56,7 +56,8 @@ public class StudentAssessmentAdapter extends RecyclerView.Adapter<StudentAssess
     @Override
     public void onBindViewHolder(StudentAssessmentAdapter.ViewHolder viewHolder, int position) {
         viewHolder.name.setText(studentAssessmentList.get(position).getAssessmentName());
-        viewHolder.assessmentMark.setText(String.valueOf(studentAssessmentList.get(position).getStudentMark()));
+        viewHolder.assessmentMark.setText(String.valueOf(studentAssessmentList.get(position).getAssessmentMark()));
+        viewHolder.studentMark.setText(String.valueOf(studentAssessmentList.get(position).getStudentMark()));
 
     }
 
@@ -72,7 +73,7 @@ public class StudentAssessmentAdapter extends RecyclerView.Adapter<StudentAssess
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView name;
-        public TextView dueDate;
+        public TextView studentMark;
         public TextView assessmentMark;
         public RelativeLayout studentAssessmentLayout;
         public View studentAssessmentContainer;
@@ -81,25 +82,24 @@ public class StudentAssessmentAdapter extends RecyclerView.Adapter<StudentAssess
 
         public ViewHolder(View view) {
             super(view);
-            studentAssessmentLayout = (RelativeLayout) view.findViewById(R.id.assessment_card);
+            studentAssessmentLayout = (RelativeLayout) view.findViewById(R.id.student_assessment_card);
             name = (TextView) view.findViewById(R.id.assessment_name);
-            dueDate = (TextView) view.findViewById(R.id.assessment_due_date);
+            studentMark = (TextView) view.findViewById(R.id.assessment_student_mark);
+            assessmentMark = (TextView) view.findViewById(R.id.assessment_weighting);
             studentAssessmentContainer = view.findViewById(R.id.student_assess_cont_item_root);
             studentAssessmentContainer.setOnClickListener(this);
-            assessmentMark = (TextView) view.findViewById(R.id.student_assessment_mark);
-            add_button = (ImageButton) view.findViewById(R.id.add_button);
-            edit_button = (ImageButton) view.findViewById(R.id.edit_button);
-
+            add_button = (ImageButton) view.findViewById(R.id.add_assessment_mark);
+            edit_button = (ImageButton) view.findViewById(R.id.edit_assessment_mark_button);
+            add_button.setOnClickListener(this);
+            edit_button.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            if (view.getId() == R.id.comp_cont_item_root) {
-                itemClickCallback.onItemClick(getAdapterPosition());
-            } else if (view.getId() == R.id.edit_button) {
-                itemClickCallback.onEditClick(getAdapterPosition());
-            } else if (view.getId() == R.id.add_button) {
+            if (view.getId() == R.id.add_assessment_mark) {
                 itemClickCallback.onAddClick(getAdapterPosition());
+            } else if (view.getId() == R.id.edit_assessment_mark_button) {
+                itemClickCallback.onEditClick(getAdapterPosition());
             }
         }
     }

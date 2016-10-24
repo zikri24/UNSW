@@ -87,7 +87,7 @@ public class StudentAssessmentLogic {
     }
 
 
-    public ArrayList<StudentAssessment> findAssessmentsByStudentId(String studentId) {
+    /*public ArrayList<StudentAssessment> findAssessmentsByStudentId(String studentId) {
         studentAssessments = new ArrayList<>();
         open();
         try {
@@ -114,4 +114,49 @@ public class StudentAssessmentLogic {
         close();
         return studentAssessments;
     }
+    */
+
+    public double getStudentMark(int assessmentId, String studentId) {
+        double studentMark = 0.0;
+        open();
+        try {
+            cursor = db.rawQuery("SELECT " +  dbHelper.STUDENT_MARK +" FROM "
+                    + dbHelper.STUDENTS_ASSESSMENTS
+                    + " WHERE " + dbHelper.ASSESSMENTS_STUDENT_ID  + " = '" + studentId +"'  AND " + dbHelper.ASSESSMENTS_ASSESSMENTS_ID + " = " +  assessmentId , null);
+            while (cursor.moveToNext()) {
+                studentMark = cursor.getDouble(0);
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+            studentMark = 0.0;
+        }
+        close();
+        return studentMark;
+    }
+
+    public ArrayList<StudentAssessment> findAllAssessments(String studentId) {
+        studentAssessments = new ArrayList<>();
+        open();
+        try {
+             cursor = db.rawQuery("SELECT " + dbHelper.ASSESSMENT_ID  +  ", " + dbHelper.ASSESSMENT_NAME + ", " + dbHelper.ASSESSMENT_MARK +" FROM "
+                    + dbHelper.ASSESSMENTS  ,null);
+
+            while (cursor.moveToNext()) {
+                studentAssessment = new StudentAssessment();
+                studentAssessment.setAssessmentId(cursor.getInt(0));
+                studentAssessment.setAssessmentName(cursor.getString(1));
+                studentAssessment.setAssessmentMark(cursor.getInt(2));
+                studentAssessment.setStudentMark(getStudentMark(cursor.getInt(0), studentId));
+                studentAssessments.add(studentAssessment);
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+            studentAssessments = null;
+        }
+        close();
+        return studentAssessments;
+    }
+
 }
