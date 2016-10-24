@@ -92,6 +92,10 @@ public class StudentAssessmentActivity extends BaseActivity implements View.OnCl
 
     @Override
     public void onAddClick(int p) {
+        Week week = weeks.get(p);
+        Intent intent = new Intent(WeeksListActivity.this, TutorialListActivity.class);
+        intent.putExtra(WEEK_ID, String.valueOf(week.getId()));
+        startActivity(intent);
 
     }
 }

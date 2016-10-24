@@ -88,8 +88,8 @@ public class StudentCompetencyLogic {
         studentCompetencies = new ArrayList<>();
         open();
         try {
-            cursor = db.rawQuery("SELECT " + dbHelper.ASSESSMENT_ID  +  ", " + dbHelper.ASSESSMENT_NAME + ", " + dbHelper.ASSESSMENT_MARK +" FROM "
-                    + dbHelper.ASSESSMENTS  ,null);
+            cursor = db.rawQuery("SELECT " + dbHelper.COMPETENCY_ID  +  ", " + dbHelper.COMPETENCY_NAME  +" FROM "
+                    + dbHelper.COMPETENCIES  ,null);
 
             while (cursor.moveToNext()) {
                 studentCompetency = new StudentCompetency();

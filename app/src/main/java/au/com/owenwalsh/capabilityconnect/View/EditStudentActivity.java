@@ -107,7 +107,7 @@ public class EditStudentActivity extends BaseActivity {
         feedback = studentLogic.updateStudent(student);
         if (feedback > 0) {
             updateStudentSuccessfull();
-            Intent intent = new Intent(EditStudentActivity.this, StudentViewDetailsActivity.class);
+            Intent intent = new Intent(EditStudentActivity.this, StudentListActivity.class);
             startActivity(intent);
         } else {
             updateStudentFailed();
