@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -39,6 +40,7 @@ public class EditStudentActivity extends BaseActivity {
     private static final String FIRST_NAME = "firstName";
 
     private static final String LAST_NAME = "lastname";
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,21 @@ public class EditStudentActivity extends BaseActivity {
         final String zID = intent.getStringExtra(STU_ID);
         /*final String firstName = intent.getStringExtra(FIRST_NAME);
         final String lastName = intent.getStringExtra(LAST_NAME);*/
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Edit Student");
+        toolbar.setNavigationIcon(R.drawable.back_arrow);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // NavUtils.navigateUpFromSameTask(TutorialStudentsListActivity.this);
+                Intent intent = new Intent(EditStudentActivity.this, StudentViewDetailsActivity.class);
+                intent.putExtra(STU_ID, studentId);
+                startActivity(intent);
+            }
+        });
 
 
         studentLogic = new StudentLogic(EditStudentActivity.this);

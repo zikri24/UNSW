@@ -5,11 +5,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
@@ -54,6 +56,7 @@ public class StudentAttendanceActivity extends BaseActivity implements View.OnCl
     private String studentId;
     private String tutorialId;
     private int attended;
+    private Toolbar toolbar;
 
 
     @Override
@@ -63,6 +66,21 @@ public class StudentAttendanceActivity extends BaseActivity implements View.OnCl
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_student_attendance, null, false);
         drawerLayout.addView(contentView, 0);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Student List");
+        toolbar.setNavigationIcon(R.drawable.back_arrow);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //NavUtils.navigateUpFromSameTask(TutorialStudentsListActivity.this);
+                Intent intent = new Intent(StudentAttendanceActivity.this, TutorialListActivity.class);
+                intent.putExtra(tutorialId, tutorialId);
+                 startActivity(intent);
+            }
+        });
 
         initViews();
         submitButton = (Button) findViewById(R.id.btn_submit_attendance);

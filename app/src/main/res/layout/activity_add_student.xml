@@ -8,6 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="190dp"
         android:elevation="1dp"
+        android:background="@drawable/background_material"
         android:orientation="vertical">
     <!--android:background="@drawable/background_material"
     -->

@@ -42,14 +42,14 @@ public class AddStudentNotesActivity extends BaseActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Student Notes");
+        getSupportActionBar().setTitle("Add Student Note");
         toolbar.setNavigationIcon(R.drawable.back_arrow);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //NavUtils.navigateUpFromSameTask(AddStudentNotesActivity.this);
-                Intent intent = new Intent(AddStudentNotesActivity.this, StudentViewDetailsActivity.class);
+                Intent intent = new Intent(AddStudentNotesActivity.this, StudentNotesActivity.class);
                 intent.putExtra(STU_ID, studentID);
                 startActivity(intent);
             }

@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +36,7 @@ public class AddAssessmentActivity extends BaseActivity {
     //private TimePicker picker_time;
     private DatePicker picker_date;
     private Button btn_addAssessment;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,21 @@ public class AddAssessmentActivity extends BaseActivity {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_add_assessment, null, false);
         drawerLayout.addView(contentView, 0);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Add Assessment");
+        toolbar.setNavigationIcon(R.drawable.back_arrow);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavUtils.navigateUpFromSameTask(AddAssessmentActivity.this);
+                //Intent intent = new Intent(StudentAttendanceActivity.this, TutorialListActivity.class);
+               // intent.putExtra(tutorialId, tutorialId);
+                //startActivity(intent);
+            }
+        });
 
         input_assessment_name = (EditText) findViewById(R.id.input_assessment_name);
         // input_assessment_desc = (EditText) findViewById(R.id.input_assessment_desc);

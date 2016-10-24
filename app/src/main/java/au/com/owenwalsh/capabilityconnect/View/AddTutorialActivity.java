@@ -6,8 +6,10 @@ import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +32,7 @@ public class AddTutorialActivity extends BaseActivity {
     private TutorialLogic tutorialLogic;
     private Tutorial tutorial;
     private long feedback;
+    private Toolbar toolbar;
 
     //private String time;
 
@@ -40,6 +43,21 @@ public class AddTutorialActivity extends BaseActivity {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_add_tutorial, null, false);
         drawerLayout.addView(contentView, 0);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Add Tutorial");
+        toolbar.setNavigationIcon(R.drawable.back_arrow);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavUtils.navigateUpFromSameTask(AddTutorialActivity.this);
+                //Intent intent = new Intent(StudentViewDetailsActivity.this, TutorialStudentsListActivity.class);
+                //intent.putExtra(STU_ID, studentID);
+                // startActivity(intent);
+            }
+        });
 
 
         spinner_days = (Spinner) findViewById(R.id.spinner_days);
