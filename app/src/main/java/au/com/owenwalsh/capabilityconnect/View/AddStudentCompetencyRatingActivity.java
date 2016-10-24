@@ -87,6 +87,7 @@ public class AddStudentCompetencyRatingActivity extends BaseActivity {
         if (feedback > 0) {
             addMarkSuccessful();
             Intent intent = new Intent(AddStudentCompetencyRatingActivity.this, StudentCompetenciesActivity.class);
+            intent.putExtra(STU_ID, studentID);
             startActivity(intent);
         } else {
             addMarkFailed();
