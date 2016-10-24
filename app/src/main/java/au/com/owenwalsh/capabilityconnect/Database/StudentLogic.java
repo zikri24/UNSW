@@ -89,9 +89,9 @@ public class StudentLogic {
                 student.setFirsName(cursor.getString(1));
                 student.setLastName(cursor.getString(2));
                 student.setEmail(cursor.getString(3));
-                student.setStream(cursor.getString(4));
+                student.setStream(cursor.getString(6));
                 student.setWeakness(cursor.getString(5));
-                student.setStrength(cursor.getString(6));
+                student.setStrength(cursor.getString(4));
             }
             cursor.close();
         } catch (Exception e) {
