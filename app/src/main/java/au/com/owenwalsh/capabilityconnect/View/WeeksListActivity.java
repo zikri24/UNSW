@@ -89,7 +89,7 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void handleOnBackPress() {
-        Toast.makeText(this, "back pressed", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "You are back at the start", Toast.LENGTH_SHORT).show();
     }
 
     private void initViews() {

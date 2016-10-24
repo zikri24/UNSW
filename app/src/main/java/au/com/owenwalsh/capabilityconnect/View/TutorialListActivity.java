@@ -63,7 +63,7 @@ public class TutorialListActivity extends BaseActivity implements View.OnClickLi
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Tutorials");
+        getSupportActionBar().setTitle("Complete Tutorial List");
         toolbar.setNavigationIcon(R.drawable.back_arrow);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
