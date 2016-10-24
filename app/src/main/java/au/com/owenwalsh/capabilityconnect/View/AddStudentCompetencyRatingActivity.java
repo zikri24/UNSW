@@ -46,7 +46,7 @@ public class AddStudentCompetencyRatingActivity extends BaseActivity {
         studentID = intent.getStringExtra(STU_ID);
         competencyID = Integer.valueOf(intent.getStringExtra(COMP_ID));
         studentCompetency = new StudentCompetency();
-        competency_name.setText(studentCompetency.getCompetencyId());
+//        competency_name.setText(studentCompetency.getCompetencyId());
         markSeekBar = (SeekBar) findViewById(R.id.mark_seek_bar);
         markSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -86,7 +86,7 @@ public class AddStudentCompetencyRatingActivity extends BaseActivity {
         feedback = studentCompetencyLogic.insertRating(studentCompetency);
         if (feedback > 0) {
             addMarkSuccessful();
-            Intent intent = new Intent(AddStudentCompetencyRatingActivity.this, StudentViewDetailsActivity.class);
+            Intent intent = new Intent(AddStudentCompetencyRatingActivity.this, StudentCompetenciesActivity.class);
             startActivity(intent);
         } else {
             addMarkFailed();
