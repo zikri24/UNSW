@@ -23,12 +23,14 @@ public class AddStudentAssessmentMarkActivity extends BaseActivity {
     private StudentAssessment studentAssessment;
     private String studentID;
     private int assessmentID;
+    private String assignmentName;
     private long feedback;
     // private EditText assessment_name;
     private EditText input_assessment_mark;
     private Button btn_add_assessment_mark;
-    private static String STU_ID = "studentID";
-    private static String ASS_ID = "assessmentID";
+    private static String STU_ID = "stuID";
+    private static String ASS_ID = "assID";
+    private static final String ASS_NAME = "assName";
     private SeekBar markSeekBar;
     private TextView seekbarCurrentValue;
     private TextView assessment_name;
@@ -41,12 +43,15 @@ public class AddStudentAssessmentMarkActivity extends BaseActivity {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_add_student_assessment_mark, null, false);
         drawerLayout.addView(contentView, 0);
+        assessment_name = (TextView) findViewById(R.id.assessment_name);
+        btn_add_assessment_mark = (Button) findViewById(R.id.btn_add_assessment_mark);
 
         Intent intent = getIntent();
         studentID = intent.getStringExtra(STU_ID);
         assessmentID = Integer.parseInt(intent.getStringExtra(ASS_ID));
+        assignmentName = intent.getStringExtra(ASS_NAME);
         studentAssessment = new StudentAssessment();
-        assessment_name.setText(studentAssessment.getAssessmentName().toString());
+        assessment_name.setText(assignmentName);
         markSeekBar = (SeekBar) findViewById(R.id.mark_seek_bar);
         markSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -81,8 +86,8 @@ public class AddStudentAssessmentMarkActivity extends BaseActivity {
         feedback = studentAssessmentLogic.insertAssessmentMark(studentAssessment);
         if (feedback > 0) {
             addMarkSuccessful();
-            Intent intent = new Intent(AddStudentAssessmentMarkActivity.this, StudentViewDetailsActivity.class);
-            startActivity(intent);
+           // Intent intent = new Intent(AddStudentAssessmentMarkActivity.this, StudentViewDetailsActivity.class);
+            //startActivity(intent);
         } else {
             addMarkFailed();
         }

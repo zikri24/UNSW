@@ -22,6 +22,7 @@ import au.com.owenwalsh.capabilityconnect.R;
 public class StudentAssessmentActivity extends BaseActivity implements View.OnClickListener, StudentAssessmentAdapter.ItemClickCallback {
     private static final String STU_ID = "stuID";
     private static final String ASS_ID = "assID";
+    private static final String ASS_NAME = "assName";
     private RecyclerView recyclerView;
     private TextView emptyView;
 
@@ -96,7 +97,7 @@ public class StudentAssessmentActivity extends BaseActivity implements View.OnCl
         Intent intent = new Intent(StudentAssessmentActivity.this, AddStudentAssessmentMarkActivity.class);
         intent.putExtra(STU_ID, studentId);
         intent.putExtra(ASS_ID, String.valueOf(studentAssessment.getAssessmentId()));
-
+        intent.putExtra(ASS_NAME, studentAssessment.getAssessmentName());
         startActivity(intent);
 
     }
