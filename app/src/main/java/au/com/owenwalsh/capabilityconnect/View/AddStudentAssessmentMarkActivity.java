@@ -86,7 +86,8 @@ public class AddStudentAssessmentMarkActivity extends BaseActivity {
         feedback = studentAssessmentLogic.insertAssessmentMark(studentAssessment);
         if (feedback > 0) {
             addMarkSuccessful();
-           // Intent intent = new Intent(AddStudentAssessmentMarkActivity.this, StudentViewDetailsActivity.class);
+           Intent intent = new Intent(AddStudentAssessmentMarkActivity.this, StudentAssessmentActivity.class);
+            intent.putExtra(STU_ID, studentID);
             //startActivity(intent);
         } else {
             addMarkFailed();
