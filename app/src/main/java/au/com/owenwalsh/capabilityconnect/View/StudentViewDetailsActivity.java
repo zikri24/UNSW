@@ -40,8 +40,8 @@ public class StudentViewDetailsActivity extends BaseActivity {
     private ImageView image_stream;
     private ImageView image_strength;
     private ImageView image_weakness;
-    private static final String FIRST_NAME = "firstName";
     private static final String STU_ID = "stuID";
+    private static final String FIRST_NAME = "firstName";
     private static final String LAST_NAME = "lastname";
     private Button btn_view_notes;
     private Button btn_view_competencies;
@@ -107,6 +107,8 @@ public class StudentViewDetailsActivity extends BaseActivity {
             public void onClick(View v) {
               Intent intent = new Intent(StudentViewDetailsActivity.this,StudentNotesActivity.class);
                 intent.putExtra(STU_ID, studentID);
+                intent.putExtra(FIRST_NAME, firstName);
+                intent.putExtra(LAST_NAME, lastName);
                 startActivity(intent);
 
             }

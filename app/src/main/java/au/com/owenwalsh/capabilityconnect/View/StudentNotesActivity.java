@@ -2,8 +2,10 @@ package au.com.owenwalsh.capabilityconnect.View;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,9 +27,11 @@ import au.com.owenwalsh.capabilityconnect.Database.StudentAssessmentLogic;
 import au.com.owenwalsh.capabilityconnect.Model.Note;
 import au.com.owenwalsh.capabilityconnect.R;
 
-public class StudentNotesActivity extends BaseActivity implements View.OnClickListener, NotesAdapter.ItemClickCallback  {
+public class StudentNotesActivity extends BaseActivity implements View.OnClickListener, NotesAdapter.ItemClickCallback {
     private static final String STU_ID = "stuID";
     private static final String NOTE_ID = "noteID";
+    private static final String FIRST_NAME = "firstName";
+    private static final String LAST_NAME = "lastname";
     private RecyclerView recyclerView;
     private TextView emptyView;
 
@@ -36,6 +40,8 @@ public class StudentNotesActivity extends BaseActivity implements View.OnClickLi
     private Note note;
     private NotesAdapter adapter;
     private String studentId;
+    private String firstName;
+    private String lastName;
 
     private ProgressDialog progress;
     private Boolean isFabOpen = false;
@@ -54,6 +60,8 @@ public class StudentNotesActivity extends BaseActivity implements View.OnClickLi
 
         Intent intent = getIntent();
         studentId = intent.getStringExtra(STU_ID);
+        firstName = intent.getStringExtra(FIRST_NAME);
+        lastName = intent.getStringExtra(LAST_NAME);
 
         initViews();
 
@@ -78,6 +86,9 @@ public class StudentNotesActivity extends BaseActivity implements View.OnClickLi
                 Log.d("FAB FOCUSED:", "Add note selected");
                 //move user to AddStudentActivity
                 Intent intent = new Intent(getApplicationContext(), AddStudentNotesActivity.class);
+                intent.putExtra(STU_ID, studentId);
+                intent.putExtra(FIRST_NAME, firstName);
+                intent.putExtra(LAST_NAME, lastName);
                 startActivity(intent);
             }
         });
@@ -110,6 +121,7 @@ public class StudentNotesActivity extends BaseActivity implements View.OnClickLi
         addNoteActionBar.hide();
         addActionBar.hide();
     }
+
     private void initViews() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_student_notes_list);
         emptyView = (TextView) findViewById(R.id.empty_view);
@@ -136,18 +148,28 @@ public class StudentNotesActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-/*
-        Intent intent = new Intent(StudentAssessmentActivity.this, StudentViewDetailsActivity.class);
-        intent.putExtra(STU_ID, studentId);
-
-        startActivity(intent);
-*/
-
     }
 
     @Override
     public void onDeleteClick(int p) {
+        note = notes.get(p);
+        new AlertDialog.Builder(StudentNotesActivity.this)
+                .setTitle("Deleting Note")
+                .setMessage("Are you sure you want to delete this note")
+                .setIcon(R.drawable.warning)
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        notesLogic.deleteNote(note.getNoteId());
+                        Toast.makeText(StudentNotesActivity.this, "Note has been deleted ", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(StudentNotesActivity.this, StudentViewDetailsActivity.class);
+                        intent.putExtra(STU_ID, studentId);
+                        intent.putExtra(FIRST_NAME, firstName);
+                        intent.putExtra(LAST_NAME, lastName);
+                        startActivity(intent);
+                    }
+                })
+                .setNegativeButton(android.R.string.no, null).show();
     }
 }
 

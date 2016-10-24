@@ -22,7 +22,11 @@ public class AddStudentNotesActivity extends BaseActivity {
     //private EditText note_name;
     private EditText input_notes;
     private Button btn_add_note;
-    private static String STU_ID = "studentID";
+    private String firstName;
+    private String lastName;
+    private static final String STU_ID = "stuID";
+    private static final String FIRST_NAME = "firstName";
+    private static final String LAST_NAME = "lastname";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +38,17 @@ public class AddStudentNotesActivity extends BaseActivity {
 
         Intent intent = getIntent();
         studentID = intent.getStringExtra(STU_ID);
+        firstName = intent.getStringExtra(FIRST_NAME);
+        lastName = intent.getStringExtra(LAST_NAME);
        // note_name = (EditText) findViewById(R.id.note_name);
         input_notes = (EditText) findViewById(R.id.input_notes);
         btn_add_note = (Button) findViewById(R.id.btn_add_note);
-        addNote();
+        btn_add_note.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNote();
+            }
+        });
 
     }
     private void addNote() {
@@ -47,7 +58,6 @@ public class AddStudentNotesActivity extends BaseActivity {
         }
         btn_add_note.setEnabled(false);
         //add logic here for adding note
-        //String noteName = note_name.getText().toString();
         String noteContents = input_notes.getText().toString();
         note = new Note(noteContents, studentID);
         notesLogic = new NotesLogic(AddStudentNotesActivity.this);
@@ -55,6 +65,9 @@ public class AddStudentNotesActivity extends BaseActivity {
         if (feedback > 0) {
             addNoteSuccessful();
             Intent intent = new Intent(AddStudentNotesActivity.this, StudentViewDetailsActivity.class);
+            intent.putExtra(STU_ID, studentID);
+            intent.putExtra(FIRST_NAME, firstName);
+            intent.putExtra(LAST_NAME, lastName);
             startActivity(intent);
         } else {
             addNoteFailed();
