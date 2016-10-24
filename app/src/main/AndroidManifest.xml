@@ -17,97 +17,286 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".View.StudentListActivity"
-            android:label="Students" />
+            android:label="Students">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.WeeksListActivity" />
+            />
+        </activity>
+
         <activity android:name=".View.BaseActivity" />
+
         <activity
             android:name=".View.AddStudentActivity"
-            android:label="Add New Student" />
+            android:label="Add New Student">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.StudentListActivity" />
+            />
+        </activity>
+
+
         <activity
             android:name=".View.TutorialListActivity"
             android:label="Tutorials">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.WeeksListActivity" />
+            />
+        </activity>
 
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".View.WeeksListActivity" />
-            /></activity>
+
         <activity
             android:name=".View.AssessmentListActivity"
-            android:label="Assessments" />
+            android:label="Assessments">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.StudentViewDetailsActivity" />
+            />
+        </activity>
+
+
+
         <activity
             android:name=".View.AddAssessmentActivity"
-            android:label="Add Assessment" />
+            android:label="Add Assessment">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.AssessmentListActivity" />
+            />
+        </activity>
+
+
         <activity
             android:name=".View.CompetencyListActivity"
-            android:label="Competencies" />
+            android:label="Competencies">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.StudentViewDetailsActivity" />
+            />
+        </activity>
+
+
         <activity
             android:name=".View.AddCompetencyActivity"
-            android:label="Add Competency" />
+            android:label="Add Competency">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.CompetencyListActivity" />
+            />
+        </activity>
+
+
         <activity
             android:name=".View.WeeksListActivity"
             android:label="Weeks" />
+
+
         <activity
             android:name=".View.AddTutorialActivity"
-            android:label="Add New Tutorial" />
+            android:label="Add New Tutorial">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.TutorialListActivity" />
+            />
+        </activity>
+
+
         <activity
             android:name=".View.TutorialStudentsListActivity"
-            android:label="Students" />
+            android:label="Students">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.TutorialListActivity" />
+            />
+        </activity>
+
+
         <activity
             android:name=".View.AddWeekActivity"
-            android:label="Add New Week" />
+            android:label="Add New Week">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.WeeksListActivity" />
+            />
+        </activity>
+
+
+
         <activity
             android:name=".View.SendStudentEmailActivity"
-            android:label="Email Student" />
+            android:label="Email Student">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.StudentViewDetailsActivity" />
+            />
+        </activity>
+
+
+
         <activity
             android:name=".View.StudentViewDetailsActivity"
-            android:label="Student Details" />
+            android:label="Student Details">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.StudentListActivity" />
+            />
+        </activity>
+
+
         <activity
             android:name=".View.EditStudentActivity"
-            android:label="Edit Student Details" />
+            android:label="Edit Student Details">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.StudentViewDetailsActivity" />
+            />
+        </activity>
+
+
         <activity
             android:name=".View.EditCompetencyActivity"
-            android:label="Edit Competency Details" />
+            android:label="Edit Competency Details">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.CompetencyListActivity" />
+            />
+        </activity>
+
+
         <activity
             android:name=".View.CompetencyViewDetailsActivity"
-            android:label="Competency Details" />
+            android:label="Competency Details">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.CompetencyListActivity" />
+            />
+        </activity>
+
+
+
         <activity
             android:name=".View.EditAssessmentActivity"
-            android:label="Edit Assessment Details" />
+            android:label="Edit Assessment Details" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.AssessmentListActivity" />
+            />
+        </activity>
+
+
         <activity
             android:name=".View.AssessmentViewDetailsActivity"
-            android:label="Assessment Details" />
+            android:label="Assessment Details">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.AssessmentListActivity" />
+            />
+        </activity>
+
+
         <activity
             android:name=".View.EditWeekActivity"
-            android:label="Edit Week Details" />
-        <activity android:name=".View.WeekViewDetailsActivity" />
+            android:label="Edit Week Details">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.WeeksListActivity" />
+            />
+        </activity>
+
+
+        <activity android:name=".View.WeekViewDetailsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.WeeksListActivity" />
+            />
+        </activity>
+
+
         <activity
             android:name=".View.EditTutorialActivity"
-            android:label="Edit Tutorial Details" />
+            android:label="Edit Tutorial Details" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.TutorialListActivity" />
+            />
+        </activity>
+
+
         <activity
             android:name=".View.TutorialViewDetailsActivity"
-            android:label="Edit Competency Details" />
+            android:label="Edit Competency Details">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.TutorialListActivity" />
+            />
+        </activity>
+
+
         <activity
             android:name=".View.StudentAttendanceActivity"
-            android:label="Attendance" />
-        />
+            android:label="Attendance">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.TutorialListActivity" />
+            />
+        </activity>
+
+
         <activity
             android:name=".View.StudentCompetenciesActivity"
-            android:label="Student Competencies" />
+            android:label="Student Competencies">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.StudentViewDetailsActivity" />
+            />
+        </activity>
+
+
         <activity
             android:name=".View.StudentAssessmentActivity"
-            android:label="Student Assessments" />
+            android:label="Student Assessments">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.StudentViewDetailsActivity" />
+            />
+        </activity>
+
+
         <activity
             android:name=".View.AddStudentNotesActivity"
-            android:label="Student Notes" />
+            android:label="Student Notes">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.StudentViewDetailsActivity" />
+        </activity>
+
         <activity
             android:name=".View.AddStudentAssessmentMarkActivity"
-            android:label="Add Student Marks" />
+            android:label="Add Student Marks">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.StudentAssessmentActivity" />
+        </activity>
+
         <activity
             android:name=".View.AddStudentCompetencyRatingActivity"
-            android:label="Add Competency" />
-        />
-        <activity android:name=".View.StudentNotesActivity"></activity>
+            android:label="Add Competency">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.StudentCompetenciesActivity" />
+        </activity>
+        <activity android:name=".View.StudentNotesActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".View.StudentViewDetailsActivity" />
+        </activity>
     </application>
 
 </manifest>
