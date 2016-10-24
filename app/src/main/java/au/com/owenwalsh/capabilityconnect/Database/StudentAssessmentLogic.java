@@ -77,42 +77,41 @@ public class StudentAssessmentLogic {
         return row;
     }
 
-    public long updateRating(StudentCompetency studentCompetency) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(dbHelper.COMPETENCY_STUDENT_ID, studentCompetency.getStudentId());
-        contentValues.put(dbHelper.RATING, studentCompetency.getRating());
-        contentValues.put(dbHelper.COMPETENCY_COMPETENCY_ID, studentCompetency.getCompetencyId());
+    public long updateRating(StudentAssessment studentAssessment) {        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(dbHelper.STUDENT_MARK, studentAssessment.getStudentMark());
         open();
-        long row = db.update(dbHelper.STUDENTS_COMPETENCIES, contentValues, dbHelper.COMPETENCY_STUDENT_ID + "='" + studentCompetency.getStudentId() + "' AND " + dbHelper.COMPETENCY_COMPETENCY_ID + " = " + studentCompetency.getCompetencyId(), null);
+        long row = db.update(dbHelper.STUDENTS_ASSESSMENTS, contentValues, dbHelper.ASSESSMENTS_STUDENT_ID + "='" + studentAssessment.getStudentId() + "' AND " + dbHelper.ASSESSMENTS_ASSESSMENTS_ID + " = " + studentAssessment.getAssessmentId(), null);
         close();
         return row;
     }
 
 
-    public ArrayList<StudentCompetency> findCompetenciesByStudentId(String studentId) {
-        studentCompetencies = new ArrayList<>();
+    public ArrayList<StudentAssessment> findAssessmentsByStudentId(String studentId) {
+        studentAssessments = new ArrayList<>();
         open();
         try {
-            cursor = db.rawQuery("SELECT " + dbHelper.COMPETENCY_NAME + ", " + dbHelper.COMPETENCY_COMPETENCY_ID + ", " + dbHelper.RATING + " FROM "
-                    + dbHelper.COMPETENCIES + " JOIN "
-                    + dbHelper.STUDENTS_COMPETENCIES + " ON "
-                    + dbHelper.COMPETENCIES + "." + dbHelper.COMPETENCY_ID + " = " + dbHelper.STUDENTS_COMPETENCIES + "." + dbHelper.COMPETENCY_COMPETENCY_ID + " JOIN "
+            cursor = db.rawQuery("SELECT " + dbHelper.ASSESSMENT_NAME + ", " + dbHelper.ASSESSMENT_MARK + ", " + dbHelper.ASSESSMENT_ID +", " + dbHelper.STUDENT_MARK +" FROM "
+                    + dbHelper.ASSESSMENTS + " JOIN "
+                    + dbHelper.STUDENTS_ASSESSMENTS + " ON "
+                    + dbHelper.ASSESSMENTS + "." + dbHelper.ASSESSMENT_ID + " = " + dbHelper.STUDENTS_ASSESSMENTS + "." + dbHelper.ASSESSMENTS_ASSESSMENTS_ID + " JOIN "
                     + dbHelper.STUDENTS_TABLE + " ON "
-                    + dbHelper.STUDENTS_COMPETENCIES + "." + dbHelper.COMPETENCY_STUDENT_ID + " = " + dbHelper.STUDENTS_TABLE + "." + dbHelper.ZID
+                    + dbHelper.STUDENTS_ASSESSMENTS + "." + dbHelper.ASSESSMENTS_STUDENT_ID + " = " + dbHelper.STUDENTS_TABLE + "." + dbHelper.ZID
                     + " WHERE " + dbHelper.STUDENTS_TABLE + "." + dbHelper.ZID + " = " + studentId, null);
             while (cursor.moveToNext()) {
-                studentCompetency = new StudentCompetency();
-                studentCompetency.setCompName(cursor.getString(0));
-                studentCompetency.setCompetencyId(cursor.getInt(1));
-                studentCompetency.setRating(cursor.getInt(2));
-                studentCompetencies.add(studentCompetency);
+                studentAssessment = new StudentAssessment();
+                studentAssessment.setAssessmentName(cursor.getString(0));
+                studentAssessment.setAssessmentMark(cursor.getInt(1));
+                studentAssessment.setAssessmentId(cursor.getInt(2));
+                studentAssessment.setStudentMark(cursor.getDouble(3));
+                studentAssessments.add(studentAssessment);
             }
             cursor.close();
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());
-            studentCompetencies = null;
+            studentAssessments = null;
         }
         close();
-        return studentCompetencies;
+        return studentAssessments;
     }
 }

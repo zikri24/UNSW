@@ -24,7 +24,7 @@ public class AddStudentAssessmentMarkActivity extends BaseActivity {
     private String studentID;
     private String assessmentID;
     private long feedback;
-   // private EditText assessment_name;
+    // private EditText assessment_name;
     private EditText input_assessment_mark;
     private Button btn_add_assessment_mark;
     private static String STU_ID = "studentID";
@@ -77,7 +77,7 @@ public class AddStudentAssessmentMarkActivity extends BaseActivity {
         int mark = markSeekBar.getProgress();
         btn_add_assessment_mark.setEnabled(false);
         studentAssessment = new StudentAssessment(mark, studentID);
-       studentAssessmentLogic = new StudentAssessmentLogic(AddStudentAssessmentMarkActivity.this);
+        studentAssessmentLogic = new StudentAssessmentLogic(AddStudentAssessmentMarkActivity.this);
         feedback = studentAssessmentLogic.insertMark(studentAssessment);
         if (feedback > 0) {
             addMarkSuccessful();
@@ -103,7 +103,7 @@ public class AddStudentAssessmentMarkActivity extends BaseActivity {
         boolean validated = true;
         int mark = markSeekBar.getProgress();
         String markString = Integer.toString(mark);
-        if (markString.isEmpty()){
+        if (markString.isEmpty()) {
             Toast.makeText(this, "Please select a mark", Toast.LENGTH_SHORT).show();
             validated = false;
         } else {
