@@ -105,9 +105,9 @@ public class StudentViewDetailsActivity extends BaseActivity {
         btn_view_notes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              /*  Intent intent = new Intent(StudentViewDetailsActivity.this, class);
+              Intent intent = new Intent(StudentViewDetailsActivity.this,StudentNotesActivity.class);
                 intent.putExtra(STU_ID, studentID);
-                startActivity(intent);*/
+                startActivity(intent);
 
             }
         });
