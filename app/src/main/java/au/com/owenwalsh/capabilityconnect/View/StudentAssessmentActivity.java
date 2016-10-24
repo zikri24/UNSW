@@ -27,6 +27,7 @@ public class StudentAssessmentActivity extends BaseActivity implements View.OnCl
 
     private StudentAssessmentLogic studentAssessmentLogic;
     private ArrayList<StudentAssessment> studentAssessments;
+    private StudentAssessment studentAssessment;
     private StudentAssessmentAdapter adapter;
     private String studentId;
 
@@ -39,7 +40,6 @@ public class StudentAssessmentActivity extends BaseActivity implements View.OnCl
         drawerLayout.addView(contentView, 0);
 
         Intent intent = getIntent();
-        final String assID = intent.getStringExtra(ASS_ID);
         studentId = intent.getStringExtra(STU_ID);
 
         initViews();
@@ -72,12 +72,12 @@ public class StudentAssessmentActivity extends BaseActivity implements View.OnCl
 
     @Override
     public void onClick(View v) {
-
+/*
         Intent intent = new Intent(StudentAssessmentActivity.this, StudentViewDetailsActivity.class);
         intent.putExtra(STU_ID, studentId);
 
         startActivity(intent);
-
+*/
     }
 
     @Override
@@ -92,9 +92,11 @@ public class StudentAssessmentActivity extends BaseActivity implements View.OnCl
 
     @Override
     public void onAddClick(int p) {
-        Week week = weeks.get(p);
-        Intent intent = new Intent(WeeksListActivity.this, TutorialListActivity.class);
-        intent.putExtra(WEEK_ID, String.valueOf(week.getId()));
+        studentAssessment = studentAssessments.get(p);
+        Intent intent = new Intent(StudentAssessmentActivity.this, AddStudentAssessmentMarkActivity.class);
+        intent.putExtra(STU_ID, studentId);
+        intent.putExtra(ASS_ID, String.valueOf(studentAssessment.getAssessmentId()));
+
         startActivity(intent);
 
     }
