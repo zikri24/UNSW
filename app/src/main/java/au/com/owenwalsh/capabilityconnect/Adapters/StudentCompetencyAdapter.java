@@ -25,9 +25,7 @@ public class StudentCompetencyAdapter extends RecyclerView.Adapter<StudentCompet
     private Context mContext;
     private List<StudentCompetency> studentCompetenciesList;
 
-
     private ItemClickCallback itemClickCallback;
-
 
     //declaring interface for the on click event
     public interface ItemClickCallback {
@@ -56,7 +54,7 @@ public class StudentCompetencyAdapter extends RecyclerView.Adapter<StudentCompet
     @Override
     public StudentCompetencyAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.student_competency_row, viewGroup, false);
-        return  new ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -90,8 +88,10 @@ public class StudentCompetencyAdapter extends RecyclerView.Adapter<StudentCompet
             competencyMark = (TextView) view.findViewById(R.id.id_mark);
             studentCompContainer = view.findViewById(R.id.student_competency_cont_item_root);
             studentCompContainer.setOnClickListener(this);
-            add_button = (ImageButton) view.findViewById(R.id.add_assessment_mark);
+            add_button = (ImageButton) view.findViewById(R.id.add_competency_mark);
             edit_button = (ImageButton) view.findViewById(R.id.edit_competency_mark_button);
+            edit_button.setOnClickListener(this);
+            add_button.setOnClickListener(this);
 
         }
 
@@ -101,7 +101,7 @@ public class StudentCompetencyAdapter extends RecyclerView.Adapter<StudentCompet
                 itemClickCallback.onItemClick(getAdapterPosition());
             } else if (view.getId() == R.id.edit_competency_mark_button) {
                 itemClickCallback.onEditClick(getAdapterPosition());
-            } else if (view.getId() == R.id.add_assessment_mark) {
+            } else if (view.getId() == R.id.add_competency_mark) {
                 itemClickCallback.onAddClick(getAdapterPosition());
             }
         }

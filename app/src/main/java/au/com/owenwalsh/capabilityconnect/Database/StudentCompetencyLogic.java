@@ -88,17 +88,17 @@ public class StudentCompetencyLogic {
         studentCompetencies = new ArrayList<>();
         open();
         try {
-            cursor = db.rawQuery("SELECT " + dbHelper.COMPETENCY_ID  +  ", " + dbHelper.COMPETENCY_NAME  +" FROM "
+            Cursor newCursor = db.rawQuery("SELECT " + dbHelper.COMPETENCY_ID  +  ", " + dbHelper.COMPETENCY_NAME  +" FROM "
                     + dbHelper.COMPETENCIES  ,null);
 
-            while (cursor.moveToNext()) {
+            while (newCursor.moveToNext()) {
                 studentCompetency = new StudentCompetency();
-                studentCompetency.setCompetencyId(cursor.getInt(0));
-                studentCompetency.setCompName(cursor.getString(1));
-                studentCompetency.setRating(getRating(cursor.getInt(0), studentId));
+                studentCompetency.setCompetencyId(newCursor.getInt(0));
+                studentCompetency.setCompName(newCursor.getString(1));
+                studentCompetency.setRating(getRating(newCursor.getInt(0), studentId));
                 studentCompetencies.add(studentCompetency);
             }
-            cursor.close();
+            newCursor.close();
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());
             studentCompetencies = null;
@@ -106,15 +106,6 @@ public class StudentCompetencyLogic {
         close();
         return studentCompetencies;
     }
-
-
-
-
-
-
-
-
-
 
 
 /*

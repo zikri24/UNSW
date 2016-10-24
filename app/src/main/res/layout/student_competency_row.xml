@@ -93,7 +93,7 @@
                 android:visibility="visible" />
 
             <ImageButton
-                android:id="@+id/add_assessment_mark"
+                android:id="@+id/add_competency_mark"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
                 android:layout_marginLeft="10dp"

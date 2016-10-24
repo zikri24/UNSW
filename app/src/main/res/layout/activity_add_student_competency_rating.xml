@@ -93,7 +93,7 @@
                 android:text="Assessment Name: "/>
 
             <TextView
-                android:id="@+id/competency_name"
+                android:id="@+id/student_competency_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="20dp"

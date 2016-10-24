@@ -24,7 +24,7 @@ import au.com.owenwalsh.capabilityconnect.R;
 
 public class StudentCompetenciesActivity extends BaseActivity implements View.OnClickListener, StudentCompetencyAdapter.ItemClickCallback {
     private static final String COMP_ID = "competencyID";
-    private static final String STU_ID = "studentId";
+    private static final String STU_ID = "stuID";
     private static final String COMP_NAME = "competencyName";
     private RecyclerView recyclerView;
     private Button submitButton;
@@ -88,7 +88,12 @@ public class StudentCompetenciesActivity extends BaseActivity implements View.On
 
     @Override
     public void onItemClick(int p) {
-
+        /*studentCompetency = studentCompetencies.get(p);
+        Intent intent = new Intent(StudentCompetenciesActivity.this, AddStudentAssessmentMarkActivity.class);
+        intent.putExtra(STU_ID, studentId);
+        intent.putExtra(COMP_ID, String.valueOf(studentCompetency.getCompetencyId()));
+        intent.putExtra(COMP_NAME, studentCompetency.getCompName());
+        startActivity(intent);*/
     }
 
     @Override
@@ -98,8 +103,8 @@ public class StudentCompetenciesActivity extends BaseActivity implements View.On
 
     @Override
     public void onAddClick(int p) {
-       studentCompetency = studentCompetencies.get(p);
-        Intent intent = new Intent(StudentCompetenciesActivity.this, AddStudentAssessmentMarkActivity.class);
+        studentCompetency = studentCompetencies.get(p);
+        Intent intent = new Intent(StudentCompetenciesActivity.this, AddStudentCompetencyRatingActivity.class);
         intent.putExtra(STU_ID, studentId);
         intent.putExtra(COMP_ID, String.valueOf(studentCompetency.getCompetencyId()));
         intent.putExtra(COMP_NAME, studentCompetency.getCompName());

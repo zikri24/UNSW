@@ -24,10 +24,10 @@ public class AddStudentCompetencyRatingActivity extends BaseActivity {
     private String studentID;
     private int competencyID;
     private long feedback;
-    private EditText competency_name;
+    private TextView competency_name;
     private Button btn_add_competency_mark;
-    private static String STU_ID = "studentID";
-    private static String COMP_ID = "competencyID";
+    private static final String STU_ID = "stuID";
+    private static final String COMP_ID = "competencyID";
     private SeekBar markSeekBar;
     private TextView seekbarCurrentValue;
 
@@ -38,6 +38,8 @@ public class AddStudentCompetencyRatingActivity extends BaseActivity {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_add_student_competency_rating, null, false);
         drawerLayout.addView(contentView, 0);
+        competency_name = (TextView) findViewById(R.id.student_competency_name);
+        btn_add_competency_mark = (Button) findViewById(R.id.btn_add_competency_mark);
 
 
         Intent intent = getIntent();
