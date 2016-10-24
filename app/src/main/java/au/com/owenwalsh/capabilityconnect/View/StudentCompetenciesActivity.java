@@ -24,16 +24,18 @@ import au.com.owenwalsh.capabilityconnect.R;
 
 public class StudentCompetenciesActivity extends BaseActivity implements View.OnClickListener, StudentCompetencyAdapter.ItemClickCallback {
     private static final String COMP_ID = "competencyID";
-    private static final String STU_ID = "stuID";
+    private static final String STU_ID = "studentId";
+    private static final String COMP_NAME = "competencyName";
     private RecyclerView recyclerView;
     private Button submitButton;
     private TextView emptyView;
 
     private StudentCompetencyLogic studentCompetencyLogic;
     private ArrayList<StudentCompetency> studentCompetencies;
+    private StudentCompetency studentCompetency;
     private StudentCompetencyAdapter adapter;
 
-    private String stuID;
+    private String studentId;
 
 
 
@@ -49,7 +51,7 @@ public class StudentCompetenciesActivity extends BaseActivity implements View.On
         submitButton = (Button) findViewById(R.id.btn_submit_competencies);
         Intent intent = getIntent();
         final String competencyID = intent.getStringExtra(COMP_ID);
-        stuID = intent.getStringExtra(STU_ID);
+        studentId = intent.getStringExtra(STU_ID);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,7 +74,7 @@ public class StudentCompetenciesActivity extends BaseActivity implements View.On
     private void loadCompetencies() {
         //showProgressDialog();
         studentCompetencyLogic = new StudentCompetencyLogic(StudentCompetenciesActivity.this);
-        studentCompetencies = studentCompetencyLogic.findAllStudentCompetencies(stuID);
+        studentCompetencies = studentCompetencyLogic.findAllStudentCompetencies(studentId);
         if (studentCompetencies.isEmpty()) {
             recyclerView.setVisibility(View.GONE);
             emptyView.setVisibility(View.VISIBLE);
@@ -103,6 +105,11 @@ public class StudentCompetenciesActivity extends BaseActivity implements View.On
 
     @Override
     public void onAddClick(int p) {
-
+        studentCompetency = studentCompetencies.get(p);
+        Intent intent = new Intent(StudentCompetenciesActivity.this, AddStudentAssessmentMarkActivity.class);
+        intent.putExtra(STU_ID, studentId);
+        intent.putExtra(COMP_ID, String.valueOf(studentCompetency.getCompetencyId()));
+        intent.putExtra(COMP_NAME, studentCompetency.getCompName());
+        startActivity(intent);
     }
 }

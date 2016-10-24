@@ -64,7 +64,12 @@ public class AddStudentCompetencyRatingActivity extends BaseActivity {
                 Toast.makeText(AddStudentCompetencyRatingActivity.this, "Mark selection finished", Toast.LENGTH_SHORT).show();
             }
         });
-        addMark();
+        btn_add_competency_mark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addMark();
+            }
+        });
     }
 
     private void addMark() {

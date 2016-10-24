@@ -86,6 +86,7 @@ public class TutorialListActivity extends BaseActivity implements View.OnClickLi
         });
         Intent intent = getIntent();
         weekId = intent.getStringExtra(WEEK_ID);
+
     }
 
     private void initViews() {

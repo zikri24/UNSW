@@ -22,13 +22,6 @@
         android:visibility="gone"
         android:text="No data found. Lets try adding some things!" />
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btn_submit_competencies"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:padding="12dp"
-        android:text="Submit"/>
 
 
     <android.support.design.widget.AppBarLayout
