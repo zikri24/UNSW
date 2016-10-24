@@ -2,8 +2,10 @@ package au.com.owenwalsh.capabilityconnect.View;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 
 import au.com.owenwalsh.capabilityconnect.Database.NotesLogic;
 import au.com.owenwalsh.capabilityconnect.Model.Note;
+import au.com.owenwalsh.capabilityconnect.Model.Student;
 import au.com.owenwalsh.capabilityconnect.R;
 
 public class AddStudentNotesActivity extends BaseActivity {
@@ -27,6 +30,7 @@ public class AddStudentNotesActivity extends BaseActivity {
     private static final String STU_ID = "stuID";
     private static final String FIRST_NAME = "firstName";
     private static final String LAST_NAME = "lastname";
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,22 @@ public class AddStudentNotesActivity extends BaseActivity {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_add_student_notes, null, false);
         drawerLayout.addView(contentView, 0);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Student Notes");
+        toolbar.setNavigationIcon(R.drawable.back_arrow);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //NavUtils.navigateUpFromSameTask(AddStudentNotesActivity.this);
+                Intent intent = new Intent(AddStudentNotesActivity.this, StudentViewDetailsActivity.class);
+                intent.putExtra(STU_ID, studentID);
+                startActivity(intent);
+            }
+        });
+
 
         Intent intent = getIntent();
         studentID = intent.getStringExtra(STU_ID);
@@ -64,7 +84,7 @@ public class AddStudentNotesActivity extends BaseActivity {
         feedback = notesLogic.insertNote(note);
         if (feedback > 0) {
             addNoteSuccessful();
-            Intent intent = new Intent(AddStudentNotesActivity.this, StudentViewDetailsActivity.class);
+            Intent intent = new Intent(AddStudentNotesActivity.this, StudentNotesActivity.class);
             intent.putExtra(STU_ID, studentID);
             intent.putExtra(FIRST_NAME, firstName);
             intent.putExtra(LAST_NAME, lastName);

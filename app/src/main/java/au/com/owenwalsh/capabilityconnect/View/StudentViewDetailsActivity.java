@@ -90,9 +90,18 @@ public class StudentViewDetailsActivity extends BaseActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Tutorials");
+        getSupportActionBar().setTitle("Student Notes");
         toolbar.setNavigationIcon(R.drawable.back_arrow);
 
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //NavUtils.navigateUpFromSameTask(AddStudentNotesActivity.this);
+                //Intent intent = new Intent(StudentViewDetailsActivity.this, TutorialStudentsListActivity.class);
+                //intent.putExtra(STU_ID, studentID);
+               // startActivity(intent);
+            }
+        });
 
 
 
@@ -177,14 +186,16 @@ public class StudentViewDetailsActivity extends BaseActivity {
     public void getIntentItems() {
         Intent intent = getIntent();
         final String zID = intent.getStringExtra(STU_ID);
-        final String firstName = intent.getStringExtra(FIRST_NAME);
-        final String lastName = intent.getStringExtra(LAST_NAME);
+       // final String firstName = intent.getStringExtra(FIRST_NAME);
+        //final String lastName = intent.getStringExtra(LAST_NAME);
         studentLogic = new StudentLogic(StudentViewDetailsActivity.this);
         Student student = studentLogic.findStudentById(zID);
         String email = student.getEmail();
         String stream = student.getStream();
         String weakness = student.getWeakness();
         String strength = student.getStrength();
+        String firstName = student.getFirsName();
+        String lastName = student.getLastName();
 
         student_first_name.setText(firstName);
         student_last_name.setText(lastName);
