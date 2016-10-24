@@ -92,7 +92,7 @@ public class StudentViewDetailsActivity extends BaseActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Tutorials");
         toolbar.setNavigationIcon(R.drawable.back_arrow);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+
 
 
 
