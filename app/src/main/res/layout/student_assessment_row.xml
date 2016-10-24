@@ -14,111 +14,120 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:visibility="visible">
 
-           <LinearLayout
-            android:id="@+id/layout_lineOne"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal" >
-
-            <TextView android:id="@+id/assessment_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:text="Name:"
-                android:textSize="18dip"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/assessment_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18dip"
-                android:padding="10dp"/>
-        </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/layout_lineTwo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-
-        <TextView android:id="@+id/weighting_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:text="Weighting:"
-            android:textSize="18dip"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:id="@+id/assessment_weighting"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18dip"
-            android:padding="10dp"/>
-
-        </LinearLayout>
-
-
         <LinearLayout
-            android:id="@+id/layout_lineThree"
+            android:id="@+id/layout_lines"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:orientation="vertical">
 
-            <TextView android:id="@+id/assessment_student_mark"
+            <LinearLayout
+                android:id="@+id/layout_lineOne"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:text="Mark:"
-                android:textSize="18dip"
-                android:textStyle="bold"/>
+                android:orientation="horizontal" >
 
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:layout_marginTop="8dp">
-
-                <TextView
-                    android:id="@+id/student_assessment_mark"
+                <TextView android:id="@+id/assignment_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                     />
-            </android.support.design.widget.TextInputLayout>
+                    android:ellipsize="end"
+                    android:text="Assignment Name:"
+                    android:textSize="18dip"
+                    android:textStyle="bold"/>
+
+
+                <TextView
+                    android:id="@+id/assessment_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dip"
+                    android:padding="10dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_lineTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_lineOne"
+                android:orientation="horizontal" >
+
+                <TextView android:id="@+id/id_weighting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:text="Weighting: "
+                    android:textSize="18dip"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/assessment_weighting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dip"
+                    android:padding="10dp"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_lineThree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_lineOne"
+                android:orientation="horizontal" >
+
+                <TextView android:id="@+id/id_mark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:text="Student Mark: "
+                    android:textSize="18dip"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/assessment_student_mark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18dip"
+                    android:padding="10dp"/>
+
+
+            </LinearLayout>
         </LinearLayout>
+
         <LinearLayout
+            android:id="@+id/layout_buttons"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:layout_gravity="right">
-        <ImageButton
-            android:id="@+id/edit_assessment_mark_button"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/assessment_edit_icon"
-            android:background="@android:color/transparent"
-            android:visibility="visible" />
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/add_assessment_mark"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:scaleType="fitXY"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/assessment_add_icon"
-            android:background="@android:color/transparent"
-            android:visibility="visible" />
+
+            <ImageButton
+                android:id="@+id/edit_assessment_mark_button"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/assessment_edit_icon"
+                android:background="@android:color/transparent"
+                android:visibility="visible" />
+
+            <ImageButton
+                android:id="@+id/add_assessment_mark"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:layout_marginLeft="10dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/assessment_add_icon"
+                android:background="@android:color/transparent"
+                android:visibility="visible" />
+
 
         </LinearLayout>
-
-       </RelativeLayout>
-
+    </RelativeLayout>
 
 </android.support.v7.widget.CardView>
