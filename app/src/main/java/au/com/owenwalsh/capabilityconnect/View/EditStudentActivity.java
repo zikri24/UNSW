@@ -36,6 +36,9 @@ public class EditStudentActivity extends BaseActivity {
     private String studentId;
 
     private static final String STU_ID = "stuID";
+    private static final String FIRST_NAME = "firstName";
+
+    private static final String LAST_NAME = "lastname";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +110,10 @@ public class EditStudentActivity extends BaseActivity {
         feedback = studentLogic.updateStudent(student);
         if (feedback > 0) {
             updateStudentSuccessfull();
-            Intent intent = new Intent(EditStudentActivity.this, StudentListActivity.class);
+            Intent intent = new Intent(EditStudentActivity.this, StudentViewDetailsActivity.class);
+            intent.putExtra(STU_ID, studentId);
+            intent.putExtra(FIRST_NAME, firstName);
+            intent.putExtra(LAST_NAME, lastName);
             startActivity(intent);
         } else {
             updateStudentFailed();
