@@ -69,10 +69,11 @@ public class StudentLogic {
         contentValues.put(dbHelper.FIRST_NAME, student.getFirsName());
         contentValues.put(dbHelper.LAST_NAME, student.getLastName());
         contentValues.put(dbHelper.EMAIL, student.getEmail());
+        contentValues.put(dbHelper.STREAM, student.getStream());
         contentValues.put(dbHelper.WEAKNESS, student.getWeakness());
         contentValues.put(dbHelper.STRENGTH, student.getStrength());
         open();
-        long row = db.update(dbHelper.STUDENTS_TABLE, contentValues, dbHelper.ZID + "=" + student.getId(), null);
+        long row = db.update(dbHelper.STUDENTS_TABLE, contentValues, dbHelper.ZID + "='" + student.getId() +"' ", null);
         close();
         return row;
     }
@@ -84,11 +85,13 @@ public class StudentLogic {
             cursor = db.rawQuery("SELECT * FROM " + dbHelper.STUDENTS_TABLE + " WHERE " + dbHelper.ZID + "= '" + zID + "'", null);
             if (cursor != null) {
                 cursor.moveToFirst();
+                student.setId(cursor.getString(0));
                 student.setFirsName(cursor.getString(1));
                 student.setLastName(cursor.getString(2));
                 student.setEmail(cursor.getString(3));
-                student.setWeakness(cursor.getString(4));
-                student.setStrength(cursor.getString(5));
+                student.setStream(cursor.getString(4));
+                student.setWeakness(cursor.getString(5));
+                student.setStrength(cursor.getString(6));
             }
             cursor.close();
         } catch (Exception e) {

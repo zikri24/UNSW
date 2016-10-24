@@ -17,17 +17,25 @@ import au.com.owenwalsh.capabilityconnect.R;
 public class EditStudentActivity extends BaseActivity {
     private StudentLogic studentLogic;
     private Student student;
-    private int tutorialId;
     private long feedback;
     private EditText input_firstName;
     private EditText input_lastName;
     private EditText input_email;
     private EditText input_zID;
-    private Button btn_updateStudent;
     private EditText input_stream;
-    private static final String FIRST_NAME = "firstName";
+    private EditText input_strength;
+    private EditText input_weakness;
+    private Button btn_updateStudent;
+
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String stream;
+    private String strength;
+    private String weakness;
+    private String studentId;
+
     private static final String STU_ID = "stuID";
-    private static final String LAST_NAME = "lastname";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,27 +49,34 @@ public class EditStudentActivity extends BaseActivity {
         input_lastName = (EditText) findViewById(R.id.input_last_name);
         input_email = (EditText) findViewById(R.id.input_email);
         input_zID = (EditText) findViewById(R.id.input_zid);
-        btn_updateStudent = (Button) findViewById(R.id.btn_add_student);
         input_stream = (EditText) findViewById(R.id.input_stream);
+        input_strength = (EditText) findViewById(R.id.input_strength);
+        input_weakness = (EditText) findViewById(R.id.input_weakness);
+        btn_updateStudent = (Button) findViewById(R.id.btn_update_student);
 
         Intent intent = getIntent();
         final String zID = intent.getStringExtra(STU_ID);
-        final String firstName = intent.getStringExtra(FIRST_NAME);
-        final String lastName = intent.getStringExtra(LAST_NAME);
+        /*final String firstName = intent.getStringExtra(FIRST_NAME);
+        final String lastName = intent.getStringExtra(LAST_NAME);*/
 
 
         studentLogic = new StudentLogic(EditStudentActivity.this);
-        Student student = studentLogic.findStudentById(zID);
-//        String email = student.getEmail().toString();
-//        String stream = student.getStream().toString();
-        //input_email.setText(email);
-      //  input_stream.setText(stream);
+        student = studentLogic.findStudentById(zID);
+        firstName = student.getFirsName();
+        lastName = student.getLastName();
+        email = student.getEmail();
+        stream = student.getStream();
+        strength = student.getStrength();
+        weakness = student.getWeakness();
 
 
-
-        input_zID.setText(zID);
         input_firstName.setText(firstName);
         input_lastName.setText(lastName);
+        input_zID.setText(zID);
+        input_email.setText(email);
+        input_stream.setText(stream);
+        input_strength.setText(strength);
+        input_weakness.setText(weakness);
 
         btn_updateStudent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,13 +93,21 @@ public class EditStudentActivity extends BaseActivity {
             return;
         }
         btn_updateStudent.setEnabled(false);
-        //some student logic here
-       //student = new Student(zID, firstName, lastName, email, stream);
+
+        studentId = input_zID.getText().toString();
+        firstName = input_firstName.getText().toString();
+        lastName = input_lastName.getText().toString();
+        email = input_email.getText().toString();
+        stream = input_stream.getText().toString();
+        strength = input_strength.getText().toString();
+        weakness = input_weakness.getText().toString();
+
+        student = new Student(studentId, firstName, lastName, email, stream, strength, weakness);
         studentLogic = new StudentLogic(EditStudentActivity.this);
-        feedback = studentLogic.insertStudent(student, tutorialId);
+        feedback = studentLogic.updateStudent(student);
         if (feedback > 0) {
             updateStudentSuccessfull();
-            Intent intent = new Intent(EditStudentActivity.this, TutorialListActivity.class);
+            Intent intent = new Intent(EditStudentActivity.this, StudentViewDetailsActivity.class);
             startActivity(intent);
         } else {
             updateStudentFailed();
@@ -92,22 +115,18 @@ public class EditStudentActivity extends BaseActivity {
     }
 
     private void updateStudentSuccessfull() {
-        Toast.makeText(EditStudentActivity.this, "woops something went wrong! Please try Again.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(EditStudentActivity.this,"Student updated successfully!" , Toast.LENGTH_SHORT).show();
         btn_updateStudent.setEnabled(true);
     }
 
     private void updateStudentFailed() {
-        Toast.makeText(EditStudentActivity.this, "Student updated successfully!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(EditStudentActivity.this, "woops something went wrong! Please try Again.", Toast.LENGTH_SHORT).show();
         btn_updateStudent.setEnabled(true);
     }
 
     private boolean validateStudent() {
         boolean validated = true;
         //validation logic here
-        String firstName = input_firstName.getText().toString();
-        String lastName = input_lastName.getText().toString();
-        String email = input_email.getText().toString();
-        String stream = input_stream.getText().toString();
 
         if (firstName.isEmpty()) {
             input_firstName.setError("First name cannot be empty");

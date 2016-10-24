@@ -25,7 +25,7 @@ public class Student {
         this.stream = stream;
     }
 
-    public Student(String id, String firsName, String lastName, String email, String weakness, String strength, String stream) {
+    public Student(String id, String firsName, String lastName, String email,  String stream, String weakness, String strength) {
         this.id = id;
         this.firsName = firsName;
         this.lastName = lastName;
