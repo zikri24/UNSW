@@ -67,7 +67,6 @@ public class WeeksAdapter extends RecyclerView.Adapter<WeeksAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(WeeksAdapter.ViewHolder viewHolder, int position) {
         viewHolder.weekName.setText(weeksList.get(position).getName());
-        viewHolder.todo.setText(weeksList.get(position).getToDoNextWeek());
     }
 
     public void updateListAdapter(List<Week> weeksList) {
@@ -91,7 +90,6 @@ public class WeeksAdapter extends RecyclerView.Adapter<WeeksAdapter.ViewHolder> 
             super(view);
             weekLayout = (RelativeLayout) view.findViewById(R.id.weeks_card);
             weekName = (TextView) view.findViewById(R.id.week_name);
-            todo = (TextView) view.findViewById(R.id.week_todo);
 
 
             removeButton = (ImageButton) view.findViewById(R.id.remove_week_button);
