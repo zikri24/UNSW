@@ -129,8 +129,8 @@ public class EditStudentActivity extends BaseActivity {
             updateStudentSuccessfull();
             Intent intent = new Intent(EditStudentActivity.this, StudentViewDetailsActivity.class);
             intent.putExtra(STU_ID, studentId);
-            intent.putExtra(FIRST_NAME, firstName);
-            intent.putExtra(LAST_NAME, lastName);
+            //intent.putExtra(FIRST_NAME, firstName);
+            //intent.putExtra(LAST_NAME, lastName);
             startActivity(intent);
         } else {
             updateStudentFailed();

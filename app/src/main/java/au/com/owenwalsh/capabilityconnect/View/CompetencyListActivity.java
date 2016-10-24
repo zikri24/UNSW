@@ -142,10 +142,10 @@ public class CompetencyListActivity extends BaseActivity implements View.OnClick
 
     @Override
     public void onItemClick(int p) {
-        competency = competencies.get(p);
+        /*competency = competencies.get(p);
         Intent intent = new Intent(CompetencyListActivity.this, EditCompetencyActivity.class);
         intent.putExtra(COMP_ID, competency.getId());
-        startActivity(intent);
+        startActivity(intent);*/
 
     }
 

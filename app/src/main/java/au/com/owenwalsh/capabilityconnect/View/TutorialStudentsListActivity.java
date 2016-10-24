@@ -201,10 +201,10 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
 
     @Override
     public void onUpdateClick(int p) {
-        student = students.get(p);
+        /*student = students.get(p);
         Intent intent = new Intent(this, EditStudentActivity.class);
         intent.putExtra(STU_ID, student.getId());
-        startActivity(intent);
+        startActivity(intent);*/
     }
 
     public void hideFloatingActionBar() {
