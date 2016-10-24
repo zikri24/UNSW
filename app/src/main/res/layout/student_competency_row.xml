@@ -13,7 +13,7 @@
         android:id="@+id/student_competency_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp"
+        android:layout_margin="5dp"
         android:orientation="horizontal"
         android:visibility="visible">
 
@@ -49,7 +49,7 @@
 
 
             <LinearLayout
-                android:id="@+id/layout_lineTwp"
+                android:id="@+id/layout_lineTwo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/layout_lineOne"
@@ -72,15 +72,12 @@
 
 
             </LinearLayout>
-        </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/layout_buttons"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_gravity="right">
 
 
             <ImageButton
@@ -96,13 +93,13 @@
                 android:id="@+id/add_competency_mark"
                 android:layout_width="55dp"
                 android:layout_height="55dp"
-                android:layout_marginLeft="10dp"
+                android:layout_marginLeft="5dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/competency_add_icon"
                 android:background="@android:color/transparent"
                 android:visibility="visible" />
 
-
+        </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 

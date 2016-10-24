@@ -44,6 +44,13 @@
             android:layout_height="wrap_content"
             android:textSize="18dip"
             android:padding="10dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/layout_lineTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/layout_lineOne"
+                android:orientation="horizontal" >
 
 
         <TextView android:id="@+id/label_time"
@@ -62,7 +69,7 @@
 </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layout_lineTwo"
+            android:id="@+id/layout_lineThree"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/layout_lineOne"
@@ -83,15 +90,12 @@
             android:padding="10dp" />
 
 </LinearLayout>
-        </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/layout_buttons"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="right">
 
         <ImageButton
             android:id="@+id/btn_add_attendance"
@@ -107,10 +111,11 @@
             android:layout_width="55dp"
             android:layout_height="55dp"
             android:background="@android:color/transparent"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:scaleType="fitXY"
             android:src="@drawable/class_remove_icon"
             android:visibility="visible"/>
+        </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 
