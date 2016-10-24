@@ -36,6 +36,7 @@ public class AddStudentNotesActivity extends BaseActivity {
         studentID = intent.getStringExtra(STU_ID);
        // note_name = (EditText) findViewById(R.id.note_name);
         input_notes = (EditText) findViewById(R.id.input_notes);
+        btn_add_note = (Button) findViewById(R.id.btn_add_note);
         addNote();
 
     }
