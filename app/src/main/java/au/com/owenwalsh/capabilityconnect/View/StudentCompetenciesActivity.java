@@ -48,17 +48,10 @@ public class StudentCompetenciesActivity extends BaseActivity implements View.On
         drawerLayout.addView(contentView, 0);
 
 
-        submitButton = (Button) findViewById(R.id.btn_submit_competencies);
         Intent intent = getIntent();
         final String competencyID = intent.getStringExtra(COMP_ID);
         studentId = intent.getStringExtra(STU_ID);
 
-        submitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //loop through to get and submit competencies
-            }
-        });
         initViews();
     }
 
@@ -105,7 +98,7 @@ public class StudentCompetenciesActivity extends BaseActivity implements View.On
 
     @Override
     public void onAddClick(int p) {
-        studentCompetency = studentCompetencies.get(p);
+       studentCompetency = studentCompetencies.get(p);
         Intent intent = new Intent(StudentCompetenciesActivity.this, AddStudentAssessmentMarkActivity.class);
         intent.putExtra(STU_ID, studentId);
         intent.putExtra(COMP_ID, String.valueOf(studentCompetency.getCompetencyId()));
