@@ -71,7 +71,12 @@ public class AddStudentAssessmentMarkActivity extends BaseActivity {
                 Toast.makeText(AddStudentAssessmentMarkActivity.this, "Mark selection finished", Toast.LENGTH_SHORT).show();
             }
         });
-        addMark();
+        btn_add_assessment_mark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addMark();
+            }
+        });
     }
 
     private void addMark() {
@@ -88,7 +93,7 @@ public class AddStudentAssessmentMarkActivity extends BaseActivity {
             addMarkSuccessful();
            Intent intent = new Intent(AddStudentAssessmentMarkActivity.this, StudentAssessmentActivity.class);
             intent.putExtra(STU_ID, studentID);
-            //startActivity(intent);
+            startActivity(intent);
         } else {
             addMarkFailed();
         }
