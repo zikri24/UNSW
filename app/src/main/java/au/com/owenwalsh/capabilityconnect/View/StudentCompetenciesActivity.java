@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +37,7 @@ public class StudentCompetenciesActivity extends BaseActivity implements View.On
     private StudentCompetencyAdapter adapter;
 
     private String studentId;
+    private Toolbar toolbar;
 
 
 
@@ -51,6 +53,21 @@ public class StudentCompetenciesActivity extends BaseActivity implements View.On
         Intent intent = getIntent();
         final String competencyID = intent.getStringExtra(COMP_ID);
         studentId = intent.getStringExtra(STU_ID);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Students Competencies");
+        toolbar.setNavigationIcon(R.drawable.back_arrow);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // NavUtils.navigateUpFromSameTask(TutorialStudentsListActivity.this);
+                Intent intent = new Intent(StudentCompetenciesActivity.this, StudentViewDetailsActivity.class);
+                intent.putExtra(STU_ID, studentId);
+                startActivity(intent);
+            }
+        });
 
         initViews();
     }

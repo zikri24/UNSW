@@ -3,8 +3,10 @@ package au.com.owenwalsh.capabilityconnect.View;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -30,7 +32,8 @@ public class StudentAssessmentActivity extends BaseActivity implements View.OnCl
     private ArrayList<StudentAssessment> studentAssessments;
     private StudentAssessment studentAssessment;
     private StudentAssessmentAdapter adapter;
-    private String studentId;
+   private String studentId;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,21 @@ public class StudentAssessmentActivity extends BaseActivity implements View.OnCl
 
         Intent intent = getIntent();
         studentId = intent.getStringExtra(STU_ID);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Students Assessments");
+        toolbar.setNavigationIcon(R.drawable.back_arrow);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // NavUtils.navigateUpFromSameTask(TutorialStudentsListActivity.this);
+                Intent intent = new Intent(StudentAssessmentActivity.this, StudentViewDetailsActivity.class);
+                intent.putExtra(STU_ID, studentId);
+                 startActivity(intent);
+            }
+        });
 
         initViews();
     }

@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +49,7 @@ public class StudentNotesActivity extends BaseActivity implements View.OnClickLi
     private FloatingActionButton addActionBar;
     private FloatingActionButton addNoteActionBar;
     private Animation actionbar_open, actionbar_close, rotate_forward, rotate_backward;
+    private Toolbar toolbar;
 
 
     @Override
@@ -62,6 +64,21 @@ public class StudentNotesActivity extends BaseActivity implements View.OnClickLi
         studentId = intent.getStringExtra(STU_ID);
         firstName = intent.getStringExtra(FIRST_NAME);
         lastName = intent.getStringExtra(LAST_NAME);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Students Notes");
+        toolbar.setNavigationIcon(R.drawable.back_arrow);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // NavUtils.navigateUpFromSameTask(TutorialStudentsListActivity.this);
+                Intent intent = new Intent(StudentNotesActivity.this, StudentViewDetailsActivity.class);
+                intent.putExtra(STU_ID, studentId);
+                startActivity(intent);
+            }
+        });
 
         initViews();
 

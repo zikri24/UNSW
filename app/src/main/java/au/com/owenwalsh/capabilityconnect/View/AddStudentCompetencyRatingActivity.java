@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -30,6 +31,7 @@ public class AddStudentCompetencyRatingActivity extends BaseActivity {
     private static final String COMP_ID = "competencyID";
     private SeekBar markSeekBar;
     private TextView seekbarCurrentValue;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,22 @@ public class AddStudentCompetencyRatingActivity extends BaseActivity {
         studentCompetency = new StudentCompetency();
 //        competency_name.setText(studentCompetency.getCompetencyId());
         markSeekBar = (SeekBar) findViewById(R.id.mark_seek_bar);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Add Competency Rating");
+        toolbar.setNavigationIcon(R.drawable.back_arrow);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // NavUtils.navigateUpFromSameTask(TutorialStudentsListActivity.this);
+                Intent intent = new Intent(AddStudentCompetencyRatingActivity.this, StudentCompetenciesActivity.class);
+                intent.putExtra(STU_ID, studentID);
+                intent.putExtra(COMP_ID, competencyID);
+                startActivity(intent);
+            }
+        });
         markSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {

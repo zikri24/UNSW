@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -31,9 +32,11 @@ public class AddStudentAssessmentMarkActivity extends BaseActivity {
     private static String STU_ID = "stuID";
     private static String ASS_ID = "assID";
     private static final String ASS_NAME = "assName";
+    private final String studentId = "studentId";
     private SeekBar markSeekBar;
     private TextView seekbarCurrentValue;
     private TextView assessment_name;
+    private Toolbar toolbar;
 
 
     @Override
@@ -53,6 +56,24 @@ public class AddStudentAssessmentMarkActivity extends BaseActivity {
         studentAssessment = new StudentAssessment();
         assessment_name.setText(assignmentName);
         markSeekBar = (SeekBar) findViewById(R.id.mark_seek_bar);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Add Assessment Mark");
+        toolbar.setNavigationIcon(R.drawable.back_arrow);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // NavUtils.navigateUpFromSameTask(TutorialStudentsListActivity.this);
+                Intent intent = new Intent(AddStudentAssessmentMarkActivity.this, StudentAssessmentActivity.class);
+                intent.putExtra(STU_ID, studentId);
+                intent.putExtra(ASS_ID, assessmentID);
+                startActivity(intent);
+            }
+        });
+
+
         markSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
