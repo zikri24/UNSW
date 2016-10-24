@@ -2,6 +2,7 @@ package au.com.owenwalsh.capabilityconnect.Database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
@@ -18,6 +19,7 @@ public class TutorialWeekStudentLogic {
     private SQLiteDatabase db;
     private DatabaseHelper dbHelper;
     private Context context;
+    private Cursor cursor;
 
     public TutorialWeekStudentLogic(Context context) {
         this.context = context;
@@ -50,6 +52,22 @@ public class TutorialWeekStudentLogic {
         contentValues.put(dbHelper.W_C_S_WEEK_ID, attendance.getWeekId());
         long row =db.update(dbHelper.CLASS_WEEK_STUDENT,  contentValues, dbHelper.STUDENT_ID + " = '" + attendance.getStudentId() + "' ",null);
         return row;
+    }
+
+    public int getAttendance(String studentId) {
+        int attended = 0;
+        open();
+        try {
+            cursor = db.rawQuery("SELECT DISTINCT * FROM " + dbHelper.CLASS_WEEK_STUDENT + " WHERE " + dbHelper.STUDENT_ID + " = '" + studentId +"' AND " + dbHelper.ATTEND + " = " + 1, null);
+            attended = cursor.getCount();
+            cursor.close();
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+            attended = 0;
+        }
+        cursor.close();
+        close();
+        return attended;
     }
 
 }
