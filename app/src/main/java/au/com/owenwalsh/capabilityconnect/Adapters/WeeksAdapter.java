@@ -67,6 +67,7 @@ public class WeeksAdapter extends RecyclerView.Adapter<WeeksAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(WeeksAdapter.ViewHolder viewHolder, int position) {
         viewHolder.weekName.setText(weeksList.get(position).getName());
+        viewHolder.todo.setText(weeksList.get(position).getToDoNextWeek());
     }
 
     public void updateListAdapter(List<Week> weeksList) {
