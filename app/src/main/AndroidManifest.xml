@@ -26,7 +26,12 @@
             android:label="Add New Student" />
         <activity
             android:name=".View.TutorialListActivity"
-            android:label="Tutorials" />
+            android:label="Tutorials">
+
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".View.WeeksListActivity" />
+            /></activity>
         <activity
             android:name=".View.AssessmentListActivity"
             android:label="Assessments" />
