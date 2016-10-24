@@ -139,18 +139,18 @@ public class StudentAssessmentLogic {
         studentAssessments = new ArrayList<>();
         open();
         try {
-             cursor = db.rawQuery("SELECT " + dbHelper.ASSESSMENT_ID  +  ", " + dbHelper.ASSESSMENT_NAME + ", " + dbHelper.ASSESSMENT_MARK +" FROM "
+             Cursor newCursor = db.rawQuery("SELECT " + dbHelper.ASSESSMENT_ID  +  ", " + dbHelper.ASSESSMENT_NAME + ", " + dbHelper.ASSESSMENT_MARK +" FROM "
                     + dbHelper.ASSESSMENTS  ,null);
 
-            while (cursor.moveToNext()) {
+            while (newCursor.moveToNext()) {
                 studentAssessment = new StudentAssessment();
-                studentAssessment.setAssessmentId(cursor.getInt(0));
-                studentAssessment.setAssessmentName(cursor.getString(1));
-                studentAssessment.setAssessmentMark(cursor.getInt(2));
-                studentAssessment.setStudentMark(getStudentMark(cursor.getInt(0), studentId));
+                studentAssessment.setAssessmentId(newCursor.getInt(0));
+                studentAssessment.setAssessmentName(newCursor.getString(1));
+                studentAssessment.setAssessmentMark(newCursor.getInt(2));
+                studentAssessment.setStudentMark(getStudentMark(newCursor.getInt(0), studentId));
                 studentAssessments.add(studentAssessment);
             }
-            cursor.close();
+            newCursor.close();
         } catch (Exception e) {
             Log.e(TAG, e.getMessage());
             studentAssessments = null;
