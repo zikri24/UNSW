@@ -47,6 +47,7 @@ public class TutorialListActivity extends BaseActivity implements View.OnClickLi
     private TutorialLogic tutorialLogic;
     private ArrayList<Tutorial> tutorials;
     private TutorialAdapter adapter;
+    private Tutorial tutorial;
     private String weekId;
 
     @Override
@@ -83,7 +84,7 @@ public class TutorialListActivity extends BaseActivity implements View.OnClickLi
                 startActivity(intent);
             }
         });
-        Intent intent  = getIntent();
+        Intent intent = getIntent();
         weekId = intent.getStringExtra(WEEK_ID);
     }
 
@@ -143,7 +144,7 @@ public class TutorialListActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onItemClick(int p) {
-        Tutorial tutorial = tutorials.get(p);
+        tutorial = tutorials.get(p);
         Intent intent = new Intent(this, TutorialStudentsListActivity.class);
         intent.putExtra(TUT_ID, String.valueOf(tutorial.getId()));
         intent.putExtra(WEEK_ID, weekId);
@@ -152,8 +153,7 @@ public class TutorialListActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onDeleteClick(int p) {
-        Tutorial tutorial = tutorials.get(p);
-        tutorialLogic.deleteTutorial(tutorial.getId());
+        tutorial = tutorials.get(p);
         new AlertDialog.Builder(this)
                 .setTitle("Deleting " + tutorial.getDay() + " " + tutorial.getTime() + "tutorial")
                 .setMessage("Are you sure you want to delete " + tutorial.getDay() + " " + tutorial.getTime() + "tutorial")
@@ -161,6 +161,7 @@ public class TutorialListActivity extends BaseActivity implements View.OnClickLi
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
+                        tutorialLogic.deleteTutorial(tutorial.getId());
                         Toast.makeText(TutorialListActivity.this, "Tutorial has been deleted ", Toast.LENGTH_SHORT).show();
                     }
                 })
@@ -170,7 +171,7 @@ public class TutorialListActivity extends BaseActivity implements View.OnClickLi
 
     @Override
     public void onAttendanceClick(int p) {
-        Tutorial tutorial = tutorials.get(p);
+        tutorial = tutorials.get(p);
         Intent intent = new Intent(this, StudentAttendanceActivity.class);
         intent.putExtra(TUT_ID, String.valueOf(tutorial.getId()));
         intent.putExtra(WEEK_ID, weekId);

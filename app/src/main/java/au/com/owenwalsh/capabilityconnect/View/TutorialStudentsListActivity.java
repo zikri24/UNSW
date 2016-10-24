@@ -37,11 +37,12 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
     private FloatingActionButton addActionBar;
     private FloatingActionButton addStudentActionBar;
     private FloatingActionButton viewTutorialDetailsActionBar;
-    private Animation actionbar_open,actionbar_close,rotate_forward,rotate_backward;
+    private Animation actionbar_open, actionbar_close, rotate_forward, rotate_backward;
     private TextView emptyView;
 
     private StudentLogic studentLogic;
     private ArrayList<Student> students;
+    private Student student;
     private StudentAdapter adapter;
 
 
@@ -97,16 +98,16 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
 
     private void initViews() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_tutorial_student_list);
-        emptyView = (TextView)  findViewById(R.id.empty_view);
+        emptyView = (TextView) findViewById(R.id.empty_view);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         loadStudents();
     }
 
-    public void animateFAB(){
+    public void animateFAB() {
 
-        if(isFabOpen){
+        if (isFabOpen) {
 
             addActionBar.startAnimation(rotate_backward);
             addStudentActionBar.startAnimation(actionbar_close);
@@ -124,7 +125,7 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
             viewTutorialDetailsActionBar.startAnimation(actionbar_open);
             viewTutorialDetailsActionBar.setClickable(true);
             isFabOpen = true;
-            Log.d("Raj","open");
+            Log.d("Raj", "open");
         }
     }
 
@@ -148,7 +149,7 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
 
     @Override
     public void onItemClick(int p) {
-        Student student = students.get(p);
+        student = students.get(p);
         Intent intent = new Intent(TutorialStudentsListActivity.this, StudentViewDetailsActivity.class);
         intent.putExtra(STU_ID, student.getId());
         intent.putExtra(FIRST_NAME, student.getFirsName());
@@ -159,30 +160,32 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
 
     @Override
     public void onDeleteClick(int p) {
-        Student student = students.get(p);
-        studentLogic.deleteStudent(student.getId());
+        student = students.get(p);
         new AlertDialog.Builder(TutorialStudentsListActivity.this)
                 .setTitle("Deleting " + student.getLastName())
-                .setMessage("Are you sure you want to delete " +student.getLastName())
+                .setMessage("Are you sure you want to delete " + student.getLastName())
                 .setIcon(R.drawable.warning)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
+                        studentLogic.deleteStudent(student.getId());
                         Toast.makeText(TutorialStudentsListActivity.this, "Student has been deleted ", Toast.LENGTH_SHORT).show();
-                    }})
+                    }
+                })
                 .setNegativeButton(android.R.string.no, null).show();
         adapter.notifyDataSetChanged();
 
     }
+
     @Override
     public void onUpdateClick(int p) {
-        Student student = students.get(p);
-        Intent intent = new Intent(this, EditTutorialActivity.class);
+        student = students.get(p);
+        Intent intent = new Intent(this, EditStudentActivity.class);
         intent.putExtra(STU_ID, student.getId());
         startActivity(intent);
     }
 
-    public void hideFloatingActionBar(){
+    public void hideFloatingActionBar() {
         addStudentActionBar.startAnimation(actionbar_close);
         addStudentActionBar.setClickable(false);
         addStudentActionBar.hide();

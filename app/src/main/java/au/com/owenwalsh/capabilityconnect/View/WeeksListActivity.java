@@ -31,12 +31,13 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
     private Boolean isFabOpen = false;
     private FloatingActionButton addActionBar;
     private FloatingActionButton addWeekActionBar;
-    private Animation actionbar_open,actionbar_close,rotate_forward,rotate_backward;
+    private Animation actionbar_open, actionbar_close, rotate_forward, rotate_backward;
     private TextView emptyView;
 
     private WeekLogic weekLogic;
     private ArrayList<Week> weeks;
     private WeeksAdapter adapter;
+    private Week week;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +52,9 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
         addActionBar = (FloatingActionButton) findViewById(R.id.fab);
         addWeekActionBar = (FloatingActionButton) findViewById(R.id.fab1);
         actionbar_open = AnimationUtils.loadAnimation(WeeksListActivity.this, R.anim.actionbar_open);
-        actionbar_close = AnimationUtils.loadAnimation(WeeksListActivity.this,R.anim.actionbar_close);
-        rotate_forward = AnimationUtils.loadAnimation(WeeksListActivity.this,R.anim.rotate_forward);
-        rotate_backward = AnimationUtils.loadAnimation(WeeksListActivity.this,R.anim.rotate_backward);
+        actionbar_close = AnimationUtils.loadAnimation(WeeksListActivity.this, R.anim.actionbar_close);
+        rotate_forward = AnimationUtils.loadAnimation(WeeksListActivity.this, R.anim.rotate_forward);
+        rotate_backward = AnimationUtils.loadAnimation(WeeksListActivity.this, R.anim.rotate_backward);
 
         addActionBar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,16 +76,16 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
 
     private void initViews() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_weeks_list);
-        emptyView = (TextView)  findViewById(R.id.empty_view);
+        emptyView = (TextView) findViewById(R.id.empty_view);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         loadWeeks();
     }
 
-    public void animateFAB(){
+    public void animateFAB() {
 
-        if(isFabOpen){
+        if (isFabOpen) {
 
             addActionBar.startAnimation(rotate_backward);
             addWeekActionBar.startAnimation(actionbar_close);
@@ -98,7 +99,7 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
             addWeekActionBar.startAnimation(actionbar_open);
             addWeekActionBar.setClickable(true);
             isFabOpen = true;
-            Log.d("Raj","open");
+            Log.d("Raj", "open");
 
         }
     }
@@ -125,38 +126,36 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
         Intent intent = new Intent(WeeksListActivity.this, TutorialListActivity.class);
         intent.putExtra(WEEK_ID, String.valueOf(week.getId()));
         startActivity(intent);
-
     }
 
     @Override
     public void onDeleteClick(int p) {
-        Week week = weeks.get(p);
-        weekLogic.deleteWeek(week.getId());
+        week = weeks.get(p);
         new AlertDialog.Builder(WeeksListActivity.this)
                 .setTitle("Deleting " + week.getName())
-                .setMessage("Are you sure you want to delete " +week.getName())
+                .setMessage("Are you sure you want to delete " + week.getName())
                 .setIcon(R.drawable.warning)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
+                        weekLogic.deleteWeek(week.getId());
                         Toast.makeText(WeeksListActivity.this, "Week has been deleted ", Toast.LENGTH_SHORT).show();
-                    }})
+                        Intent intent = new Intent(WeeksListActivity.this, WeeksListActivity.class);
+                        startActivity(intent);
+                    }
+                })
                 .setNegativeButton(android.R.string.no, null).show();
         adapter.notifyDataSetChanged();
 
     }
+
     @Override
     public void onUpdateClick(int p) {
-        Week week = weeks.get(p);
+       /* Week week = weeks.get(p);
         Intent intent = new Intent(this, EditWeekActivity.class);
         intent.putExtra(WEEK_ID, String.valueOf(week.getId()));
-        startActivity(intent);
+        startActivity(intent);*/
     }
-
-
-
-
-
 
     /**
      * This method is a reusable progress dialog to alert the users that we are waitinf for data
@@ -176,7 +175,7 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
         }
     }
     */
-    public void hideFloatingActionBar(){
+    public void hideFloatingActionBar() {
         addWeekActionBar.startAnimation(actionbar_close);
         addWeekActionBar.setClickable(false);
         addWeekActionBar.hide();

@@ -44,6 +44,7 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
     private StudentLogic studentLogic;
     private ArrayList<Student> students;
     private StudentAdapter adapter;
+    private Student student;
 
 
     @Override
@@ -88,7 +89,7 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onItemClick(int p) {
-        Student student = students.get(p);
+        student = students.get(p);
         Intent intent = new Intent(StudentListActivity.this, StudentViewDetailsActivity.class);
         intent.putExtra(STU_ID, student.getId());
         intent.putExtra(FIRST_NAME, student.getFirsName());
@@ -98,8 +99,7 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onDeleteClick(int p) {
-        Student student = students.get(p);
-        studentLogic.deleteStudent(student.getId());
+        student = students.get(p);
         new AlertDialog.Builder(StudentListActivity.this)
                 .setTitle("Deleting " + student.getLastName())
                 .setMessage("Are you sure you want to delete " + student.getLastName())
@@ -107,7 +107,10 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
+                        studentLogic.deleteStudent(student.getId());
                         Toast.makeText(StudentListActivity.this, "Student has been deleted ", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(StudentListActivity.this, StudentListActivity.class);
+                        startActivity(intent);
                     }
                 })
                 .setNegativeButton(android.R.string.no, null).show();
@@ -117,7 +120,7 @@ public class StudentListActivity extends BaseActivity implements View.OnClickLis
 
     @Override
     public void onUpdateClick(int p) {
-        Student student = students.get(p);
+        student = students.get(p);
         Intent intent = new Intent(this, EditStudentActivity.class);
         intent.putExtra(STU_ID, student.getId());
         startActivity(intent);

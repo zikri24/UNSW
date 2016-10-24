@@ -39,6 +39,7 @@ public class CompetencyListActivity extends BaseActivity implements View.OnClick
     private CompetencyLogic competencyLogic;
     private ArrayList<Competency> competencies;
     private CompetencyAdapter adapter;
+    private Competency competency;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,16 +79,16 @@ public class CompetencyListActivity extends BaseActivity implements View.OnClick
 
     private void initViews() {
         recyclerView = (RecyclerView) findViewById(R.id.recycler_competency_list);
-        emptyView = (TextView)  findViewById(R.id.empty_view);
+        emptyView = (TextView) findViewById(R.id.empty_view);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         loadCompetencies();
     }
 
-    public void animateFAB(){
+    public void animateFAB() {
 
-        if(isFabOpen){
+        if (isFabOpen) {
 
             addActionBar.startAnimation(rotate_backward);
             addCompetencyActionBar.startAnimation(actionbar_close);
@@ -101,7 +102,7 @@ public class CompetencyListActivity extends BaseActivity implements View.OnClick
             addCompetencyActionBar.startAnimation(actionbar_open);
             addCompetencyActionBar.setClickable(true);
             isFabOpen = true;
-            Log.d("Raj","open");
+            Log.d("Raj", "open");
 
         }
     }
@@ -125,7 +126,7 @@ public class CompetencyListActivity extends BaseActivity implements View.OnClick
 
     @Override
     public void onItemClick(int p) {
-        Competency competency = competencies.get(p);
+        competency = competencies.get(p);
         Intent intent = new Intent(CompetencyListActivity.this, EditCompetencyActivity.class);
         intent.putExtra(COMP_ID, competency.getId());
         startActivity(intent);
@@ -134,27 +135,29 @@ public class CompetencyListActivity extends BaseActivity implements View.OnClick
 
     @Override
     public void onDeleteClick(int p) {
-        Competency competency = competencies.get(p);
-        competencyLogic.deleteCompetency(competency.getId());
+        competency = competencies.get(p);
         new AlertDialog.Builder(CompetencyListActivity.this)
                 .setTitle("Deleting " + competency.getName())
-                .setMessage("Are you sure you want to delete " +competency.getName())
+                .setMessage("Are you sure you want to delete " + competency.getName())
                 .setIcon(R.drawable.warning)
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
+                        competencyLogic.deleteCompetency(competency.getId());
                         Toast.makeText(CompetencyListActivity.this, "Competency has been deleted ", Toast.LENGTH_SHORT).show();
-                    }})
+                        Intent intent = new Intent(CompetencyListActivity.this, CompetencyListActivity.class);
+                        startActivity(intent);
+                    }
+                })
                 .setNegativeButton(android.R.string.no, null).show();
-        adapter.notifyDataSetChanged();
-
     }
+
     @Override
     public void onUpdateClick(int p) {
-        Competency competency = competencies.get(p);
+       /* Competency competency = competencies.get(p);
         Intent intent = new Intent(this, EditCompetencyActivity.class);
         intent.putExtra(COMP_ID, competency.getId());
-        startActivity(intent);
+        startActivity(intent);*/
     }
 
 
@@ -176,7 +179,7 @@ public class CompetencyListActivity extends BaseActivity implements View.OnClick
         }
     }
 
-    public void hideFloatingActionBar(){
+    public void hideFloatingActionBar() {
         addCompetencyActionBar.startAnimation(actionbar_close);
         addCompetencyActionBar.setClickable(false);
         addCompetencyActionBar.hide();

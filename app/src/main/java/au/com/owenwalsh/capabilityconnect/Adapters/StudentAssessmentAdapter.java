@@ -32,9 +32,7 @@ public class StudentAssessmentAdapter extends RecyclerView.Adapter<StudentAssess
     //declaring interface for the on click event
     public interface ItemClickCallback {
         void onItemClick(int p);
-
         void onEditClick(int p);
-
         void onAddClick(int p);
     }
 
@@ -50,7 +48,7 @@ public class StudentAssessmentAdapter extends RecyclerView.Adapter<StudentAssess
     @Override
     public StudentAssessmentAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.student_assessment_row, viewGroup, false);
-        return null;
+        return new StudentAssessmentAdapter.ViewHolder(view);
     }
 
     @Override
@@ -58,7 +56,6 @@ public class StudentAssessmentAdapter extends RecyclerView.Adapter<StudentAssess
         viewHolder.name.setText(studentAssessmentList.get(position).getAssessmentName());
         viewHolder.assessmentMark.setText(String.valueOf(studentAssessmentList.get(position).getAssessmentMark()));
         viewHolder.studentMark.setText(String.valueOf(studentAssessmentList.get(position).getStudentMark()));
-
     }
 
 
@@ -77,8 +74,8 @@ public class StudentAssessmentAdapter extends RecyclerView.Adapter<StudentAssess
         public TextView assessmentMark;
         public RelativeLayout studentAssessmentLayout;
         public View studentAssessmentContainer;
-        public ImageButton edit_button;
-        public ImageButton add_button;
+        public ImageButton edit_mark_button;
+        public ImageButton add_mark_button;
 
         public ViewHolder(View view) {
             super(view);
@@ -88,10 +85,10 @@ public class StudentAssessmentAdapter extends RecyclerView.Adapter<StudentAssess
             assessmentMark = (TextView) view.findViewById(R.id.assessment_weighting);
             studentAssessmentContainer = view.findViewById(R.id.student_assess_cont_item_root);
             studentAssessmentContainer.setOnClickListener(this);
-            add_button = (ImageButton) view.findViewById(R.id.add_assessment_mark);
-            edit_button = (ImageButton) view.findViewById(R.id.edit_assessment_mark_button);
-            add_button.setOnClickListener(this);
-            edit_button.setOnClickListener(this);
+            add_mark_button = (ImageButton) view.findViewById(R.id.add_assessment_mark);
+            edit_mark_button = (ImageButton) view.findViewById(R.id.edit_assessment_mark_button);
+            add_mark_button.setOnClickListener(this);
+            edit_mark_button.setOnClickListener(this);
         }
 
         @Override

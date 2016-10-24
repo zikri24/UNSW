@@ -45,7 +45,7 @@ public class EditStudentActivity extends BaseActivity {
         input_stream = (EditText) findViewById(R.id.input_stream);
 
         Intent intent = getIntent();
-        final String zID = intent.getStringExtra(LAST_NAME);
+        final String zID = intent.getStringExtra(STU_ID);
         final String firstName = intent.getStringExtra(FIRST_NAME);
         final String lastName = intent.getStringExtra(LAST_NAME);
 

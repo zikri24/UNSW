@@ -140,7 +140,6 @@ public class AssessmentListActivity extends BaseActivity implements View.OnClick
     @Override
     public void onDeleteClick(int p) {
         assessment = assessments.get(p);
-        assessmentLogic.deleteAssessment(assessment.getId());
         new AlertDialog.Builder(AssessmentListActivity.this)
                 .setTitle("Deleting " + assessment.getName())
                 .setMessage("Are you sure you want to delete " + assessment.getName())
@@ -148,7 +147,10 @@ public class AssessmentListActivity extends BaseActivity implements View.OnClick
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
 
                     public void onClick(DialogInterface dialog, int whichButton) {
+                        assessmentLogic.deleteAssessment(assessment.getId());
                         Toast.makeText(AssessmentListActivity.this, "Assessment has been deleted ", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(AssessmentListActivity.this, AssessmentListActivity.class);
+                        startActivity(intent);
                     }
                 })
                 .setNegativeButton(android.R.string.no, null).show();
@@ -157,10 +159,10 @@ public class AssessmentListActivity extends BaseActivity implements View.OnClick
 
     @Override
     public void onUpdateClick(int p) {
-        assessment = assessments.get(p);
+        /*assessment = assessments.get(p);
         Intent intent = new Intent(this, EditAssessmentActivity.class);
         intent.putExtra(ASSESS_ID, String.valueOf(assessment.getId()));
-        startActivity(intent);
+        startActivity(intent);*/
     }
 
     /**

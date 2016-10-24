@@ -128,7 +128,7 @@ public class StudentLogic {
         students = new ArrayList<>();
         open();
         try {
-            cursor = db.rawQuery("SELECT * FROM " + dbHelper.STUDENTS_TABLE + " JOIN "
+            cursor = db.rawQuery("SELECT DISTINCT * FROM " + dbHelper.STUDENTS_TABLE + " JOIN "
                     + dbHelper.CLASS_WEEK_STUDENT + " ON "
                     + dbHelper.STUDENTS_TABLE + "." + dbHelper.ZID + " = " + dbHelper.CLASS_WEEK_STUDENT + "." + dbHelper.STUDENT_ID
                     + " WHERE " + dbHelper.CLASS_WEEK_STUDENT + "." + dbHelper.TUTORIAL_ID + " = " + classId, null);

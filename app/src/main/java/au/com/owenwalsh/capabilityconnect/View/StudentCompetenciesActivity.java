@@ -61,7 +61,7 @@ public class StudentCompetenciesActivity extends BaseActivity implements View.On
     }
 
     private void initViews() {
-        recyclerView = (RecyclerView) findViewById(R.id.recycler_student_attendance_list);
+        recyclerView = (RecyclerView) findViewById(R.id.recycler_student_competencies_list);
         emptyView = (TextView) findViewById(R.id.empty_view);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());

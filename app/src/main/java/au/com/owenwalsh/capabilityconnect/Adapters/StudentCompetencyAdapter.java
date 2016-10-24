@@ -79,29 +79,29 @@ public class StudentCompetencyAdapter extends RecyclerView.Adapter<StudentCompet
         public TextView name;
         public TextView competencyMark;
         public RelativeLayout studentCompLayout;
-        public View compContainer;
+        public View studentCompContainer;
         public ImageButton edit_button;
         public ImageButton add_button;
 
         public ViewHolder(View view) {
             super(view);
-            studentCompLayout = (RelativeLayout) view.findViewById(R.id.competency_card);
+            studentCompLayout = (RelativeLayout) view.findViewById(R.id.student_competency_card);
             name = (TextView) view.findViewById(R.id.competency_name);
-            competencyMark = (TextView) view.findViewById(R.id.competency_mark);
-            compContainer = view.findViewById(R.id.student_comp_cont_item_root);
-            compContainer.setOnClickListener(this);
-            add_button = (ImageButton) view.findViewById(R.id.add_button);
-            edit_button = (ImageButton) view.findViewById(R.id.edit_button);
+            competencyMark = (TextView) view.findViewById(R.id.id_mark);
+            studentCompContainer = view.findViewById(R.id.student_competency_cont_item_root);
+            studentCompContainer.setOnClickListener(this);
+            add_button = (ImageButton) view.findViewById(R.id.add_assessment_mark);
+            edit_button = (ImageButton) view.findViewById(R.id.edit_competency_mark_button);
 
         }
 
         @Override
         public void onClick(View view) {
-            if (view.getId() == R.id.comp_cont_item_root) {
+            if (view.getId() == R.id.student_competency_cont_item_root) {
                 itemClickCallback.onItemClick(getAdapterPosition());
-            } else if (view.getId() == R.id.edit_button) {
+            } else if (view.getId() == R.id.edit_competency_mark_button) {
                 itemClickCallback.onEditClick(getAdapterPosition());
-            } else if (view.getId() == R.id.add_button) {
+            } else if (view.getId() == R.id.add_assessment_mark) {
                 itemClickCallback.onAddClick(getAdapterPosition());
             }
         }

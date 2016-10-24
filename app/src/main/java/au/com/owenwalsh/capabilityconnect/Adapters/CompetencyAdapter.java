@@ -56,7 +56,7 @@ public class CompetencyAdapter extends RecyclerView.Adapter<CompetencyAdapter.Vi
     @Override
     public CompetencyAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.competency_row, viewGroup, false);
-        return new ViewHolder(view);
+        return new  CompetencyAdapter.ViewHolder(view);
     }
 
     /**

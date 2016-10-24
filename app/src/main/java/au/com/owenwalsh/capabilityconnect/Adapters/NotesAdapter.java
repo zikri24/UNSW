@@ -75,7 +75,6 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.ViewHolder> 
     public void onBindViewHolder(NotesAdapter.ViewHolder viewHolder, int position) {
         viewHolder.notesContent.setText(notes.get(position).getContent());
         viewHolder.notesContent.setText(notes.get(position).getContent());
-
     }
 
     @Override

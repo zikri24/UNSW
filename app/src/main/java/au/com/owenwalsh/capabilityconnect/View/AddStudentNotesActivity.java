@@ -45,7 +45,7 @@ public class AddStudentNotesActivity extends BaseActivity {
             return;
         }
         btn_add_note.setEnabled(false);
-        //add logic here for adding student
+        //add logic here for adding note
         //String noteName = note_name.getText().toString();
         String noteContents = input_notes.getText().toString();
         note = new Note(noteContents, studentID);

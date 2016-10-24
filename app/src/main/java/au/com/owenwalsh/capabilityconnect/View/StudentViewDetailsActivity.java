@@ -38,8 +38,8 @@ public class StudentViewDetailsActivity extends BaseActivity {
     private ImageView image_stream;
     private ImageView image_strength;
     private ImageView image_weakness;
-    private static final String STU_ID = "stuID";
     private static final String FIRST_NAME = "firstName";
+    private static final String STU_ID = "stuID";
     private static final String LAST_NAME = "lastname";
     private Button btn_view_notes;
     private Button btn_view_competencies;
@@ -95,7 +95,9 @@ public class StudentViewDetailsActivity extends BaseActivity {
         btn_view_notes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //intent to go to StudentViewNotesActivity
+              /*  Intent intent = new Intent(StudentViewDetailsActivity.this, class);
+                intent.putExtra(STU_ID, studentID);
+                startActivity(intent);*/
 
             }
         });

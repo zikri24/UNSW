@@ -73,6 +73,11 @@ public class StudentAssessmentActivity extends BaseActivity implements View.OnCl
     @Override
     public void onClick(View v) {
 
+        Intent intent = new Intent(StudentAssessmentActivity.this, StudentViewDetailsActivity.class);
+        intent.putExtra(STU_ID, studentId);
+
+        startActivity(intent);
+
     }
 
     @Override
