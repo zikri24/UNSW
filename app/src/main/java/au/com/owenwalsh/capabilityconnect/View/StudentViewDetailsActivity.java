@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import au.com.owenwalsh.capabilityconnect.Database.StudentLogic;
+import au.com.owenwalsh.capabilityconnect.Database.TutorialWeekStudentLogic;
 import au.com.owenwalsh.capabilityconnect.Model.Student;
 import au.com.owenwalsh.capabilityconnect.R;
 
@@ -48,6 +49,8 @@ public class StudentViewDetailsActivity extends BaseActivity {
     private Button btn_view_assessments;
     private TextView attendance_score;
     private Toolbar toolbar;
+    private static final String tutorialId = "tutorialId";
+    private static String TUT_ID = "tutorialId";
 
     private String studentID;
 
@@ -90,16 +93,16 @@ public class StudentViewDetailsActivity extends BaseActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Student Notes");
+        getSupportActionBar().setTitle("Student Profile");
         toolbar.setNavigationIcon(R.drawable.back_arrow);
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //NavUtils.navigateUpFromSameTask(AddStudentNotesActivity.this);
-                //Intent intent = new Intent(StudentViewDetailsActivity.this, TutorialStudentsListActivity.class);
-                //intent.putExtra(STU_ID, studentID);
-               // startActivity(intent);
+                //NavUtils.navigateUpFromSameTask(AddAssessmentActivity.this);
+                Intent intent = new Intent(StudentViewDetailsActivity.this, TutorialStudentsListActivity.class);
+                intent.putExtra(TUT_ID, tutorialId);
+                startActivity(intent);
             }
         });
 
@@ -177,6 +180,7 @@ public class StudentViewDetailsActivity extends BaseActivity {
                 Log.d("FAB FOCUSED:", "Email student selected");
                 //move user to EmailStudentActivity
                 Intent intent = new Intent(getApplicationContext(), SendStudentEmailActivity.class);
+                intent.putExtra(STU_ID, studentID);
                 startActivity(intent);
             }
         });
@@ -204,6 +208,7 @@ public class StudentViewDetailsActivity extends BaseActivity {
         student_stream.setText(stream);
         student_strength.setText(strength);
         student_weakness.setText(weakness);
+
     }
 
     public void getRecordForIntent() {

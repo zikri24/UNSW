@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,9 @@ public class SendStudentEmailActivity extends BaseActivity {
     private EditText input_subject;
     private EditText input_email_body;
     private Button btn_send_email;
+    private static final String STU_ID = "stuID";
+    private static final String studentId = "studentId";
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,21 @@ public class SendStudentEmailActivity extends BaseActivity {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_send_student_email, null, false);
         drawerLayout.addView(contentView, 0);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Send Email");
+        toolbar.setNavigationIcon(R.drawable.back_arrow);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // NavUtils.navigateUpFromSameTask(TutorialStudentsListActivity.this);
+                Intent intent = new Intent(SendStudentEmailActivity.this, StudentViewDetailsActivity.class);
+                intent.putExtra(STU_ID, studentId);
+                startActivity(intent);
+            }
+        });
 
         input_email_address = (EditText) findViewById(R.id.input_email_address);
         input_subject = (EditText) findViewById(R.id.input_subject);

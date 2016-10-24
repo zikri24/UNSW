@@ -32,6 +32,7 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
     private static final String STU_ID = "stuID";
     private static final String FIRST_NAME = "firstName";
     private static final String LAST_NAME = "lastname";
+    private static final String tutorialId = "tutorialId";
     private static String TUT_ID = "tutorialId";
     private RecyclerView recyclerView;
     private ProgressDialog progress;
@@ -171,6 +172,8 @@ public class TutorialStudentsListActivity extends BaseActivity implements View.O
         student = students.get(p);
         Intent intent = new Intent(TutorialStudentsListActivity.this, StudentViewDetailsActivity.class);
         intent.putExtra(STU_ID, student.getId());
+        intent.putExtra(TUT_ID, tutorialId);
+        intent.putExtra(TUT_ID, tutorialId);
         intent.putExtra(FIRST_NAME, student.getFirsName());
         intent.putExtra(LAST_NAME, student.getLastName());
         startActivity(intent);

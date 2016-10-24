@@ -2,8 +2,10 @@ package au.com.owenwalsh.capabilityconnect.View;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +24,7 @@ public class AddCompetencyActivity extends BaseActivity {
     private EditText input_competency_name;
     private EditText input_competency_desc;
     private Button btn_add_competency;
+    private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,21 @@ public class AddCompetencyActivity extends BaseActivity {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_add_competency, null, false);
         drawerLayout.addView(contentView, 0);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Add Competency");
+        toolbar.setNavigationIcon(R.drawable.back_arrow);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavUtils.navigateUpFromSameTask(AddCompetencyActivity.this);
+                //Intent intent = new Intent(StudentViewDetailsActivity.this, TutorialStudentsListActivity.class);
+                //intent.putExtra(STU_ID, studentID);
+                // startActivity(intent);
+            }
+        });
 
         input_competency_name = (EditText) findViewById(R.id.input_competency_name);
         input_competency_desc = (EditText) findViewById(R.id.input_competency_desc);

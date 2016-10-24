@@ -2,8 +2,10 @@ package au.com.owenwalsh.capabilityconnect.View;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +28,7 @@ public class AddStudentActivity extends BaseActivity {
     private Button btn_addStudent;
     private EditText input_stream;
     private static String TUT_ID = "tutorialId";
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,21 @@ public class AddStudentActivity extends BaseActivity {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_add_student, null, false);
         drawerLayout.addView(contentView, 0);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Add Student");
+        toolbar.setNavigationIcon(R.drawable.back_arrow);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //NavUtils.navigateUpFromSameTask(AddAssessmentActivity.this);
+                Intent intent = new Intent(AddStudentActivity.this, TutorialStudentsListActivity.class);
+                intent.putExtra(TUT_ID, tutorialId);
+                startActivity(intent);
+            }
+        });
 
         Intent intent = getIntent();
         tutorialId = Integer.parseInt(intent.getStringExtra(TUT_ID));
