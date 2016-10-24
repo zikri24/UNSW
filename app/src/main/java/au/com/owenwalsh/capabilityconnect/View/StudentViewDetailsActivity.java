@@ -3,8 +3,10 @@ package au.com.owenwalsh.capabilityconnect.View;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,6 +47,7 @@ public class StudentViewDetailsActivity extends BaseActivity {
     private Button btn_view_competencies;
     private Button btn_view_assessments;
     private TextView attendance_score;
+    private Toolbar toolbar;
 
     private String studentID;
 
@@ -84,6 +87,13 @@ public class StudentViewDetailsActivity extends BaseActivity {
         studentID = intent.getStringExtra(STU_ID);
         final String firstName = intent.getStringExtra(FIRST_NAME);
         final String lastName = intent.getStringExtra(LAST_NAME);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Tutorials");
+        toolbar.setNavigationIcon(R.drawable.back_arrow);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+
 
 
         attendance_score = (TextView) findViewById(R.id.attendance_score);
