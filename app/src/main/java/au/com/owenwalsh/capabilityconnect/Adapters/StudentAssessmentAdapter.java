@@ -5,7 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -30,8 +32,10 @@ public class StudentAssessmentAdapter extends RecyclerView.Adapter<StudentAssess
     //declaring interface for the on click event
     public interface ItemClickCallback {
         void onItemClick(int p);
-        //void onDeleteClick(int p);
-        //void onUpdateClick(int p);
+
+        void onEditClick(int p);
+
+        void onAddClick(int p);
     }
 
     public void setItemClickCallback(final ItemClickCallback itemClickCallback) {
@@ -72,6 +76,8 @@ public class StudentAssessmentAdapter extends RecyclerView.Adapter<StudentAssess
         public TextView assessmentMark;
         public RelativeLayout studentAssessmentLayout;
         public View studentAssessmentContainer;
+        public ImageButton edit_button;
+        public ImageButton add_button;
 
         public ViewHolder(View view) {
             super(view);
@@ -81,17 +87,20 @@ public class StudentAssessmentAdapter extends RecyclerView.Adapter<StudentAssess
             studentAssessmentContainer = view.findViewById(R.id.student_assess_cont_item_root);
             studentAssessmentContainer.setOnClickListener(this);
             assessmentMark = (TextView) view.findViewById(R.id.student_assessment_mark);
+            add_button = (ImageButton) view.findViewById(R.id.add_button);
+            edit_button = (ImageButton) view.findViewById(R.id.edit_button);
+
         }
 
         @Override
         public void onClick(View view) {
             if (view.getId() == R.id.comp_cont_item_root) {
                 itemClickCallback.onItemClick(getAdapterPosition());
-            }/* else if (view.getId() == R.id.btn_edit_assessment) {
-                itemClickCallback.onUpdateClick(getAdapterPosition());
-            } else if (view.getId() == R.id.btn_remove_assessment) {
-                itemClickCallback.onDeleteClick(getAdapterPosition());
-            }*/
+            } else if (view.getId() == R.id.edit_button) {
+                itemClickCallback.onEditClick(getAdapterPosition());
+            } else if (view.getId() == R.id.add_button) {
+                itemClickCallback.onAddClick(getAdapterPosition());
+            }
         }
     }
 }

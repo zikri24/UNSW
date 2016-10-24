@@ -32,6 +32,10 @@ public class StudentCompetencyAdapter extends RecyclerView.Adapter<StudentCompet
     //declaring interface for the on click event
     public interface ItemClickCallback {
         void onItemClick(int p);
+
+        void onEditClick(int p);
+
+        void onAddClick(int p);
         //void onDeleteClick(int p);
         //void onUpdateClick(int p);
     }
@@ -78,6 +82,8 @@ public class StudentCompetencyAdapter extends RecyclerView.Adapter<StudentCompet
         public TextView competencyMark;
         public RelativeLayout studentCompLayout;
         public View compContainer;
+        public ImageButton edit_button;
+        public ImageButton add_button;
 
         public ViewHolder(View view) {
             super(view);
@@ -86,6 +92,8 @@ public class StudentCompetencyAdapter extends RecyclerView.Adapter<StudentCompet
             competencyMark = (TextView) view.findViewById(R.id.competency_mark);
             compContainer = view.findViewById(R.id.student_comp_cont_item_root);
             compContainer.setOnClickListener(this);
+            add_button = (ImageButton) view.findViewById(R.id.add_button);
+            edit_button = (ImageButton) view.findViewById(R.id.edit_button);
 
         }
 
@@ -93,12 +101,11 @@ public class StudentCompetencyAdapter extends RecyclerView.Adapter<StudentCompet
         public void onClick(View view) {
             if (view.getId() == R.id.comp_cont_item_root) {
                 itemClickCallback.onItemClick(getAdapterPosition());
-            }/* else if (view.getId() == R.id.btn_edit_assessment) {
-                itemClickCallback.onUpdateClick(getAdapterPosition());
-            } else if (view.getId() == R.id.btn_remove_assessment) {
-                itemClickCallback.onDeleteClick(getAdapterPosition());
-            }*/
-
+            } else if (view.getId() == R.id.edit_button) {
+                itemClickCallback.onEditClick(getAdapterPosition());
+            } else if (view.getId() == R.id.add_button) {
+                itemClickCallback.onAddClick(getAdapterPosition());
+            }
         }
     }
 }

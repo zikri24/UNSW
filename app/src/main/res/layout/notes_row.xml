@@ -10,7 +10,7 @@
     card_view:cardCornerRadius="5dp">
 
     <LinearLayout
-        android:id="@+id/competency_card"
+        android:id="@+id/note_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
