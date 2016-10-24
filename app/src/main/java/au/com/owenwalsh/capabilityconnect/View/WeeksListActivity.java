@@ -52,6 +52,15 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Weeks");
 
+        toolbar.setNavigationIcon(R.drawable.back_arrow);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleOnBackPress();
+            }
+        });
+
         initViews();
 
         addActionBar = (FloatingActionButton) findViewById(R.id.fab);
@@ -77,6 +86,10 @@ public class WeeksListActivity extends BaseActivity implements View.OnClickListe
                 startActivity(intent);
             }
         });
+    }
+
+    private void handleOnBackPress() {
+        Toast.makeText(this, "back pressed", Toast.LENGTH_SHORT).show();
     }
 
     private void initViews() {
