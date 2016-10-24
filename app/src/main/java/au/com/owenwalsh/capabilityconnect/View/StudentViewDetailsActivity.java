@@ -112,7 +112,9 @@ public class StudentViewDetailsActivity extends BaseActivity {
         btn_view_competencies.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //intent to go to StudentCompetenciesActivity
+                Intent intent = new Intent(StudentViewDetailsActivity.this, StudentCompetenciesActivity.class);
+                intent.putExtra(STU_ID, studentID);
+                startActivity(intent);
             }
         });
 

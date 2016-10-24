@@ -65,6 +65,59 @@ public class StudentCompetencyLogic {
     }
 
 
+    public int getRating(int competencyId, String studentId) {
+        int rating= 0;
+        open();
+        try {
+            cursor = db.rawQuery("SELECT " +  dbHelper.RATING +" FROM "
+                    + dbHelper.STUDENTS_COMPETENCIES
+                    + " WHERE " + dbHelper.COMPETENCY_STUDENT_ID  + " = '" + studentId +"'  AND " + dbHelper.COMPETENCY_COMPETENCY_ID + " = " +  competencyId , null);
+            while (cursor.moveToNext()) {
+                rating = cursor.getInt(0);
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+            rating = 0;
+        }
+        close();
+        return rating;
+    }
+
+    public ArrayList<StudentCompetency> findAllStudentCompetencies(String studentId) {
+        studentCompetencies = new ArrayList<>();
+        open();
+        try {
+            cursor = db.rawQuery("SELECT " + dbHelper.ASSESSMENT_ID  +  ", " + dbHelper.ASSESSMENT_NAME + ", " + dbHelper.ASSESSMENT_MARK +" FROM "
+                    + dbHelper.ASSESSMENTS  ,null);
+
+            while (cursor.moveToNext()) {
+                studentCompetency = new StudentCompetency();
+                studentCompetency.setCompetencyId(cursor.getInt(0));
+                studentCompetency.setCompName(cursor.getString(1));
+                studentCompetency.setRating(getRating(cursor.getInt(0), studentId));
+                studentCompetencies.add(studentCompetency);
+            }
+            cursor.close();
+        } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
+            studentCompetencies = null;
+        }
+        close();
+        return studentCompetencies;
+    }
+
+
+
+
+
+
+
+
+
+
+
+/*
     public ArrayList<StudentCompetency> findCompetenciesByStudentId(String studentId) {
         studentCompetencies = new ArrayList<>();
         open();
@@ -91,5 +144,5 @@ public class StudentCompetencyLogic {
         close();
         return studentCompetencies;
     }
-
+*/
 }

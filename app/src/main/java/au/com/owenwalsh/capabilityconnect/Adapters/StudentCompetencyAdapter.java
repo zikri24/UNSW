@@ -36,8 +36,6 @@ public class StudentCompetencyAdapter extends RecyclerView.Adapter<StudentCompet
         void onEditClick(int p);
 
         void onAddClick(int p);
-        //void onDeleteClick(int p);
-        //void onUpdateClick(int p);
     }
 
     public void setItemClickCallback(final ItemClickCallback itemClickCallback) {

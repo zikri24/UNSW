@@ -45,7 +45,7 @@ public class StudentCompetenciesActivity extends BaseActivity implements View.On
         View contentView = inflater.inflate(R.layout.activity_student_competencies, null, false);
         drawerLayout.addView(contentView, 0);
 
-        initViews();
+
         submitButton = (Button) findViewById(R.id.btn_submit_competencies);
         Intent intent = getIntent();
         final String competencyID = intent.getStringExtra(COMP_ID);
@@ -57,6 +57,7 @@ public class StudentCompetenciesActivity extends BaseActivity implements View.On
                 //loop through to get and submit competencies
             }
         });
+        initViews();
     }
 
     private void initViews() {
@@ -71,7 +72,7 @@ public class StudentCompetenciesActivity extends BaseActivity implements View.On
     private void loadCompetencies() {
         //showProgressDialog();
         studentCompetencyLogic = new StudentCompetencyLogic(StudentCompetenciesActivity.this);
-        studentCompetencies = studentCompetencyLogic.findCompetenciesByStudentId(stuID);
+        studentCompetencies = studentCompetencyLogic.findAllStudentCompetencies(stuID);
         if (studentCompetencies.isEmpty()) {
             recyclerView.setVisibility(View.GONE);
             emptyView.setVisibility(View.VISIBLE);
