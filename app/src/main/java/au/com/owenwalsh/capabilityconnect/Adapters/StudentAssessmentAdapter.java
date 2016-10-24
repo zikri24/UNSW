@@ -48,7 +48,7 @@ public class StudentAssessmentAdapter extends RecyclerView.Adapter<StudentAssess
     @Override
     public StudentAssessmentAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.student_assessment_row, viewGroup, false);
-        return new StudentAssessmentAdapter.ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class StudentAssessmentAdapter extends RecyclerView.Adapter<StudentAssess
 
     @Override
     public int getItemCount() {
-        return 0;
+        return studentAssessmentList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

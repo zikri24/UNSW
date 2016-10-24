@@ -72,7 +72,7 @@ public class StudentCompetencyAdapter extends RecyclerView.Adapter<StudentCompet
 
     @Override
     public int getItemCount() {
-        return 0;
+        return studentCompetenciesList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
