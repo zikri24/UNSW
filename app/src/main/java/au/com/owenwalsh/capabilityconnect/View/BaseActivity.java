@@ -19,7 +19,6 @@ import au.com.owenwalsh.capabilityconnect.R;
 
 
 public class BaseActivity extends AppCompatActivity {
-    private Toolbar toolbar;
     private NavigationView navigationView;
     protected DrawerLayout drawerLayout;
     protected int frameLayout;
@@ -31,8 +30,7 @@ public class BaseActivity extends AppCompatActivity {
 
         FrameLayout frameLayout = (FrameLayout)  findViewById(R.id.content_frame);
         // Initializing Toolbar and setting it as the actionbar
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
 
 
         //Initializing NavigationView
@@ -96,7 +94,7 @@ public class BaseActivity extends AppCompatActivity {
 
         // Initializing Drawer Layout and ActionBarToggle
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.openDrawer, R.string.closeDrawer){
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,R.string.openDrawer, R.string.closeDrawer){
 
             @Override
             public void onDrawerClosed(View drawerView) {
