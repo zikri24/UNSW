@@ -77,7 +77,8 @@ public class StudentAttendanceActivity extends BaseActivity implements View.OnCl
             public void onClick(View v) {
                 //NavUtils.navigateUpFromSameTask(TutorialStudentsListActivity.this);
                 Intent intent = new Intent(StudentAttendanceActivity.this, TutorialListActivity.class);
-                intent.putExtra(tutorialId, tutorialId);
+                intent.putExtra(TUT_ID, tutorialId);
+                intent.putExtra(WEEK_ID, weekId);
                  startActivity(intent);
             }
         });
