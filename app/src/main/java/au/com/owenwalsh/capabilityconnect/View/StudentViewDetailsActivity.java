@@ -100,9 +100,9 @@ public class StudentViewDetailsActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //NavUtils.navigateUpFromSameTask(AddAssessmentActivity.this);
-                Intent intent = new Intent(StudentViewDetailsActivity.this, TutorialStudentsListActivity.class);
-                intent.putExtra(TUT_ID, tutorialId);
-                startActivity(intent);
+                //Intent intent = new Intent(StudentViewDetailsActivity.this, TutorialStudentsListActivity.class);
+                //intent.putExtra(TUT_ID, tutorialId);
+                //startActivity(intent);
             }
         });
 
