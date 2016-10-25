@@ -13,13 +13,13 @@
         android:id="@+id/tutorial_card"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:orientation="horizontal"
         android:visibility="visible">
 
         <LinearLayout
             android:id="@+id/layout_lines"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -45,6 +45,8 @@
             android:textSize="18dip"
             android:padding="10dp" />
             </LinearLayout>
+
+
             <LinearLayout
                 android:id="@+id/layout_lineTwo"
                 android:layout_width="wrap_content"
